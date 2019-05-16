@@ -32,7 +32,7 @@
     <td>{{ $sender->geininSender->user }}さん</td>
     <td>{{ $sender->message }}</td>
     <td>
-      <a class="btn btn-danger" href="{{ action('MessageController@message', $sender->sender_id) }}">
+      <a class="btn btn-danger" href="{{ action('MessageController@message', $sender->sender_id)}}">
         返信する
       </a>
     </td>

@@ -4,7 +4,7 @@
 
 @section('header')
 検索画面
-{{-- 認証時はログアウトボタン --}}
+{{-- 認証時はログアウトボタン それ以外の時はログインボタン--}}
 @if ($auth)
 <div class="text-right">
   <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
@@ -41,7 +41,8 @@
 @endif
 
   {{-- 検索フォーム --}}
-  <div class="my-5">
+  <div class="my-5 bg-light border border-primary">
+    <h2>検索項目</h2>
     <form action="{{ url('/search') }}" method="get">
       {{ csrf_field() }}
       <table class="table-sm mx-auto text-left">
@@ -97,6 +98,8 @@
       </table>
     </form>
   </div>
+
+  <p class="font-weight-bold text-primary">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</p>
 
   {{-- 芸人一覧 --}}
   <div class="row">

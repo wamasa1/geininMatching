@@ -68,25 +68,32 @@ class SearchController extends Controller
         break;
       }
 
+    $geinins = Geinin::all();
+    $allCount = $geinins->count();
+
     if (!empty($genreEn))
     {
       $geinins = Geinin::where('genre', $genreJa);
+    }
 
-      if (!empty($roleEn))
-      {
-        $geinins = $geinins->where('role', $roleJa);
-      }
+    if (!empty($roleEn))
+    {
+      $geinins = $geinins->where('role', $roleJa);
+    }
 
-      if (!empty($createrEn))
-      {
-        $geinins = $geinins->where('creater', $createrJa);
-      }
+    if (!empty($createrEn))
+    {
+      $geinins = $geinins->where('creater', $createrJa);
+    }
 
-      if (!empty($targetEn))
-      {
-        $geinins = $geinins->where('target', $targetJa);
-      }
+    if (!empty($targetEn))
+    {
+      $geinins = $geinins->where('target', $targetJa);
+    }
 
+    $hitCount = $geinins->count();
+    if ($allCount != $hitCount)
+    {
       $geinins = $geinins->paginate(4);
     } else {
       $geinins = Geinin::paginate(4);
@@ -95,6 +102,8 @@ class SearchController extends Controller
     $auth = Auth::guard('geinin')->check();
 
     return view('matching.search', [
+      'allCount' => $allCount,
+      'hitCount' => $hitCount,
       'geinins' => $geinins,
       'auth' => $auth,
       'genre' => $genreEn,
