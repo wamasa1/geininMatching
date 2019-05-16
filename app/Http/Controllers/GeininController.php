@@ -27,9 +27,12 @@ class GeininController extends Controller
       unset($form['__token']);
       $form['password'] = Hash::make($form['password']); //ハッシュ化
       $geinin->fill($form)->save();
+      Auth::guard('geinin')->login($geinin);
+
+      $id = $geinin->id;
 
       // roleのMatching
-      $role = $request->role;
+      $role = $geinin->role;
       switch ($role) {
         case 'ボケ':
         case 'ツッコミ':
@@ -40,7 +43,7 @@ class GeininController extends Controller
           break;
       }
       // createrのMatching
-      $creater = $request->creater;
+      $creater = $geinin->creater;
       switch ($creater) {
         case '自分が作る':
           $creater = '相方に作ってほしい';
@@ -48,42 +51,61 @@ class GeininController extends Controller
         case '相方に作ってほしい':
           $creater = '自分が作る';
           break;
+
       }
       // Matchingデータの抽出
-      $partners = Geinin::where('id', '!=', $request->id)
-        ->where('genre', $request->genre)
+      $partners = Geinin::where('id', '!=', $id)
+        ->where('genre', $geinin->genre)
         ->when($role_boolean, function ($query) use ($role){
           return $query->where('role', '!=', $role);
         })
         ->where('creater', $creater)
-        ->where('target', $request->target)
+        ->where('target', $geinin->target)
+        ->inRandomOrder()
         ->get();
 
       return view('geinin.show', ['partners' => $partners]);
     }
 
-    public function getAuth (Request $request)
+    public function show ()
     {
-      return view('geinin.login');
-    }
+      $geinin = Auth::guard('geinin')->user();
+      $id = $geinin->id;
 
-    public function postAuth (Request $request)
-    {
-      //認証 email passwordの照合
-      $credentials = $request->only('email', 'password');
+      // roleのMatching
+      $role = $geinin->role;
+      switch ($role) {
+        case 'ボケ':
+        case 'ツッコミ':
+          $role_boolean = true;
+          break;
+        case 'こだわらない':
+          $role_boolean = false;
+          break;
+      }
+      // createrのMatching
+      $creater = $geinin->creater;
+      switch ($creater) {
+        case '自分が作る':
+          $creater = '相方に作ってほしい';
+          break;
+        case '相方に作ってほしい':
+          $creater = '自分が作る';
+          break;
 
-      if (Auth::guard('geinin')->attempt($credentials)) {
-            return redirect('/profile');
-          } else {
-            return redirect('/login');
-          }
-    }
+      }
+      // Matchingデータの抽出
+      $partners = Geinin::where('id', '!=', $id)
+        ->where('genre', $geinin->genre)
+        ->when($role_boolean, function ($query) use ($role){
+          return $query->where('role', '!=', $role);
+        })
+        ->where('creater', $creater)
+        ->where('target', $geinin->target)
+        ->inRandomOrder()
+        ->get();
 
-    public function logout ()
-    {
-      Auth::logout();
-
-      return redirect('/index')->with('logout', 'ログアウトしました');
+      return view('geinin.show', ['partners' => $partners]);
     }
 
 }

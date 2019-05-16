@@ -11,20 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/index', 'GeininController@index');
 
-Route::get('/register', 'GeininController@register');
-Route::post('/register', 'GeininController@add');
+Route::get('/register', 'GeininController@register')->name('register');
+Route::post('/show', 'GeininController@add');
+Route::get('/show', 'GeininController@show')->middleware('auth:geinin');
 
-Route::get('/login', 'GeininController@getAuth');
-Route::post('/login', 'GeininController@postAuth');
-Route::get('/logout', 'GeininController@logout');
+Route::get('/login', 'AuthController@getAuth')->name('login');
+Route::post('/login', 'AuthController@postAuth');
+Route::get('/logout', 'AuthController@logout');
 
-Route::get('/search', 'MatchingController@index');
+Route::get('/search', 'SearchController@search');
 
-Route::get('/profile', 'MatchingController@profile');
-Route::post('/profile', 'MatchingController@store');
+Route::get('/profile', 'ProfileController@profile')
+  ->middleware('auth:geinin');
+Route::post('/profile', 'ProfileController@store');
+
+Route::get('/message/{id}', 'MessageController@message')
+  ->middleware('auth:geinin');
+Route::post('/message/{id}', 'MessageController@submit');
+
+Route::get('/messagebox', 'MessageController@receive')
+  ->middleware('auth:geinin');

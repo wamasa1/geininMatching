@@ -1,11 +1,17 @@
 @extends('layouts.geininapp')
 
 @section('title', 'プロフィール編集画面')
+@section('header', 'プロフィール編集画面')
 
 @section('body')
   <h2>プロフィールを充実させよう</h2>
+  <div class="float-left">
+    <a class="btn btn-primary" href="{{ url('/search') }}" role="button">
+      検索画面へ
+    </a>
+  </div>
   <div class="text-right">
-    <a class="btn btn-primary" href="/geininMatching/public/logout" role="button">
+    <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
       ログアウト
     </a>
   </div>
@@ -33,7 +39,7 @@
 </div>
 @endif
 
-<form action="/geininMatching/public/profile" method="post" enctype="multipart/form-data">
+<form class="mt-5" action="/geininMatching/public/profile" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
   <input type="file" name="image">
   <input type="submit" value="アップロード">

@@ -64,7 +64,7 @@
   </style>
   <body>
     <div class="container text-center mt-2 mb-5">
-      <h1 class="text-primary display-3">@yield('title')</h1>
+      <h1 class="text-primary display-3">@yield('header')</h1>
       @yield('body')
     </div>
   </body>

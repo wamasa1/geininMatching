@@ -1,8 +1,9 @@
 @extends('layouts.geininapp')
 
-@section('title')
+@section('title', 'ログイン画面')
+@section('header')
+<a class="float-left mt-3 btn btn-primary btn-lg" href="/geininMatching/public/index" role="button">ホーム</a>
  ログイン画面
- <a class="float-right mt-3 btn btn-primary btn-lg" href="/geininMatching/public/index" role="button">戻る</a>
 @endsection
 
 @section('body')
@@ -34,4 +35,8 @@
   </table>
   <input class="btn-primary btn-lg" type="submit" value="ログイン">
   </form>
+  <p class="mt-5">未登録の方はこちらへ</p>
+  <a class="btn btn-danger btn-lg" href="{{ url('/register')}}" role="button">
+    新規登録
+  </a>
 @endsection

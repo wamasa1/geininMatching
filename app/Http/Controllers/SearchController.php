@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileRequest;
 use App\Geinin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
-class MatchingController extends Controller
+class SearchController extends Controller
 {
-  public function index (Request $request)
+  public function search (Request $request)
   {
     //ジャンルを日本語変換
     $genreEn = $request->genre;
@@ -94,36 +92,15 @@ class MatchingController extends Controller
       $geinins = Geinin::paginate(4);
     }
 
+    $auth = Auth::guard('geinin')->check();
+
     return view('matching.search', [
       'geinins' => $geinins,
+      'auth' => $auth,
       'genre' => $genreEn,
       'role' => $roleEn,
       'creater' => $createrEn,
       'target' => $targetEn,
     ]);
   }
-
-  public function profile ()
-  {
-    // 認証済みユーザーの取得
-    $geinin = Auth::guard('geinin')->user();
-
-    return view('matching.profile', ['geinin' => $geinin]);
-  }
-
-  public function store (ProfileRequest $request)
-  {
-    $geinin = Auth::guard('geinin')->user();
-
-    $originalImg = $request->image;
-    if ($originalImg->isValid())
-    {
-      $filePath = $originalImg->storeAs('public/images', $geinin->id . '.jpg');
-      $geinin->image = str_replace('public/', '', $filePath);
-      $geinin->save();
-    }
-
-    return redirect('/profile')->with('success', '画像をアップロードしました！');
-  }
-
 }

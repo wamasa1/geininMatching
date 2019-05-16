@@ -2,10 +2,47 @@
 
 @section('title', '検索画面')
 
+@section('header')
+検索画面
+{{-- 認証時はログアウトボタン --}}
+@if ($auth)
+<div class="text-right">
+  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+    ログアウト
+  </a>
+</div>
+@else
+<div class="text-right">
+  <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
+    ログイン
+  </a>
+</div>
+@endif
+
+<div class="mt-1">
+    <a class="btn btn-danger btn-lg" href="{{ url('/show')}}" role="button">
+      相性の良い相方
+    </a>
+    <a class="btn btn-danger" href="{{ url('/profile' )}}" role="button">
+      プロフィールを<br>充実させよう
+    </a>
+    <a class="btn btn-danger" href="{{ url('/messagebox' )}}" role="button">
+      メッセージ<br>ボックス
+    </a>
+</div>
+@endsection
+
 @section('body')
+{{-- 送信完了のメッセージ --}}
+@if (session('submit'))
+<div class="alert alert-success mt-5">
+  {{ session('submit') }}
+</div>
+@endif
+
   {{-- 検索フォーム --}}
   <div class="my-5">
-    <form action="/geininMatching/public/search" method="get">
+    <form action="{{ url('/search') }}" method="get">
       {{ csrf_field() }}
       <table class="table-sm mx-auto text-left">
         <tr>
@@ -104,14 +141,16 @@
           </tr>
         </tbody>
       </table>
+      <a class="btn btn-danger mb-5" href="{{ action('MessageController@message', $geinin->id) }}">
+        {{ $geinin->user }}さんにメッセージを送る
+      </a>
     </div>
-  @if($loop->iteration % 2 == 0)
+  @if($loop->iteration == 2)
   </div>
   <div class="row">
   @endif
   @endforeach
   </div>
-  @if (!empty($genre))
+
   {{ $geinins->appends(['genre' => $genre, 'role' => $role,  'creater' => $creater, 'target' => $target])->links() }}
-  @endif
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.geininapp')
 
-@section('title')
+@section('title', '相方マッチングサイト')
+@section('header')
  相方マッチングサイト
    <a class="float-right mt-3 btn btn-primary btn-lg" href="{{ url('/login')}}" role="button">
      ログイン
@@ -30,6 +31,8 @@
         登録せず自分で検索する
       </a>
     </div>
-
   </div>
+  <footer class="text-center text-muted mt-5">
+    Copyright Masataka Kadogawa
+  </footer>
 @endsection

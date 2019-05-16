@@ -4,7 +4,7 @@
 
 @section('body')
 <h2 class="my-5">あなたの情報を登録することで、相性の良い相方を探します。</h2>
-<form action="/geininMatching/public/register" method="post">
+<form action="{{ url('/show') }}" method="post">
   {{ csrf_field() }}
   <table id="question" class="table table-hover">
     <thead>
