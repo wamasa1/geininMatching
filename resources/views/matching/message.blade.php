@@ -1,14 +1,14 @@
-@extends('layouts.geininapp')
+@extends('layouts.matching')
 
 @section('title', 'メッセージ・フォーム')
 
 @section('header')
- メッセージ・フォーム
-  <div class="text-right">
-    <a class="btn btn-primary" href="{{ url('/show') }}" role="button">
-      戻る
-    </a>
-  </div>
+<div class="text-right pt-5 mt-5">
+  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+    ログアウト
+  </a>
+</div>
+<h1 class="text-danger display-3 pt-2 mt-2 mb-5">メッセージ・フォーム</h1>
 @endsection
 
 @section('body')

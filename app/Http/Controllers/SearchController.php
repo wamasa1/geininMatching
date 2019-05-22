@@ -67,10 +67,11 @@ class SearchController extends Controller
         $targetJa = 'テレビよりも舞台で活躍したい';
         break;
       }
-
-    $geinins = Geinin::all();
+    //全件数
+    $auth_id = Auth::guard('geinin')->id();
+    $geinins = Geinin::where('id', '!=', $auth_id);
     $allCount = $geinins->count();
-
+    //検索条件適合
     if (!empty($genreEn))
     {
       $geinins = Geinin::where('genre', $genreJa);
@@ -92,13 +93,14 @@ class SearchController extends Controller
     }
 
     $hitCount = $geinins->count();
+    //ペジネーション
     if ($allCount != $hitCount)
     {
       $geinins = $geinins->paginate(4);
     } else {
-      $geinins = Geinin::paginate(4);
+      $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);
     }
-
+    //認証チェック
     $auth = Auth::guard('geinin')->check();
 
     return view('matching.search', [

@@ -1,20 +1,17 @@
-@extends('layouts.geininapp')
+@extends('layouts.matching')
 
 @section('title', 'プロフィール編集画面')
-@section('header', 'プロフィール編集画面')
 
-@section('body')
-  <h2>プロフィールを充実させよう</h2>
-  <div class="float-left">
-    <a class="btn btn-primary" href="{{ url('/search') }}" role="button">
-      検索画面へ
-    </a>
-  </div>
-  <div class="text-right">
+@section('header')
+  <div class="text-right pt-5 mt-5">
     <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
       ログアウト
     </a>
   </div>
+  <h1 class="text-success display-3 pt-2 mt-2 mb-5">プロフィール編集画面</h1>
+@endsection
+
+@section('body')
 
 @if ($geinin->image != null)
 <figure>

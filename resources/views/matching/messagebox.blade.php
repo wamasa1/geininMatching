@@ -1,26 +1,26 @@
-@extends('layouts.geininapp')
+@extends('layouts.matching')
 
 @section('title', 'メッセージ・ボックス')
 
 @section('header')
- メッセージ・ボックス
-  <div class="text-right">
-    <a class="btn btn-primary" href="{{ url('/search') }}" role="button">
-      検索画面へ
+  <div class="text-right pt-5 mt-5">
+    <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+      ログアウト
     </a>
   </div>
+  <h1 class="text-warning display-3 pt-2 mt-2 mb-5">メッセージ・ボックス</h1>
 @endsection
 
 @section('body')
 {{-- 送信完了のメッセージ --}}
-@if (session('submit'))
+@if (session('message_success'))
 <div class="alert alert-success mt-5">
-  {{ session('submit') }}
+  {{ session('message_success') }}
 </div>
 @endif
 
 <table class="table">
-  <tr class="">
+  <tr>
     {{ $receiver_user }}さんのメッセージ・ボックス
   </tr>
   <tr>

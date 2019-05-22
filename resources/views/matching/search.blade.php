@@ -1,42 +1,37 @@
-@extends('layouts.geininapp')
+@extends('layouts.matching')
 
 @section('title', '検索画面')
 
 @section('header')
-検索画面
-{{-- 認証時はログアウトボタン それ以外の時はログインボタン--}}
-@if ($auth)
-<div class="text-right">
-  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
-    ログアウト
-  </a>
-</div>
-@else
-<div class="text-right">
-  <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
-    ログイン
-  </a>
-</div>
-@endif
+  {{-- 認証時はログアウトボタン それ以外の時はログインボタン--}}
+  @if ($auth)
+  <div class="text-right pt-5 mt-5">
+    <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+      ログアウト
+    </a>
+  </div>
+  @else
+  <div class="text-right pt-5 mt-5">
+    <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
+      ログイン
+    </a>
+  </div>
+  @endif
 
-<div class="mt-1">
-    <a class="btn btn-danger btn-lg" href="{{ url('/show')}}" role="button">
-      相性の良い相方
-    </a>
-    <a class="btn btn-danger" href="{{ url('/profile' )}}" role="button">
-      プロフィールを<br>充実させよう
-    </a>
-    <a class="btn btn-danger" href="{{ url('/messagebox' )}}" role="button">
-      メッセージ<br>ボックス
-    </a>
-</div>
+  <h1 class="text-secondary display-3 pt-2 my-2">検索画面</h1>
 @endsection
 
 @section('body')
-{{-- 送信完了のメッセージ --}}
-@if (session('submit'))
+{{-- メッセージ送信完了 --}}
+@if (session('message_success'))
 <div class="alert alert-success mt-5">
-  {{ session('submit') }}
+  {{ session('message_success') }}
+</div>
+@endif
+{{-- お気に入り登録完了 --}}
+@if (session('favorite_success'))
+<div class="alert alert-success mt-5">
+  {{ session('favorite_success') }}
 </div>
 @endif
 
@@ -111,10 +106,10 @@
       @else
         <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle" width="150" height="150">
       @endif
-        <figcaption>現在のプロフィール画像</figcaption>
+        <figcaption>プロフィール画像</figcaption>
       </figure>
 
-      <table id="question" class="table table-hover">
+      <table id="question" class="table table-hover mb-2">
         <thead>
         </thead>
         <tbody>
@@ -144,9 +139,17 @@
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-danger mb-5" href="{{ action('MessageController@message', $geinin->id) }}">
+      <a class="btn btn-danger mb-2" href="{{ action('MessageController@message', $geinin->id) }}">
         {{ $geinin->user }}さんにメッセージを送る
       </a>
+      <div class="mb-5">
+        <form action="{{ url('/search') }}" method="post">
+          {{ csrf_field() }}
+          <input type="hidden" name="_method" value="patch">
+          <input type="hidden" name="favoriteTo_id" value="{{ $geinin->id }}">
+          <input class="btn btn-warning" type="submit" value="お気に入り芸人登録">
+        </form>
+      </div>
     </div>
   @if($loop->iteration == 2)
   </div>

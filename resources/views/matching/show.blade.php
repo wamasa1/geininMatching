@@ -1,7 +1,15 @@
-@extends('layouts.geininapp')
+@extends('layouts.matching')
 
 @section('title', 'あなたの相性の良い相方')
-@section('header', '相方マッチングサイト')
+
+@section('header')
+  <div class="text-right pt-5 mt-5">
+    <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+      ログアウト
+    </a>
+  </div>
+  <h1 class="text-primary display-3 pt-2 mt-2 mb-5">あなたの相性の良い相方</h1>
+@endsection
 
 @section('body')
 {{-- 送信完了のメッセージ --}}
@@ -10,26 +18,6 @@
   {{ session('submit') }}
 </div>
 @endif
-
-<div class="text-right">
-  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
-    ログアウト
-  </a>
-</div>
-<div class="">
-    <a class="btn btn-danger btn-lg" href="{{ url('/search')}}" role="button">
-    自分で<br>検索する
-    </a>
-    <a class="btn btn-danger mx-5" href="{{ url('/profile' )}}" role="button">
-      プロフィールを<br>充実させよう
-    </a>
-    <a class="btn btn-danger" href="{{ url('/messagebox' )}}" role="button">
-      メッセージ<br>ボックス
-    </a>
-</div>
-
-
-<h2 class="my-5">あなたの相性の良い相方</h2>
 
 <div class="row">
 @forelse ($partners as $partner)

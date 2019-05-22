@@ -16,10 +16,14 @@ class CreateGeininsTable extends Migration
         Schema::create('geinins', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user');
+            $table->string('image')->nullable();
             $table->string('genre');
             $table->string('role');
             $table->string('creater');
             $table->string('target');
+            $table->text('self_introduce')->nullable();
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }

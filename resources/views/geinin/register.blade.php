@@ -1,6 +1,15 @@
-@extends('layouts.geininapp')
+@extends('layouts.geinin')
 
 @section('title', '新規登録画面')
+
+@section('header')
+<div class="text-right mt-1">
+  <a class="btn btn-primary" href="{{ url('/index') }}" role="button">
+    ホーム
+  </a>
+</div>
+<h1 class="display-3 pt-2 mt-2 mb-5">新規登録画面</h1>
+@endsection
 
 @section('body')
 <h2 class="my-5">あなたの情報を登録することで、相性の良い相方を探します。</h2>

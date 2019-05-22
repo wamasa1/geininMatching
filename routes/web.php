@@ -26,6 +26,7 @@ Route::post('/login', 'AuthController@postAuth');
 Route::get('/logout', 'AuthController@logout');
 
 Route::get('/search', 'SearchController@search');
+Route::patch('/search', 'FavoriteController@register');
 
 Route::get('/profile', 'ProfileController@profile')
   ->middleware('auth:geinin');
@@ -36,4 +37,7 @@ Route::get('/message/{id}', 'MessageController@message')
 Route::post('/message/{id}', 'MessageController@submit');
 
 Route::get('/messagebox', 'MessageController@receive')
+  ->middleware('auth:geinin');
+
+Route::get('/favorite', 'FavoriteController@list')
   ->middleware('auth:geinin');

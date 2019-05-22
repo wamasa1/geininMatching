@@ -1,9 +1,14 @@
-@extends('layouts.geininapp')
+@extends('layouts.geinin')
 
 @section('title', 'ログイン画面')
+
 @section('header')
-<a class="float-left mt-3 btn btn-primary btn-lg" href="/geininMatching/public/index" role="button">ホーム</a>
- ログイン画面
+<div class="text-right mt-1">
+  <a class="btn btn-primary" href="{{ url('/index') }}" role="button">
+    ホーム
+  </a>
+</div>
+<h1 class="display-3 pt-2 mt-2 mb-5">ログイン画面</h1>
 @endsection
 
 @section('body')

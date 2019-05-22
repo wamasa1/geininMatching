@@ -64,7 +64,7 @@ class GeininController extends Controller
         ->inRandomOrder()
         ->get();
 
-      return view('geinin.show', ['partners' => $partners]);
+      return view('matching.show', ['partners' => $partners]);
     }
 
     public function show ()
@@ -105,7 +105,7 @@ class GeininController extends Controller
         ->inRandomOrder()
         ->get();
 
-      return view('geinin.show', ['partners' => $partners]);
+      return view('matching.show', ['partners' => $partners]);
     }
 
 }

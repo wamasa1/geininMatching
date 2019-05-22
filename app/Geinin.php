@@ -19,4 +19,14 @@ class Geinin extends Authenticatable
   {
     return $this->hasOne('App\Message', 'sender_id');
   }
+
+  //Favoriteとのリレーション
+  public function favoriteFrom ()
+  {
+    return $this->hasMany('App\Favorite', 'favoriteFrom_id');
+  }
+  public function favoriteTo ()
+  {
+    return $this->hasOne('App\Favorite', 'favoriteTo_id');
+  }
 }

@@ -32,7 +32,7 @@ class MessageController extends Controller
       //リダイレクト先は二つ前のページ
       $redirectTo = $request->session()->get('redirectTo');
       return redirect($redirectTo)
-        ->with('submit', $geinin->user . 'さんに送信しました');
+        ->with('message_success', $geinin->user . 'さんに送信しました');
     }
 
     public function receive ()
@@ -49,6 +49,6 @@ class MessageController extends Controller
         'receiver_user' => $receiver_user,
         'senders' => $senders,
       ];
-      return view('Matching.messagebox', $param);
+      return view('matching.messagebox', $param);
     }
 }
