@@ -14,13 +14,14 @@
 @section('body')
   <form action="/geininMatching/public/login" method="post">
   {{ csrf_field() }}
-  <table id="question" class="table table-hover">
+  <table id="question" class="table">
     <tr>
       <th class="align-middle bg-dark text-white">
         メールアドレス
       </th>
       <td>
         <input type="email" name="email" value="{{ old('email') }}">
+        <br><span class="text-primary">テストユーザー用：ikuta@gmail.com</span>
         <!-- @if ($errors->has('email'))
         <p class="text-danger">{{ $errors->first('email') }}</p>
         @endif -->
@@ -32,6 +33,7 @@
       </th>
       <td>
         <input type="password" name="password">
+        <br><span class="text-primary">テストユーザー用：ikuta</span>
         <!-- @if ($errors->has('password'))
         <p class="text-danger">{{ $errors->first('password') }}</p>
         @endif -->

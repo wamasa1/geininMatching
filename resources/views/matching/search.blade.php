@@ -154,15 +154,20 @@
         <form action="{{ url('/search') }}" method="post">
           {{ csrf_field() }}
           <input type="hidden" name="favoriteTo_id" value="{{ $geinin->id }}">
-          @forelse ($geinin->favoriteTo as $favoriteTo)
-            @if ($favoriteTo->favoriteFrom_id == $auth_id)
-              @method('delete')
-              <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
-            @endif
-          @empty
+          @auth('geinin')
+            @forelse ($geinin->favoriteTo as $favoriteTo)
+              @if ($favoriteTo->favoriteFrom_id == $auth_id)
+                @method('delete')
+                <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
+              @endif
+            @empty
+              @method('patch')
+              <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+            @endforelse
+          @else
             @method('patch')
             <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
-          @endforelse
+          @endauth
         </form>
       </div>
     </div>

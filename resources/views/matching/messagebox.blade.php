@@ -8,7 +8,7 @@
       ログアウト
     </a>
   </div>
-  <h1 class="text-warning display-3 pt-2 mt-2 mb-5">メッセージ・ボックス</h1>
+  <h1 class="text-danger display-3 pt-2 mt-2 mb-5">メッセージ・ボックス</h1>
 @endsection
 
 @section('body')

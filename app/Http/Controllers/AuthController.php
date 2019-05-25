@@ -24,11 +24,16 @@ class AuthController extends Controller
     //リダイレクト先は二つ前のページ
     $redirectTo = $request->session()->get('redirectTo');
 
-    if (Auth::guard('geinin')->attempt($credentials)) {
-        return redirect($redirectTo);
-        } else {
-          return back();
-        }
+    if (Auth::guard('geinin')->attempt($credentials))
+    {
+      if ($redirectTo == url('/index'))
+      {
+        return redirect('/search');
+      }
+      return redirect($redirectTo);
+    } else {
+      return back();
+    }
   }
 
   public function logout ()
