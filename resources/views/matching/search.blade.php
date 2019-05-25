@@ -28,10 +28,18 @@
   {{ session('message_success') }}
 </div>
 @endif
+
 {{-- お気に入り登録完了 --}}
 @if (session('favorite_success'))
 <div class="alert alert-success mt-5">
   {{ session('favorite_success') }}
+</div>
+@endif
+
+{{-- お気に入り登録解除 --}}
+@if (session('favorite_delete'))
+<div class="alert alert-success mt-5">
+  {{ session('favorite_delete') }}
 </div>
 @endif
 
@@ -101,11 +109,11 @@
   @foreach($geinins as $geinin)
     <div class="col">
       <figure>
-      @if ($geinin->image != null)
+      @empty (!$geinin->image)
         <img src="/geininMatching/public/storage/{{ $geinin->image }}" class="rounded-circle" width="150" height="150" alt="画像">
       @else
         <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle" width="150" height="150">
-      @endif
+      @endempty
         <figcaption>プロフィール画像</figcaption>
       </figure>
 
@@ -145,9 +153,16 @@
       <div class="mb-5">
         <form action="{{ url('/search') }}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="_method" value="patch">
           <input type="hidden" name="favoriteTo_id" value="{{ $geinin->id }}">
-          <input class="btn btn-warning" type="submit" value="お気に入り芸人登録">
+          @forelse ($geinin->favoriteTo as $favoriteTo)
+            @if ($favoriteTo->favoriteFrom_id == $auth_id)
+              @method('delete')
+              <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
+            @endif
+          @empty
+            @method('patch')
+            <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+          @endforelse
         </form>
       </div>
     </div>

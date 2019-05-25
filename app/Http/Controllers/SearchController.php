@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Geinin;
+use App\Favorite;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,14 +101,16 @@ class SearchController extends Controller
     } else {
       $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);
     }
-    //認証チェック
+    //認証関連
     $auth = Auth::guard('geinin')->check();
+    $auth_id = Auth::guard('geinin')->id();
 
     return view('matching.search', [
       'allCount' => $allCount,
       'hitCount' => $hitCount,
       'geinins' => $geinins,
       'auth' => $auth,
+      'auth_id' => $auth_id,
       'genre' => $genreEn,
       'role' => $roleEn,
       'creater' => $createrEn,

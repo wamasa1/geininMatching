@@ -16,11 +16,11 @@
   @foreach($favorites as $favorite)
     <div class="col">
       <figure>
-      @if ($favorite->geininFavoriteTo->image != null)
+      @empty (!$favorite->geininFavoriteTo->image)
         <img src="/geininMatching/public/storage/{{ $favorite->geininFavoriteTo->image }}" class="rounded-circle" width="150" height="150" alt="画像">
       @else
         <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle" width="150" height="150">
-      @endif
+      @endempty
         <figcaption>プロフィール画像</figcaption>
       </figure>
 
@@ -58,15 +58,15 @@
         {{ $favorite->geininFavoriteTo->user }}さんにメッセージを送る
       </a>
       <div class="mb-5">
-        <form action="{{ url('/search') }}" method="post">
+        <form action="{{ url('/favorite') }}" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="_method" value="patch">
-          <input type="hidden" name="favoriteTo_id" value="{{ $favorite->geininFavoriteTo->id }}">
-          <input class="btn btn-warning" type="submit" value="お気に入り芸人登録">
+          @method('delete')
+          <input type="hidden" name="favoriteTo_id" value="{{ $favorite->geininFavoriteTo->id  }}">
+          <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
         </form>
       </div>
     </div>
-  @if($loop->iteration == 2)
+  @if($loop->iteration % 2 == 0)
   </div>
   <div class="row">
   @endif

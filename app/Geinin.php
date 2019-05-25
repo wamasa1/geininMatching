@@ -27,6 +27,6 @@ class Geinin extends Authenticatable
   }
   public function favoriteTo ()
   {
-    return $this->hasOne('App\Favorite', 'favoriteTo_id');
+    return $this->hasMany('App\Favorite', 'favoriteTo_id');
   }
 }

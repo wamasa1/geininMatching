@@ -70,7 +70,7 @@ class GeininController extends Controller
     public function show ()
     {
       $geinin = Auth::guard('geinin')->user();
-      $id = $geinin->id;
+      $auth_id = $geinin->id;
 
       // roleのMatching
       $role = $geinin->role;
@@ -95,7 +95,7 @@ class GeininController extends Controller
 
       }
       // Matchingデータの抽出
-      $partners = Geinin::where('id', '!=', $id)
+      $partners = Geinin::where('id', '!=', $auth_id)
         ->where('genre', $geinin->genre)
         ->when($role_boolean, function ($query) use ($role){
           return $query->where('role', '!=', $role);
@@ -105,7 +105,10 @@ class GeininController extends Controller
         ->inRandomOrder()
         ->get();
 
-      return view('matching.show', ['partners' => $partners]);
+      return view('matching.show', [
+        'partners' => $partners,
+        'auth_id' => $auth_id
+      ]);
     }
 
 }

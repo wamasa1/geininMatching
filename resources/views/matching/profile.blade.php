@@ -13,12 +13,12 @@
 
 @section('body')
 
-@if ($geinin->image != null)
+@empty (!$geinin->image)
 <figure>
   <img src="/geininMatching/public/storage/{{ $geinin->image }}" class="rounded-circle" alt="画像">
   <figcaption>現在のプロフィール画像</figcaption>
 </figure>
-@endif
+@endempty
 
 @if (session('success'))
 <div class="alert alert-success">
