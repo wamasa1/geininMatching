@@ -17,7 +17,7 @@ class GeininController extends Controller
 
     public function register (Request $request)
     {
-      return view('geinin.register',);
+      return view('geinin.register');
     }
 
     public function add (GeininRequest $request)

@@ -1,4 +1,4 @@
-/* スマホでの表示 */
+/* スマホでの表示  */
 #question{
 width:95%;
 margin:2em auto;
@@ -49,4 +49,9 @@ display:block;
 
 #partner {
 margin-bottom: 20px;
+}
+
+.navbar-height {
+  display: flex;
+  flex-wrap: wrap;
 }

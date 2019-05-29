@@ -13,6 +13,7 @@ class AuthController extends Controller
     $session = $request->session()->all();
     $previous = $session['_previous']['url'];
     $request->session()->put('redirectTo', $previous);
+    // dd($session);
 
     return view('geinin.login');
   }
@@ -26,7 +27,7 @@ class AuthController extends Controller
 
     if (Auth::guard('geinin')->attempt($credentials))
     {
-      if ($redirectTo == url('/index'))
+      if ($redirectTo == url('/index') or $redirectTo == url('/login'))
       {
         return redirect('/search');
       }

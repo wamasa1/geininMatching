@@ -159,6 +159,9 @@
               @if ($favoriteTo->favoriteFrom_id == $auth_id)
                 @method('delete')
                 <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
+              @elseif ($loop->last)
+                @method('patch')
+                <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
               @endif
             @empty
               @method('patch')

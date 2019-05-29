@@ -12,7 +12,7 @@
 @endsection
 
 @section('body')
-  <form action="/geininMatching/public/login" method="post">
+  <form action="{{ url('/login') }}" method="post">
   {{ csrf_field() }}
   <table id="question" class="table">
     <tr>

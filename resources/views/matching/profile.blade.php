@@ -13,12 +13,14 @@
 
 @section('body')
 
-@empty (!$geinin->image)
 <figure>
-  <img src="/geininMatching/public/storage/{{ $geinin->image }}" class="rounded-circle" alt="画像">
-  <figcaption>現在のプロフィール画像</figcaption>
-</figure>
+@empty (!$geinin->image)
+  <img src="/storage/{{ $geinin->image }}" class="rounded-circle" width="150" height="150" alt="画像">
+@else
+  <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle" width="150" height="150">
 @endempty
+  <figcaption>プロフィール画像</figcaption>
+</figure>
 
 @if (session('success'))
 <div class="alert alert-success">
@@ -36,7 +38,7 @@
 </div>
 @endif
 
-<form class="mt-5" action="/geininMatching/public/profile" method="post" enctype="multipart/form-data">
+<form class="my-5" action="{{ url('/profile') }}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
   <input type="file" name="image">
   <input type="submit" value="アップロード">
