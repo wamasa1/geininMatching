@@ -13,7 +13,6 @@ class AuthController extends Controller
     $session = $request->session()->all();
     $previous = $session['_previous']['url'];
     $request->session()->put('redirectTo', $previous);
-    // dd($session);
 
     return view('geinin.login');
   }
@@ -29,11 +28,11 @@ class AuthController extends Controller
     {
       if ($redirectTo == url('/index') or $redirectTo == url('/login'))
       {
-        return redirect('/search');
+        return redirect('/search')->with('login', 'ログインしました');
       }
-      return redirect($redirectTo);
+      return redirect($redirectTo)->with('login', 'ログインしました');
     } else {
-      return back();
+      return redirect('/login')->with('login_failure', 'ログインに失敗しました');
     }
   }
 

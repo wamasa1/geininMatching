@@ -83,15 +83,17 @@
       <form action="{{ url('/show') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="favoriteTo_id" value="{{ $partner->id }}">
-        @forelse ($partner->favoriteTo as $favoriteTo)
-          @if ($favoriteTo->favoriteFrom_id == $auth_id)
-            @method('delete')
-            <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
-          @endif
-        @empty
-          @method('patch')
-          <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
-        @endforelse
+        @isset($auth_id)
+          @forelse ($partner->favoriteTo as $favoriteTo)
+            @if ($favoriteTo->favoriteFrom_id == $auth_id)
+              @method('delete')
+              <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
+            @endif
+          @empty
+            @method('patch')
+            <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+          @endforelse
+        @endisset
       </form>
     </div>
   </div>

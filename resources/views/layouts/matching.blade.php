@@ -44,6 +44,14 @@
       </nav>
 
       @yield('header')
+
+      {{-- ログイン完了メッセージ --}}
+      @if (session('login'))
+      <div class="alert alert-success mt-5">
+        {{ session('login') }}
+      </div>
+      @endif
+      
       @yield('body')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
