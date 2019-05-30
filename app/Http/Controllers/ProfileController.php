@@ -23,7 +23,7 @@ class ProfileController extends Controller
     $geinin = Auth::guard('geinin')->user();
 
     $originalImg = $request->image;
-    // dd($originalImg);
+
     if ($originalImg->isValid())
     {
       $filePath = $originalImg->storeAs('public/geinin', $geinin->id . '.jpg');
@@ -31,7 +31,30 @@ class ProfileController extends Controller
       $geinin->save();
     }
 
+    return redirect('/profile')->with('image_success', '画像をアップロードしました！');
+  }
 
-    return redirect('/profile')->with('success', '画像をアップロードしました！');
+  public function edit ()
+  {
+    $geinin = Auth::guard('geinin')->user();
+
+    return view('geinin.profile_edit', ['geinin' => $geinin]);
+  }
+
+  public function reregistar (Request $request)
+  {
+    $geinin = Auth::guard('geinin')->user();
+
+    $geinin->user = $request->user;
+    $geinin->genre = $request->genre;
+    $geinin->role = $request->role;
+    $geinin->creater = $request->creater;
+    $geinin->target = $request->target;
+    $geinin->self_introduce = $request->self_introduce;
+
+    $geinin->save();
+
+    return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
+
   }
 }

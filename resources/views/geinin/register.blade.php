@@ -89,7 +89,7 @@
       <tr>
         <th class="align-middle bg-primary text-white">自己紹介</th>
         <td class="text-center">
-          <textarea name="self_introduce" rows="4" cols="40" placeholder="好きな芸人、特技、できるモノマネなど" value="{{ old('self_introduce')}}" ></textarea>
+          <textarea name="self_introduce" rows="4" cols="40" placeholder="好きな芸人、特技、できるモノマネなど">{{ old('self_introduce') }}</textarea>
         </td>
       </tr>
       <!-- email password -->

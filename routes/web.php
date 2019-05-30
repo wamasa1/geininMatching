@@ -37,6 +37,8 @@ Route::delete('/search', 'FavoriteController@delete')
 Route::get('/profile', 'ProfileController@profile')
   ->middleware('auth:geinin');
 Route::post('/profile', 'ProfileController@store');
+Route::get('/profile/edit', 'ProfileController@edit');
+Route::post('/profile/edit', 'ProfileController@reregistar');
 
 Route::get('/message/{id}', 'MessageController@message')
   ->middleware('auth:geinin');
