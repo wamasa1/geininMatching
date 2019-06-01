@@ -50,3 +50,7 @@ Route::get('/messagebox', 'MessageController@receive')
 Route::get('/favorite', 'FavoriteController@list')
   ->middleware('auth:geinin');
 Route::delete('/favorite', 'FavoriteController@listDelete');
+
+//CSV　download
+Route::get('/csv', 'CsvController@index');
+Route::get('/csv/download', 'CsvController@download');
