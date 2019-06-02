@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GeininsTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
-        $this->call(FavoritesTableSeeder::class);
+        // $this->call(FavoritesTableSeeder::class);
     }
 }

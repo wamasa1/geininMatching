@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Geinin;
@@ -19,17 +20,13 @@ class ProfileController extends Controller
 
   public function store (ProfileRequest $request)
   {
-    //画像アップロード
     $geinin = Auth::guard('geinin')->user();
-
-    $originalImg = $request->image;
-
-    if ($originalImg->isValid())
-    {
-      $filePath = $originalImg->storeAs('public/geinin', $geinin->id . '.jpg');
-      $geinin->image = str_replace('public/', '', $filePath);
-      $geinin->save();
-    }
+    //s3に画像保存
+    $file = $request->file('image');
+    $path = Storage::disk('s3')->putFileAs('/images', $file, $geinin->id . '.jpg', 'public');
+    //geininテーブルにファイル名保存
+    $geinin->image = $geinin->id . '.jpg';
+    $geinin->save();
 
     return redirect('/profile')->with('image_success', '画像をアップロードしました！');
   }

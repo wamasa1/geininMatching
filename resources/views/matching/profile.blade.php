@@ -15,11 +15,11 @@
 @section('body')
 {{--　プロフィール画像　--}}
 <figure>
-@empty (!$geinin->image)
-  <img src="/storage/{{ $geinin->image }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
-@else
+@if ($geinin->image == null)
   <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150">
-@endempty
+@else
+  <img src="{{ Storage::disk('s3')->url('images/' . $geinin->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
+@endif
   <figcaption>プロフィール画像</figcaption>
 </figure>
 {{--アップロード成功メッセージ　--}}

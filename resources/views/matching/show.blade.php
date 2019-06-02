@@ -38,11 +38,11 @@
 @forelse ($partners as $partner)
   <div class="col">
     <figure>
-    @empty (!$partner->image)
-      <img src="/geininMatching/public/storage/{{ $partner->image }}" class="rounded-circle" width="200" height="200" alt="画像">
-    @else
-      <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle" width="200" height="200">
-    @endempty
+      @if ($partner->image == null)
+        <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150">
+      @else
+        <img src="{{ Storage::disk('s3')->url('images/' . $partner->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
+      @endif
       <figcaption>現在のプロフィール画像</figcaption>
     </figure>
 
