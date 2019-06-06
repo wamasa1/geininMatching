@@ -22,7 +22,8 @@ class CreateGeininsTable extends Migration
             $table->string('creater');
             $table->string('target');
             $table->text('self_introduce')->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
+            // $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
         });
