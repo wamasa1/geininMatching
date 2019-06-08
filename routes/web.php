@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/index', 'GeininController@index');
+Route::get('/', 'GeininController@index');
 
 Route::get('/register', 'GeininController@register')->name('register');
 
@@ -39,11 +39,11 @@ Route::get('/profile', 'ProfileController@profile')
 Route::post('/profile', 'ProfileController@store');
 Route::get('/profile/edit', 'ProfileController@edit');
 Route::post('/profile/edit', 'ProfileController@reregistar');
-
+//メッセージ送信
 Route::get('/message/{id}', 'MessageController@message')
   ->middleware('auth:geinin');
 Route::post('/message/{id}', 'MessageController@submit');
-
+//メッセージボックス
 Route::get('/messagebox', 'MessageController@receive')
   ->middleware('auth:geinin');
 

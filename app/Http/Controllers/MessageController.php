@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Geinin;
 use App\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageNotification;
 
 class MessageController extends Controller
 {
@@ -28,11 +30,19 @@ class MessageController extends Controller
       $message->message = $request->message;
       $message->save();
 
-      $geinin = Geinin::findOrFail($request->id);
+      $receiver = Geinin::findOrFail($request->id);
+      $sender = Auth::guard('geinin')->user();
+
       //リダイレクト先は二つ前のページ
       $redirectTo = $request->session()->get('redirectTo');
+
+      //受信者に受信をお知らせするメール送信
+      $title = '[相方マッチングサイト]メッセージ受信のお知らせ';
+      $text = $sender->user . 'さんからメッセージが届いております。';
+      Mail::to($receiver->email)->send(new MessageNotification($title,$text));
+
       return redirect($redirectTo)
-        ->with('message_success', $geinin->user . 'さんに送信しました');
+        ->with('message_success', $receiver->user . 'さんに送信しました');
     }
 
     public function receive ()

@@ -26,7 +26,7 @@ class AuthController extends Controller
 
     if (Auth::guard('geinin')->attempt($credentials))
     {
-      if ($redirectTo == url('/index') or $redirectTo == url('/login'))
+      if ($redirectTo == url('/') or $redirectTo == url('/login'))
       {
         return redirect('/search')->with('login', 'ログインしました');
       }
@@ -40,6 +40,6 @@ class AuthController extends Controller
   {
     Auth::guard('geinin')->logout();
 
-    return redirect('/index')->with('logout', 'ログアウトしました');
+    return redirect('/')->with('logout', 'ログアウトしました');
   }
 }
