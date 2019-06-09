@@ -8,7 +8,7 @@
     ログイン
   </a>
 </div>
-<h1 class="display-3 pt-2 mt-2 mb-5">相方マッチングサイト</h1>
+<h1 id="title-font-size" class="display-3 pt-2 mt-2 mb-5">相方マッチングサイト</h1>
 @endsection
 
 @section('body')

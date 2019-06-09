@@ -62,10 +62,10 @@ class SearchController extends Controller
         $targetJa = 'ゴールデンで冠番組を持つ';
         break;
       case 'midnight':
-        $targetJa = '深夜でもいいから、面白い番組がしたい';
+        $targetJa = '深夜で面白い番組がしたい';
         break;
       case 'theater':
-        $targetJa = 'テレビよりも舞台で活躍したい';
+        $targetJa = 'テレビより舞台で活躍したい';
         break;
       }
     //全件数

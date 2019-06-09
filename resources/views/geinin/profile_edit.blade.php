@@ -8,14 +8,14 @@
     戻る
   </a>
 </div>
-<h1 class="display-3 pt-2 mt-2 mb-5">プロフィール編集</h1>
+<h1 id="title-font-size" class="display-3 pt-2 mt-2 mb-5">プロフィール編集</h1>
 @endsection
 
 @section('body')
 <h2 class="my-5">どれを選ぶかにより「相性の良い相方」が異なりますので、正確に選びましょう。</h2>
 <form action="{{ url('/profile/edit') }}" method="post">
   {{ csrf_field() }}
-  <table id="question" class="table table-hover">
+  <table id="profile-table" class="table table-hover">
     <thead>
     </thead>
     <tbody>

@@ -12,6 +12,6 @@ class GeininsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Geinin::class, 50)->create();
+        factory(Geinin::class, 30)->create();
     }
 }

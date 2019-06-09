@@ -8,7 +8,7 @@
       ログアウト
     </a>
   </div>
-  <h1 class="text-success display-3 pt-2 mt-2 mb-5">プロフィール</h1>
+  <h1 id="title-font-size" class="text-success display-3 pt-2 mt-2 mb-5">プロフィール</h1>
 @endsection
 
 
@@ -57,7 +57,7 @@
     <a class="btn btn-success col-4" href="{{ url('/profile/edit') }}">編集</a>
   </div>
 {{--　プロフィール　--}}
-<table id="question" class="table mt-1">
+<table id="profile-table" class="table mt-1">
   <thead>
   </thead>
   <tbody>

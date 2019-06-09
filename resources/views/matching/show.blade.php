@@ -8,7 +8,7 @@
       ログアウト
     </a>
   </div>
-  <h1 class="text-primary display-3 pt-2 mt-2 mb-5">あなたの相性の良い相方</h1>
+  <h1 id="title-font-size" class="text-primary display-3 pt-2 mt-2 mb-5">あなたの相性の良い相方</h1>
 @endsection
 
 @section('body')
@@ -46,7 +46,7 @@
       <figcaption>現在のプロフィール画像</figcaption>
     </figure>
 
-    <table id="question" class="table mb-2">
+    <table id="profile-table" class="table mb-2">
       <thead>
       </thead>
       <tbody>

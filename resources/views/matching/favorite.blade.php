@@ -8,7 +8,7 @@
       ログアウト
     </a>
   </div>
-  <h1 class="text-warning display-3 pt-2 mt-2 mb-5">お気に入り登録リスト</h1>
+  <h1 id="title-font-size" class="text-warning display-3 pt-2 mt-2 mb-5">お気に入り登録リスト</h1>
 @endsection
 
 @section('body')
@@ -24,7 +24,7 @@
         <figcaption>プロフィール画像</figcaption>
       </figure>
 
-      <table id="question" class="table table-hover mb-2">
+      <table id="profile-table" class="table table-hover mb-2">
         <thead>
         </thead>
         <tbody>

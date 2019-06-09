@@ -18,7 +18,7 @@
   </div>
   @endif
 
-  <h1 class="text-secondary display-3 pt-2 my-2">検索画面</h1>
+  <h1 id="title-font-size" class="text-secondary display-3 pt-2 my-2">検索画面</h1>
 @endsection
 
 
@@ -93,8 +93,8 @@
           <td>
             <select name="target">
               <option value="golden">ゴールデンで冠番組を持つ</option>
-              <option value="midnight">深夜でもいいから、面白い番組がしたい</option>
-              <option value="theater">テレビよりも舞台で活躍したい</option>
+              <option value="midnight">深夜で面白い番組がしたい</option>
+              <option value="theater">テレビより舞台で活躍したい</option>
             </select>
           </td>
           <td><input type="submit" value="検索"></td>
@@ -118,7 +118,7 @@
         <figcaption>プロフィール画像</figcaption>
       </figure>
 
-      <table id="question" class="table table-hover mb-2">
+      <table id="profile-table" class="table table-hover mb-2">
         <thead>
         </thead>
         <tbody>

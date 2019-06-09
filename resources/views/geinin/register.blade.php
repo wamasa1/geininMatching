@@ -4,18 +4,18 @@
 
 @section('header')
 <div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/index') }}" role="button">
+  <a class="btn btn-primary" href="{{ url('/') }}" role="button">
     ホーム
   </a>
 </div>
-<h1 class="display-3 pt-2 mt-2 mb-5">新規登録画面</h1>
+<h1 id="title-font-size" class="display-3 pt-2 mt-2 mb-5">新規登録画面</h1>
 @endsection
 
 @section('body')
 <h2 class="my-5">あなたの情報を登録することで、相性の良い相方を探します。</h2>
 <form action="{{ url('/show') }}" method="post">
   {{ csrf_field() }}
-  <table id="question" class="table table-hover">
+  <table id="profile-table" class="table table-hover">
     <thead>
     </thead>
     <tbody>

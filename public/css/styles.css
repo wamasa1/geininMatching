@@ -1,54 +1,81 @@
-/* スマホでの表示  */
-#question{
+/* タイトルの文字の大きさ */
+@media screen and (min-width:0px){
+  #title-font-size{
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width:300px){
+  #title-font-size{
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width:576px){
+  #title-font-size{
+    font-size: 40px;
+  }
+}
+
+@media screen and (min-width:780px){
+  #title-font-size{
+    font-size: 50px;
+  }
+}
+
+@media screen and (min-width:992px){
+  #title-font-size{
+    font-size: 70px;
+  }
+}
+
+
+/* プロフィールテーブルのスマホでの表示  */
+#profile-table{
 width:95%;
 margin:2em auto;
 border:#6699ff 1.5px solid;
 }
 
-#question th{
+#profile-table th{
 padding:3px;
 display:block;
 }
 
-#question td{
+#profile-table td{
 padding:5px;
 display:block;
 }
 
+/* プロフィールテーブルのPCでの表示 */
 @media only screen and (min-width: 780px) {
+  #profile-table{
+    width:100%;
+    margin:5px auto;
+    font-size:90%;
+    border:#6699ff 1.5px solid;
+  }
 
-  /* PCでの表示 */
-#question{
-  width:100%
-  margin:5px auto;
-  font-size:90%;
-  border:#6699ff 1.5px solid;
-}
+  #profile-table tr{
+    border-bottom:#6699ff 1px solid;
+  }
 
-#question tr{
-  border-bottom:#6699ff 1px solid;
-}
+  #profile-table tr:last-child{
+    border:none;
+  }
 
-#question tr:last-child{
-  border:none;
- }
+  #profile-table th{
+    width:40%;
+    padding:5px 10px;
+    display:table-cell;
+    border-right:#6699ff 1px solid;
+  }
 
-#question th{
-  width:40%;
-  padding:5px 10px;
-  display:table-cell;
-  border-right:#6699ff 1px solid;
-}
-
-#question td{
-  width:60%;
-  padding:5px 10px;
-  display:table-cell;
-}
-}
-
-#partner {
-margin-bottom: 20px;
+  #profile-table td{
+    width:60%;
+    padding:5px 10px;
+    display:table-cell;
+  }
 }
 
 .navbar-height {
