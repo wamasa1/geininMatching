@@ -3,15 +3,15 @@
 @section('title', '検索画面')
 
 @section('header')
-  {{-- 認証時はログアウトボタン それ以外の時はログインボタン--}}
+  {{-- 認証時はログアウトボタン それ以外の時はログインボタン --}}
   @if ($auth)
-  <div class="text-right pt-5 mt-5">
+  <div class="text-right mt-1">
     <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
       ログアウト
     </a>
   </div>
   @else
-  <div class="text-right pt-5 mt-5">
+  <div class="text-right mt-1">
     <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
       ログイン
     </a>
@@ -46,13 +46,12 @@
 
   {{-- 検索フォーム --}}
   <div class="my-5 bg-light border border-primary">
-    <h2>検索項目</h2>
     <form action="{{ url('/search') }}" method="get">
       {{ csrf_field() }}
-      <table class="table-sm mx-auto text-left">
+      <table class="table-sm text-left">
         <tr>
-          <td>
-            <label>ジャンル</label>
+          <td class="text-nowrap">
+            ジャンル
           </td>
           <td>
             <select name="genre">
@@ -64,7 +63,7 @@
         </tr>
         <tr>
           <td>
-            <label>役割</label>
+            役割
           </td>
           <td class="text-left">
             <select name="role">
@@ -76,7 +75,7 @@
         </tr>
         <tr>
           <td>
-            <label>ネタ作り</label>
+            ネタ作り
           </td>
           <td>
             <select name="creater">
@@ -88,7 +87,7 @@
         </tr>
         <tr>
           <td>
-            <label>目標</label>
+            目標
           </td>
           <td>
             <select name="target">

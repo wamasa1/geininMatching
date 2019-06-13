@@ -12,7 +12,8 @@ class GeininController extends Controller
 {
     public function index ()
     {
-      return view('geinin.index');
+      $auth = Auth::guard('geinin')->check();
+      return view('geinin.index', ['auth' => $auth]);
     }
 
     public function register ()

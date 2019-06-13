@@ -3,7 +3,7 @@
 @section('title', 'お気に入り登録リスト')
 
 @section('header')
-  <div class="text-right pt-5 mt-5">
+  <div class="text-right mt-1">
     <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
       ログアウト
     </a>
