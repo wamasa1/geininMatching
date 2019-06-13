@@ -16,24 +16,28 @@
 // });
 
 Route::get('/', 'GeininController@index');
-
+//新規登録
 Route::get('/register', 'GeininController@register')->name('register');
-
+//相性の良い相方
 Route::post('/show', 'GeininController@add');
 Route::get('/show', 'GeininController@show')->middleware('auth:geinin');
 Route::patch('/show', 'FavoriteController@showRegister');
 Route::delete('/show', 'FavoriteController@showDelete');
-
+//認証
 Route::get('/login', 'AuthController@getAuth')->name('login');
 Route::post('/login', 'AuthController@postAuth');
 Route::get('/logout', 'AuthController@logout');
-
+//検索画面
 Route::get('/search', 'SearchController@search');
 Route::patch('/search', 'FavoriteController@register')
   ->middleware('auth:geinin');
 Route::delete('/search', 'FavoriteController@delete')
   ->middleware('auth:geinin');
-
+//イベント
+Route::get('/event', function () {
+    return view('matching.event');
+})->middleware('auth:geinin');
+//プロフィール
 Route::get('/profile', 'ProfileController@profile')
   ->middleware('auth:geinin');
 Route::post('/profile', 'ProfileController@store');
@@ -46,7 +50,7 @@ Route::post('/message/{id}', 'MessageController@submit');
 //メッセージボックス
 Route::get('/messagebox', 'MessageController@receive')
   ->middleware('auth:geinin');
-
+//お気に入りリスト
 Route::get('/favorite', 'FavoriteController@list')
   ->middleware('auth:geinin');
 Route::delete('/favorite', 'FavoriteController@listDelete');

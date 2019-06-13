@@ -4,7 +4,7 @@
 
 @section('header')
 <div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/index') }}" role="button">
+  <a class="btn btn-primary" href="{{ url('/') }}" role="button">
     ホーム
   </a>
 </div>

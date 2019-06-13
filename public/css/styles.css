@@ -82,3 +82,17 @@ display:block;
   display: flex;
   flex-wrap: wrap;
 }
+
+/* イベント */
+@media screen and (max-width:576px){
+  #event {
+    display:block; /*横を縦に*/
+  }
+}
+
+#nsc_map {
+  height: 300px;
+}
+#watanabe_map {
+  height: 300px;
+}

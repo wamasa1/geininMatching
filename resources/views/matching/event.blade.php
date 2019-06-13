@@ -1,0 +1,39 @@
+@extends('layouts.matching')
+
+@section('title', 'イベント')
+
+@section('header')
+  <div class="text-right pt-5 mt-5">
+    <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+      ログアウト
+    </a>
+  </div>
+  <h1 id="title-font-size" class="text-info display-3 pt-2 mt-2 mb-5">イベント</h1>
+@endsection
+
+@section('body')
+  <h2 id="title-font-size">気になる芸人さんを誘って参加してみませんか？</h2>
+  <div id="event" class="row my-5 bg-light">
+    <div class="col text-center mb-3">
+      <h3>NSC東京</h3>
+      <p>NSC学院説明会</p>
+      <p>2019年6/30（日)13:30</p>
+      <a href="http://www.yoshimoto.co.jp/nsc/school_tokyo.html#contents06">ホームページ</a>
+    </div>
+    <div id="nsc_map" class="col"></div>
+  </div>
+  <div id="event" class="row my-5 bg-light">
+    <div class="col text-center mb-3">
+      <h3>ワタナベコメディスクール</h3>
+      <p>素人オーディション</p>
+      <p>2019年6/15（土）13：00<br>
+         2019年6/16（日）13：00<br>
+         2019年6/23（日）13：00<br>
+         2019年6/27（木）13：00<br>
+         2019年6/30（日）13：00<br>
+      </p>
+      <a href="http://www.we-school.net/wcs/audition/doshiroto/">ホームページ</a>
+    </div>
+    <div id="watanabe_map" class="col"></div>
+  </div>
+@endsection
