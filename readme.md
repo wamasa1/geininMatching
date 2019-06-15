@@ -13,6 +13,7 @@
     <li>Twitterのシェアボタン機能</li>
     <li>地図表示（Google Map API利用）</li>    
     <li>登録者データのCSVエクスポート機能</li>
+    <li>Featureテスト機能</li>
 </ol>
 
 <h1>技術一覧</h1>
