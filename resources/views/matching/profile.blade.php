@@ -16,7 +16,7 @@
 {{--　プロフィール画像　--}}
 <figure>
 @if ($geinin->image == null)
-  <img src="{{ asset('/images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150">
+  <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
 @else
   <img src="{{ Storage::disk('s3')->url('images/' . $geinin->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
 @endif

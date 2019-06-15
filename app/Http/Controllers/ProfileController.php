@@ -52,6 +52,11 @@ class ProfileController extends Controller
     $geinin->save();
 
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
+  }
 
+  public function show ($id)
+  {
+    $geinin = Geinin::findOrFail($id);
+    return view('geinin.profile_details', ['geinin' => $geinin]);
   }
 }

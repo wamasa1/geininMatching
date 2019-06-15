@@ -19,23 +19,41 @@
 </div>
 @endif
 
+{{-- 受信ボックス --}}
+<div class="bg-danger text-white font-weight-bold">
+  {{ $receiver_user }}さんの受信ボックス
+</div>
 <table class="table">
-  <tr>
-    {{ $receiver_user }}さんのメッセージ・ボックス
-  </tr>
-  <tr>
+  <tr class="font-weight-bold">
     <td>From</td>
     <td>Message</td>
   </tr>
   @foreach ($senders as $sender)
   <tr>
-    <td>{{ $sender->geininSender->user }}さん</td>
+    <td><a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sender->geininSender->user }}さん</a></td>
     <td>{{ $sender->message }}</td>
     <td>
       <a class="btn btn-danger" href="{{ action('MessageController@message', $sender->sender_id)}}">
         返信する
       </a>
     </td>
+  </tr>
+  @endforeach
+</table>
+
+{{-- 送信済みメッセージ --}}
+<div class="bg-danger text-white font-weight-bold mt-5">
+  {{ $receiver_user }}さんの送信済みメッセージ
+</div>
+<table class="table">
+  <tr class="font-weight-bold">
+    <td>To</td>
+    <td>Message</td>
+  </tr>
+  @foreach ($sent_messages as $sent_message)
+  <tr>
+    <td><a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}さん</a></td>
+    <td>{{ $sent_message->message }}</td>
   </tr>
   @endforeach
 </table>

@@ -33,8 +33,12 @@ class MessageController extends Controller
       $receiver = Geinin::findOrFail($request->id);
       $sender = Auth::guard('geinin')->user();
 
-      //リダイレクト先は二つ前のページ
+      //リダイレクト先
       $redirectTo = $request->session()->get('redirectTo');
+      if ($redirectTo == url('/profile/' . $request->id) or
+          $redirectTo == url('/message/' . $request->id)) {
+        $redirectTo = url('/messagebox');
+      };
 
       //受信者に受信をお知らせするメール送信
       $title = '[相方マッチングサイト]メッセージ受信のお知らせ';
@@ -47,18 +51,20 @@ class MessageController extends Controller
 
     public function receive ()
     {
-      //receiverのid,user名
-      $receiver_id = Auth::guard('geinin')->id();
-      $receiver = Geinin::findOrFail($receiver_id);
+      //認証者（receiver）のid,user名
+      $auth_id = Auth::guard('geinin')->id();
+      $receiver = Geinin::findOrFail($auth_id);
       $receiver_user = $receiver->user;
 
-      //senders
       $senders = $receiver->messageReceiver;
 
-      $param = [
+      //認証者の送信済みメッセージ取得
+      $sent_messages = Message::where('sender_id', $auth_id)->get();
+
+      return view('matching.messagebox', [
         'receiver_user' => $receiver_user,
         'senders' => $senders,
-      ];
-      return view('matching.messagebox', $param);
+        'sent_messages' => $sent_messages,
+      ]);
     }
 }
