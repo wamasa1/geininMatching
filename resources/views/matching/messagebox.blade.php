@@ -52,7 +52,7 @@
   </tr>
   @foreach ($sent_messages as $sent_message)
   <tr>
-    <td><a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}さん</a></td>
+    <td><a href="{{ url('/profile/' . $sent_message->receiver_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}さん</a></td>
     <td>{{ $sent_message->message }}</td>
   </tr>
   @endforeach
