@@ -57,6 +57,11 @@ class ProfileController extends Controller
   public function show ($id)
   {
     $geinin = Geinin::findOrFail($id);
-    return view('geinin.profile_details', ['geinin' => $geinin]);
+    $auth_id = Auth::guard('geinin')->id();
+    
+    return view('geinin.profile_details', [
+      'geinin' => $geinin,
+      'auth_id' => $auth_id,
+    ]);
   }
 }
