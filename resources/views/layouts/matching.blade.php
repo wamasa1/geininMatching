@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="{{ asset('/css/styles.css') }}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- Google Fonts(さわらび明朝と、M+PLUS+Rounded+1c) -->
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Mincho" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
   </head>
   <body>
-    <div class="container text-center mb-5">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
+    <div id="app" class="container text-center mb-5">
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
         <a class="navbar-brand text-dark" href="{{ url('/') }}">相方マッチング</a>
         <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

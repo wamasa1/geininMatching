@@ -16,12 +16,13 @@
   {{ csrf_field() }}
   <table class="table">
     <tr>
-      <td>送信先</td>
+      <td class="text-nowrap">送信先</td>
       <td>{{ $geinin->user }}さん</td>
     </tr>
     <tr>
-      <td>メッセージ</td>
-      <td><textarea name="message" rows="8" cols="50" value="{{ old('message')}}"></textarea></td>
+      <td colspan="2">
+        <textarea class="w-100 h-20" name="message" rows="8" cols="50" placeholder="メッセージ" value="{{ old('message')}}"></textarea>
+      </td>
     </tr>
   </table>
   <input type="hidden" name="id" value="{{ $geinin->id }}">

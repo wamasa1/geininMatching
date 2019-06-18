@@ -18,7 +18,7 @@
   </div>
   @endif
 
-  <h1 id="title-font-size" class="text-secondary display-3 pt-2 my-2">検索画面</h1>
+  <h1 id="title-font" class="text-secondary display-3 pt-2 my-2">検索画面</h1>
 @endsection
 
 
@@ -45,7 +45,7 @@
 @endif
 
   {{-- 検索フォーム --}}
-  <div class="my-5 bg-light border border-primary">
+  <div class="mx-auto my-5 bg-light border border-primary" style="width: 330px;">
     <form action="{{ url('/search') }}" method="get">
       {{ csrf_field() }}
       <table class="table-sm text-left">
@@ -96,6 +96,9 @@
               <option value="theater">テレビより舞台で活躍したい</option>
             </select>
           </td>
+        </tr>
+        <tr>
+          <td></td>
           <td><input type="submit" value="検索"></td>
         </tr>
       </table>
@@ -131,7 +134,7 @@
               <td>{{ $geinin->genre }}</td>
             </tr>
             <tr>
-              <th class="align-middle bg-primary text-white">ボケとツッコミのどちらを担当したいですか？</th>
+              <th class="align-middle bg-primary text-white">ボケとツッコミのどちらを希望しますか？</th>
               <td>{{ $geinin->role }}</td>
             </tr>
             <tr>

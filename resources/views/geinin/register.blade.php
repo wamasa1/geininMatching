@@ -8,11 +8,11 @@
     ホーム
   </a>
 </div>
-<h1 id="title-font-size" class="display-3 pt-2 mt-2 mb-5">新規登録画面</h1>
+<h1 id="title-font" class="display-3 pt-2 mt-2 mb-5">新規登録画面</h1>
 @endsection
 
 @section('body')
-<h2 class="my-5">あなたの情報を登録することで、相性の良い相方を探します。</h2>
+<p class="my-5 font-weight-bold">あなたの情報を登録することで、相性の良い相方を探します。</p>
 <form action="{{ url('/show') }}" method="post">
   {{ csrf_field() }}
   <table id="profile-table" class="table table-hover">
@@ -33,7 +33,7 @@
 
       <!-- ジャンル -->
       <tr>
-        <th class="align-middle bg-primary text-white">あなたは、漫才とコントのどちらがやりたいですか？<span class="text-danger">(必須)</span> </th>
+        <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？<span class="text-danger">(必須)</span> </th>
         <td class="text-center">
           <input type="radio" id="manzai" name="genre" value="漫才" {{ old('genre') == '漫才' ? 'checked' : '' }}><label for="manzai">漫才</label><br>
           <input type="radio" id="konto" name="genre" value="コント" {{ old('genre') == 'コント' ? 'checked' : '' }}><label for="konto">コント</label><br>
@@ -47,7 +47,7 @@
       <!-- ボケかツッコミか -->
       <tr>
         <th class="align-middle bg-primary text-white">
-          あなたは、ボケとツッコミのどちらを担当したいですか？<span class="text-danger">(必須)</span>
+          ボケとツッコミのどちらを希望しますか？<span class="text-danger">(必須)</span>
         </th>
         <td class="text-center">
           <input type="radio" id="boke" name="role" value="ボケ" {{ old('role') == 'ボケ' ? 'checked' : '' }}><label for="boke">ボケ</label><br>
@@ -77,8 +77,8 @@
         <th class="align-middle bg-primary text-white">あなたの目標は何ですか？<span class="text-danger">(必須)</span></th>
         <td class="text-center">
           <input type="radio" id="golden" name="target" value="ゴールデンで冠番組を持つ" {{ old('target') == 'ゴールデンで冠番組を持つ' ? 'checked' : '' }}><label for="golden">ゴールデンで冠番組を持つ</label><br>
-          <input type="radio" id="midnight" name="target" value="深夜でもいいから、面白い番組がしたい" {{ old('target') == '深夜でもいいから、面白い番組がしたい' ? 'checked' : '' }}><label for="midnight">深夜でもいいから、面白い番組がしたい</label><br>
-          <input type="radio" id="theater" name="target" value="テレビよりも舞台で活躍したい" {{ old('target') == 'テレビよりも舞台で活躍したい' ? 'checked' : '' }}><label for="theater">テレビよりも舞台で活躍したい</label>
+          <input type="radio" id="midnight" name="target" value="深夜で面白い番組がしたい" {{ old('target') == '深夜で面白い番組がしたい' ? 'checked' : '' }}><label for="midnight">深夜で面白い番組がしたい</label><br>
+          <input type="radio" id="theater" name="target" value="テレビより舞台で活躍したい" {{ old('target') == 'テレビより舞台で活躍したい' ? 'checked' : '' }}><label for="theater">テレビより舞台で活躍したい</label>
           @if ($errors->has('target'))
             <p class="text-danger">{{ $errors->first('target') }}</p>
           @endif

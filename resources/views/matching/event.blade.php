@@ -8,7 +8,7 @@
       ログアウト
     </a>
   </div>
-  <h1 id="title-font-size" class="text-info display-3 pt-2 mt-2 mb-5">イベント</h1>
+  <h1 id="title-font" class="text-info display-3 pt-2 mt-2 mb-5">イベント</h1>
 @endsection
 
 @section('body')

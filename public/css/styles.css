@@ -1,30 +1,40 @@
+/* フォント */
+#app {
+  font-family: "Sawarabi Mincho";
+}
+
+#title-font, #navbar{
+  font-family: "M PLUS Rounded 1c", "Sawarabi Mincho";
+}
+
+
 /* タイトルの文字の大きさ */
 @media screen and (min-width:0px){
-  #title-font-size{
+  #title-font{
     font-size: 20px;
   }
 }
 
 @media screen and (min-width:300px){
-  #title-font-size{
+  #title-font{
     font-size: 30px;
   }
 }
 
 @media screen and (min-width:576px){
-  #title-font-size{
+  #title-font{
     font-size: 40px;
   }
 }
 
 @media screen and (min-width:780px){
-  #title-font-size{
+  #title-font{
     font-size: 50px;
   }
 }
 
 @media screen and (min-width:992px){
-  #title-font-size{
+  #title-font{
     font-size: 70px;
   }
 }
@@ -32,19 +42,19 @@
 
 /* プロフィールテーブルのスマホでの表示  */
 #profile-table{
-width:95%;
-margin:2em auto;
-border:#6699ff 1.5px solid;
+  width:95%;
+  margin:2em auto;
+  border:#6699ff 1.5px solid;
 }
 
 #profile-table th{
-padding:3px;
-display:block;
+  padding:3px;
+  display:block;
 }
 
 #profile-table td{
-padding:5px;
-display:block;
+  padding:5px;
+  display:block;
 }
 
 /* プロフィールテーブルのPCでの表示 */

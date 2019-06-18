@@ -8,7 +8,7 @@
     戻る
   </a>
 </div>
-<h1 id="title-font-size" class="display-3 pt-2 mt-2 mb-5">プロフィール編集</h1>
+<h1 id="title-font" class="display-3 pt-2 mt-2 mb-5">プロフィール編集</h1>
 @endsection
 
 @section('body')
