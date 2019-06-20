@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'GeininController@index');
 //新規登録
@@ -29,7 +30,8 @@ Route::patch('/search', 'FavoriteController@register')->middleware('auth:geinin'
 Route::delete('/search', 'FavoriteController@delete')->middleware('auth:geinin');
 //イベント
 Route::get('/event', function () {
-    return view('matching.event');
+    $auth = Auth::guard('geinin')->check();
+    return view('matching.event', ['auth' => $auth]);
 });
 //プロフィール
 Route::get('/profile', 'ProfileController@profile')->middleware('auth:geinin');
