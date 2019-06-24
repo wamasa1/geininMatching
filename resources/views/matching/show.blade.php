@@ -13,21 +13,21 @@
 
 @section('body')
 
-{{-- メッセージ送信完了 --}}
+<!-- メッセージ送信完了 -->
 @if (session('message_success'))
 <div class="alert alert-success mt-5">
   {{ session('message_success') }}
 </div>
 @endif
 
-{{-- お気に入り登録完了 --}}
+<!-- お気に入り登録完了 -->
 @if (session('favorite_success'))
 <div class="alert alert-success mt-5">
   {{ session('favorite_success') }}
 </div>
 @endif
 
-{{-- お気に入り登録解除 --}}
+<!-- お気に入り登録解除 -->
 @if (session('favorite_delete'))
 <div class="alert alert-success mt-5">
   {{ session('favorite_delete') }}
@@ -79,21 +79,28 @@
     <a class="btn btn-danger mb-2" href="{{ action('MessageController@message', $partner->id) }}">
       {{ $partner->user }}さんにメッセージを送る
     </a>
-    <div>
+    <!-- お気に入り芸人登録・解除ボタン -->
+    <div class="mb-5">
       <form action="{{ url('/show') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="favoriteTo_id" value="{{ $partner->id }}">
-        @isset($auth_id)
+        @auth('geinin')
           @forelse ($partner->favoriteTo as $favoriteTo)
             @if ($favoriteTo->favoriteFrom_id == $auth_id)
               @method('delete')
               <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
+            @elseif ($loop->last)
+              @method('patch')
+              <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
             @endif
           @empty
             @method('patch')
             <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
           @endforelse
-        @endisset
+        @else
+          @method('patch')
+          <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+        @endauth
       </form>
     </div>
   </div>

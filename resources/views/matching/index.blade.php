@@ -3,7 +3,7 @@
 @section('title', '相方マッチングサイト')
 
 @section('header')
-{{-- 認証時はログアウトボタン それ以外の時はログインボタン --}}
+<!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
 @if ($auth)
 <div class="text-right mt-1">
   <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
@@ -22,6 +22,7 @@
 @endsection
 
 @section('body')
+  <!-- ログアウトメッセージ -->
   @if (session('logout'))
   <div class="alert alert-success">
     {{ session('logout') }}
@@ -44,6 +45,39 @@
       </a>
     </div>
   </div>
+  <!-- ランキング -->
+  <div class="mt-5">
+    <h3>人気芸人ランキング</h3>
+    <div class="table-responsive">
+      <table class="table mb-2">
+        <thead>
+          <tr>
+            <td>順位</td>
+            <td>プロフィール画像</td>
+            <td>名前</td>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach ($geinins as $geinin)
+          <tr>
+            <td class="align-middle">{{ $loop->iteration }}位</td>
+            <td>
+              @if ($geinin->image == null)
+                <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle" width="50" height="50" alt="画像">
+              @else
+                <img src="{{ Storage::disk('s3')->url('images/' . $geinin->image) }}" class="rounded-circle" width="50" height="50" alt="画像">
+              @endif
+            </td>
+            <td class="align-middle">
+              <a href="{{ url('/profile/' . $geinin->id) }}" target="_blank">{{ $geinin->user }}</a>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <footer class="text-center text-muted mt-5">
     Copyright Masataka Kadogawa
   </footer>

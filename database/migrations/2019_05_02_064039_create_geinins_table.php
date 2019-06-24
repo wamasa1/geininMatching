@@ -23,8 +23,8 @@ class CreateGeininsTable extends Migration
             $table->string('target');
             $table->text('self_introduce')->nullable();
             $table->string('email');
-            // $table->string('email')->unique();
             $table->string('password');
+            $table->integer('favorite_count');
             $table->timestamps();
         });
     }

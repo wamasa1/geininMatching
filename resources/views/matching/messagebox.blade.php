@@ -12,14 +12,14 @@
 @endsection
 
 @section('body')
-{{-- 送信完了のメッセージ --}}
+<!-- 送信完了のメッセージ -->
 @if (session('message_success'))
 <div class="alert alert-success mt-5">
   {{ session('message_success') }}
 </div>
 @endif
 
-{{-- 受信ボックス --}}
+<!-- 受信ボックス -->
 <div class="bg-danger text-white font-weight-bold">
   {{ $receiver_user }}さんの受信ボックス
 </div>
@@ -30,7 +30,9 @@
   </tr>
   @foreach ($senders as $sender)
   <tr>
-    <td><a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sender->geininSender->user }}さん</a></td>
+    <td>
+      <a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sender->geininSender->user }}さん</a>
+    </td>
     <td>{{ $sender->message }}</td>
     <td>
       <a class="btn btn-danger" href="{{ action('MessageController@message', $sender->sender_id)}}">
@@ -41,7 +43,7 @@
   @endforeach
 </table>
 
-{{-- 送信済みメッセージ --}}
+<!-- 送信済みメッセージ -->
 <div class="bg-danger text-white font-weight-bold mt-5">
   {{ $receiver_user }}さんの送信済みメッセージ
 </div>
@@ -52,7 +54,9 @@
   </tr>
   @foreach ($sent_messages as $sent_message)
   <tr>
-    <td><a href="{{ url('/profile/' . $sent_message->receiver_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}さん</a></td>
+    <td>
+      <a href="{{ url('/profile/' . $sent_message->receiver_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}さん</a>
+    </td>
     <td>{{ $sent_message->message }}</td>
   </tr>
   @endforeach

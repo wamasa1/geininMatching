@@ -18,6 +18,7 @@ $factory->define(Geinin::class, function (Faker $faker) {
       'self_introduce' => $faker->realText(20),
       'email' => $faker->safeEmail,
       'password' => $faker->password,
+      'favorite_count' => 0,
       'created_at' => now(),
       'updated_at' => now()
     ];

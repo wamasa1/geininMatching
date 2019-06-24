@@ -3,7 +3,7 @@
 @section('title', '検索画面')
 
 @section('header')
-  {{-- 認証時はログアウトボタン それ以外の時はログインボタン --}}
+  <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
   @if ($auth)
   <div class="text-right mt-1">
     <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
@@ -23,28 +23,28 @@
 
 
 @section('body')
-{{-- メッセージ送信完了メッセージ --}}
+<!-- メッセージ送信完了メッセージ -->
 @if (session('message_success'))
 <div class="alert alert-success mt-5">
   {{ session('message_success') }}
 </div>
 @endif
 
-{{-- お気に入り登録完了メッセージ --}}
+<!-- お気に入り登録完了メッセージ -->
 @if (session('favorite_success'))
 <div class="alert alert-success mt-5">
   {{ session('favorite_success') }}
 </div>
 @endif
 
-{{-- お気に入り登録解除メッセージ --}}
+<!-- お気に入り登録解除メッセージ -->
 @if (session('favorite_delete'))
 <div class="alert alert-success mt-5">
   {{ session('favorite_delete') }}
 </div>
 @endif
 
-  {{-- 検索フォーム --}}
+  <!-- 検索フォーム -->
   <div class="mx-auto my-5 bg-light border border-primary" style="width: 330px;">
     <form action="{{ url('/search') }}" method="get">
       {{ csrf_field() }}
@@ -107,7 +107,7 @@
 
   <p class="font-weight-bold text-primary">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</p>
 
-  {{-- 芸人一覧 --}}
+  <!-- 芸人一覧 -->
   <div class="row">
   @if($geinins)
     @foreach($geinins as $geinin)
@@ -154,7 +154,7 @@
         <a class="btn btn-danger mb-2" href="{{ action('MessageController@message', $geinin->id) }}">
           {{ $geinin->user }}さんにメッセージを送る
         </a>
-        {{-- お気に入り芸人登録・解除ボタン --}}
+        <!-- お気に入り芸人登録・解除ボタン -->
         <div class="mb-5">
           <form action="{{ url('/search') }}" method="post">
             {{ csrf_field() }}

@@ -48,7 +48,7 @@
   <a class="btn btn-danger mb-2" href="{{ action('MessageController@message', $geinin->id) }}">
     {{ $geinin->user }}さんにメッセージを送る
   </a>
-  {{-- お気に入り芸人登録・解除ボタン --}}
+  <!-- お気に入り芸人登録・解除ボタン -->
   <div class="mb-5">
     <form action="{{ url('/search') }}" method="post">
       {{ csrf_field() }}

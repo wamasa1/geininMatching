@@ -3,7 +3,7 @@
 @section('title', 'イベント')
 
 @section('header')
-  {{-- 認証時はログアウトボタン それ以外の時はログインボタン --}}
+  <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
   @if ($auth)
   <div class="text-right mt-1">
     <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">

@@ -7,6 +7,7 @@
     <li>ページネーション付き検索機能</li>
     <li>ダイレクトメッセージ機能・受信時お知らせメール送信機能</li>
     <li>お気に入り登録・解除機能</li>
+    <li>ランキング機能（お気に入り登録者数に基づく）</li>
     <li>プロフィール画像アップロード機能(AWSのS3保存)</li>
     <li>プロフィール編集機能</li>
     <li>新規登録・ログイン・ログアウト機能</li>
@@ -25,7 +26,7 @@
     <ul>
       <li>EC2にデプロイ</li>
       <li>Route53でDNSレコードを管理</li>
-      <li>ACMでSSL証明書を管理</li>
+      <li>ACMでSSL証明書を管理、ALBで使用</li>
     </ul>
-    <li>Docker,Laradock</li>
+    <li>Docker, Laradock</li>
 </ol>

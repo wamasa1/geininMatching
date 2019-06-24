@@ -17,7 +17,6 @@ class AuthController extends Controller
     //認証 email passwordの照合
     $credentials = $request->only('email', 'password');
 
-
       if (Auth::guard('geinin')->attempt($credentials))
       {
         // $exists = session()->exists('url.intended');
@@ -27,7 +26,6 @@ class AuthController extends Controller
         // } else {
           return redirect('/')->with('login', 'ログインしました');
         // }
-
       } else {
         return redirect('/login')->with('login_failure', 'ログインに失敗しました');
       }

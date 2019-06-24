@@ -13,7 +13,7 @@
 
 
 @section('body')
-{{--　プロフィール画像　--}}
+<!-- プロフィール画像 -->
 <figure>
 @if ($geinin->image == null)
   <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
@@ -22,7 +22,7 @@
 @endif
   <figcaption>プロフィール画像</figcaption>
 </figure>
-{{--アップロード成功メッセージ　--}}
+<!-- アップロード成功メッセージ -->
 @if (session('image_success'))
 <div class="alert alert-success">
   {{ session('image_success') }}
@@ -45,18 +45,18 @@
   <input type="submit" value="アップロード">
 </form>
 
-{{--　編集成功メッセージ　--}}
+<!-- 編集成功メッセージ -->
 @if (session('profile_success'))
 <div class="alert alert-success">
   {{ session('profile_success') }}
 </div>
 @endif
 
-{{-- 編集ボタン --}}
+<!-- 編集ボタン -->
   <div class="text-center">
     <a class="btn btn-success col-4" href="{{ url('/profile/edit') }}">編集</a>
   </div>
-{{--　プロフィール　--}}
+<!-- プロフィール -->
 <table id="profile-table" class="table mt-1">
   <thead>
   </thead>

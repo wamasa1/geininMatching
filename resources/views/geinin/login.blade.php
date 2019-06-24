@@ -40,7 +40,7 @@
       </td>
     </tr>
   </table>
-{{--　ログイン失敗メッセージ　--}}
+<!-- ログイン失敗メッセージ -->
   @if (session('login_failure'))
   <div class="alert alert-success mt-3">
     {{ session('login_failure') }}
