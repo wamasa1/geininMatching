@@ -29,7 +29,6 @@ class AuthController extends Controller
       } else {
         return redirect('/login')->with('login_failure', 'ログインに失敗しました');
       }
-
   }
 
   public function logout ()

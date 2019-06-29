@@ -21,28 +21,27 @@
   <h1 id="title-font" class="text-secondary display-3 pt-2 my-2">検索画面</h1>
 @endsection
 
-
 @section('body')
-<!-- メッセージ送信完了メッセージ -->
-@if (session('message_success'))
-<div class="alert alert-success mt-5">
-  {{ session('message_success') }}
-</div>
-@endif
+  <!-- メッセージ送信完了メッセージ -->
+  @if (session('message_success'))
+  <div class="alert alert-success mt-5">
+    {{ session('message_success') }}
+  </div>
+  @endif
 
-<!-- お気に入り登録完了メッセージ -->
-@if (session('favorite_success'))
-<div class="alert alert-success mt-5">
-  {{ session('favorite_success') }}
-</div>
-@endif
+  <!-- お気に入り登録完了メッセージ -->
+  @if (session('favorite_success'))
+  <div class="alert alert-success mt-5">
+    {{ session('favorite_success') }}
+  </div>
+  @endif
 
-<!-- お気に入り登録解除メッセージ -->
-@if (session('favorite_delete'))
-<div class="alert alert-success mt-5">
-  {{ session('favorite_delete') }}
-</div>
-@endif
+  <!-- お気に入り登録解除メッセージ -->
+  @if (session('favorite_delete'))
+  <div class="alert alert-success mt-5">
+    {{ session('favorite_delete') }}
+  </div>
+  @endif
 
   <!-- 検索フォーム -->
   <div class="mx-auto my-5 bg-light border border-primary" style="width: 330px;">
@@ -185,7 +184,6 @@
       @endif
     @endforeach
   </div>
-
-  {{ $geinins->appends(['genre' => $genre, 'role' => $role,  'creater' => $creater, 'target' => $target])->links() }}
+  {{ $geinins->appends(['genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target])->links() }}
   @endif
 @endsection

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'GeininController@index');
 //新規登録
 Route::get('/register', 'GeininController@register')->name('register');
-//相性の良い相方
+//マッチング
 Route::post('/show', 'GeininController@add');
 Route::get('/show', 'GeininController@show')->middleware('auth:geinin');
 Route::patch('/show', 'FavoriteController@showRegister');
@@ -41,12 +41,16 @@ Route::post('/profile/edit', 'ProfileController@reregistar');
 //メッセージ送信
 Route::get('/message/{id}', 'MessageController@message')->middleware('auth:geinin')->name('message');
 Route::post('/message/{id}', 'MessageController@submit');
-//メッセージボックス
+//メッセージ
 Route::get('/messagebox', 'MessageController@receive')->middleware('auth:geinin');
 Route::get('/profile/{id}', 'ProfileController@show');
-//お気に入りリスト
+//お気に入り
 Route::get('/favorite', 'FavoriteController@list')->middleware('auth:geinin');
 Route::delete('/favorite', 'FavoriteController@listDelete');
+//登録情報
+Route::get('/account', 'AccountController@index')->middleware('auth:geinin');
+Route::post('/account', 'AccountController@post');
+Route::delete('/account', 'AccountController@delete');
 //CSV　download
 Route::get('/csv', 'CsvController@index');
 Route::get('/csv/download', 'CsvController@download');

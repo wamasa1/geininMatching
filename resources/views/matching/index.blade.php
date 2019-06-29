@@ -3,20 +3,20 @@
 @section('title', '相方マッチングサイト')
 
 @section('header')
-<!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
-@if ($auth)
-<div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
-    ログアウト
-  </a>
-</div>
-@else
-<div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
-    ログイン
-  </a>
-</div>
-@endif
+  <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
+  @if ($auth)
+    <div class="text-right mt-1">
+      <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
+        ログアウト
+      </a>
+    </div>
+  @else
+    <div class="text-right mt-1">
+      <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
+        ログイン
+      </a>
+    </div>
+  @endif
 
 <h1 id="title-font" class="display-3 pt-2 mt-2 mb-5">相方マッチングサイト</h1>
 @endsection
@@ -24,12 +24,40 @@
 @section('body')
   <!-- ログアウトメッセージ -->
   @if (session('logout'))
-  <div class="alert alert-success">
-    {{ session('logout') }}
-  </div>
+    <div class="alert alert-success">
+      {{ session('logout') }}
+    </div>
   @endif
+  <!-- アカウント削除完了メッセージ -->
+  @if (session('account_delete'))
+    <div class="alert alert-success">
+      {{ session('account_delete') }}
+    </div>
+  @endif
+  <!-- スライド写真 -->
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{ asset('/images/shaking-hands.jpg') }}" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('/images/dogManzai.jpg') }}" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('/images/seal.jpg') }}" alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-  <img src="{{ asset('/images/shaking-hands.jpg') }}" class="col rounded-circle mt-3">
+  <!-- <img src="{{ asset('/images/shaking-hands.jpg') }}" class="col rounded-circle mt-3"> -->
   <p class="text-center font-weight-bold mt-5">
     漫才がしたい！ コントがしたい！ だけど、相方がいないそんなあなたへ
   </p>

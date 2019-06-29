@@ -34,7 +34,7 @@ class GeininController extends Controller
       $form = $request->all();
       $form = array_add($form, 'favorite_count', 0);
       unset($form['__token']);
-      $form['password'] = Hash::make($form['password']); //ハッシュ化
+      $form['password'] = Hash::make($form['password']);
       $geinin->fill($form)->save();
       Auth::guard('geinin')->login($geinin);
 

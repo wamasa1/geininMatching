@@ -3,56 +3,55 @@
   font-family: "Sawarabi Mincho";
 }
 
-#title-font, #navbar{
+#title-font, #navbar {
   font-family: "M PLUS Rounded 1c", "Sawarabi Mincho";
 }
 
 
-/* タイトルの文字の大きさ */
-@media screen and (min-width:0px){
+/* タイトルの文字サイズ */
+@media screen and (min-width:0px) {
   #title-font{
     font-size: 20px;
   }
 }
 
-@media screen and (min-width:300px){
+@media screen and (min-width:300px) {
   #title-font{
     font-size: 30px;
   }
 }
 
-@media screen and (min-width:576px){
+@media screen and (min-width:576px) {
   #title-font{
     font-size: 40px;
   }
 }
 
-@media screen and (min-width:780px){
+@media screen and (min-width:780px) {
   #title-font{
     font-size: 50px;
   }
 }
 
-@media screen and (min-width:992px){
+@media screen and (min-width:992px) {
   #title-font{
     font-size: 70px;
   }
 }
 
-
 /* プロフィールテーブルのスマホでの表示  */
-#profile-table{
+#profile-table {
   width:95%;
   margin:2em auto;
   border:#6699ff 1.5px solid;
 }
 
-#profile-table th{
+#profile-table th {
   padding:3px;
   display:block;
 }
 
-#profile-table td{
+#profile-table td {
   padding:5px;
   display:block;
 }
@@ -66,40 +65,36 @@
     border:#6699ff 1.5px solid;
   }
 
-  #profile-table tr{
+  #profile-table tr {
     border-bottom:#6699ff 1px solid;
   }
 
-  #profile-table tr:last-child{
+  #profile-table tr:last-child {
     border:none;
   }
 
-  #profile-table th{
+  #profile-table th {
     width:40%;
     padding:5px 10px;
     display:table-cell;
     border-right:#6699ff 1px solid;
   }
 
-  #profile-table td{
+  #profile-table td {
     width:60%;
     padding:5px 10px;
     display:table-cell;
   }
 }
 
-.navbar-height {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 /* イベント */
-@media screen and (max-width:576px){
+@media screen and (max-width:576px) {
   #event {
     display:block; /*横を縦に*/
   }
 }
 
+/* 地図 */
 #nsc_map {
   height: 300px;
 }

@@ -42,13 +42,14 @@ class ProfileController extends Controller
   {
     $geinin = Auth::guard('geinin')->user();
 
-    $geinin->user = $request->user;
+    if ($request->user) {
+      $geinin->user = $request->user;
+    }
     $geinin->genre = $request->genre;
     $geinin->role = $request->role;
     $geinin->creater = $request->creater;
     $geinin->target = $request->target;
     $geinin->self_introduce = $request->self_introduce;
-
     $geinin->save();
 
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
@@ -58,7 +59,7 @@ class ProfileController extends Controller
   {
     $geinin = Geinin::findOrFail($id);
     $auth_id = Auth::guard('geinin')->id();
-    
+
     return view('geinin.profile_details', [
       'geinin' => $geinin,
       'auth_id' => $auth_id,
