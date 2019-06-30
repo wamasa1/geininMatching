@@ -33,10 +33,16 @@
               <a class="nav-link active bg-success" href="{{ url('/profile') }}">プロフィール</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active bg-warning" href="{{ url('/favorite') }}">お気に入り</a>
+              <a class="nav-link active bg-warning" href="{{ url('/favorite') }}">
+                お気に入り
+                <span class="badge badge-pill badge-light">{{ $favorite_badgeCount }}</span>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active bg-danger" href="{{ url('/messagebox') }}">メッセージ</a>
+              <a class="nav-link active bg-danger" href="{{ url('/messagebox') }}">
+                メッセージ
+                <span class="badge badge-pill badge-light">{{ $message_badgeCount }}</span>
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link active bg-dark" href="{{ url('/account') }}">登録情報</a>

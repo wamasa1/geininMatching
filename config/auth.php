@@ -47,8 +47,7 @@ return [
             'hash' => false,
         ],
 
-                //以下を追加
-
+        //geinin　guard追加
          'geinin' => [
              'driver' => 'session',
              'provider' => 'geinins',
@@ -77,7 +76,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
+        //追加
         'geinins' => [
             'driver' => 'eloquent',
             'model' => App\Geinin::class,

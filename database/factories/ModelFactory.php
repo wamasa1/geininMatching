@@ -29,6 +29,7 @@ $factory->define(Message::class, function (Faker $faker) {
       'sender_id' => $faker->numberBetween($min = 16, $max = 30),
       'receiver_id' => $faker->numberBetween($min = 1, $max = 15),
       'message' => $faker->realText(10),
+      'readed' => 0,
       'created_at' => now(),
       'updated_at' => now()
     ];

@@ -39,13 +39,17 @@ class MessageController extends Controller
 
     public function receive ()
     {
-      //認証者（receiver）のid,user名
       $auth_id = Auth::guard('geinin')->id();
       $receiver = Geinin::findOrFail($auth_id);
       $receiver_user = $receiver->user;
-
       $senders = $receiver->messageReceiver;
-
+      //readedの値に１プラス
+      foreach ($senders as $sender) {
+        if ($sender->readed < 2) {
+          $sender->readed++;
+          $sender->save();
+        }
+      }
       //認証者の送信済みメッセージ取得
       $sent_messages = Message::where('sender_id', $auth_id)->get();
 
