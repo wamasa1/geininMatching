@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
       {
         if (Auth::guard('geinin')->check()) {
           $auth_id = Auth::guard('geinin')->id();
-          $message_badgeCount = Message::where('receiver_id', $auth_id)->where('readed', '<', 2)->count();
+          $message_badgeCount = Message::where('receiver_id', $auth_id)->where('readed', '<', 1)->count();
         } else {
           $message_badgeCount = 0;
         }

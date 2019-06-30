@@ -45,7 +45,7 @@ class MessageController extends Controller
       $senders = $receiver->messageReceiver;
       //readedの値に１プラス
       foreach ($senders as $sender) {
-        if ($sender->readed < 2) {
+        if ($sender->readed < 1) {
           $sender->readed++;
           $sender->save();
         }
