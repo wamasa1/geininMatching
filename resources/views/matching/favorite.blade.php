@@ -14,7 +14,7 @@
 @section('body')
   <div class="row">
   @foreach($favorites as $favorite)
-    <div class="col">
+    <div class="col col-md-6 border border-primary rounded-top" style="background-color: ivory;">
       <figure>
         @if ($favorite->image == null)
           <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">

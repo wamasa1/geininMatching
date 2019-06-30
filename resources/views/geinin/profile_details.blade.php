@@ -7,6 +7,7 @@
 @endsection
 
 @section('body')
+<div style="background-color: ghostwhite;">
   <figure>
     @if ($geinin->image == null)
       <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
@@ -15,41 +16,41 @@
     @endif
     <figcaption>プロフィール画像</figcaption>
   </figure>
-  <table id="profile-table" class="table table-hover mb-2">
+  <table id="profile-table" class="table mb-2">
     <thead>
     </thead>
     <tbody>
       <tr>
-        <th class="align-middle bg-primary text-white">ユーザー名</th>
-        <td>{{ $geinin->user }}</td>
+        <th class="align-middle bg-primary text-white py-3">ユーザー名</th>
+        <td class="align-middle">{{ $geinin->user }}</td>
       </tr>
       <tr>
-        <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？</th>
-        <td>{{ $geinin->genre }}</td>
+        <th class="align-middle bg-primary text-white py-3">漫才とコントのどちらがやりたいですか？</th>
+        <td class="align-middle">{{ $geinin->genre }}</td>
       </tr>
       <tr>
-        <th class="align-middle bg-primary text-white">ボケとツッコミのどちらを担当したいですか？</th>
-        <td>{{ $geinin->role }}</td>
+        <th class="align-middle bg-primary text-white py-3">ボケとツッコミのどちらを担当したいですか？</th>
+        <td class="align-middle">{{ $geinin->role }}</td>
       </tr>
       <tr>
-        <th class="align-middle bg-primary text-white">ネタは作りますか？</th>
-        <td>{{ $geinin->creater }}</td>
+        <th class="align-middle bg-primary text-white py-3">ネタは作りますか？</th>
+        <td class="align-middle">{{ $geinin->creater }}</td>
       </tr>
       <tr>
-        <th class="align-middle bg-primary text-white">目標</th>
-        <td>{{ $geinin->target }}</td>
+        <th class="align-middle bg-primary text-white py-3">目標</th>
+        <td class="align-middle">{{ $geinin->target }}</td>
       </tr>
       <tr>
-        <th class="align-middle bg-primary text-white">自己紹介</th>
-        <td>{{ $geinin->self_introduce }}</td>
+        <th class="align-middle bg-primary text-white py-3">自己紹介</th>
+        <td class="align-middle">{{ $geinin->self_introduce }}</td>
       </tr>
     </tbody>
   </table>
-  <a class="btn btn-danger mb-2" href="{{ action('MessageController@message', $geinin->id) }}">
+  <a class="btn btn-danger my-3" href="{{ action('MessageController@message', $geinin->id) }}">
     {{ $geinin->user }}さんにメッセージを送る
   </a>
   <!-- お気に入り芸人登録・解除ボタン -->
-  <div class="mb-5">
+  <div class="my-2">
     <form action="{{ url('/search') }}" method="post">
       {{ csrf_field() }}
       <input type="hidden" name="favoriteTo_id" value="{{ $geinin->id }}">
@@ -71,5 +72,6 @@
         <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
       @endauth
     </form>
+  </div>
   </div>
 @endsection
