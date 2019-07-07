@@ -26,8 +26,8 @@ $factory->define(Geinin::class, function (Faker $faker) {
 
 $factory->define(Message::class, function (Faker $faker) {
     return [
-      'sender_id' => $faker->numberBetween($min = 16, $max = 30),
-      'receiver_id' => $faker->numberBetween($min = 1, $max = 15),
+      'sender_id' => $faker->numberBetween($min = 11, $max = 60),
+      'receiver_id' => $faker->numberBetween($min = 1, $max = 2),
       'message' => $faker->realText(10),
       'readed' => 0,
       'created_at' => now(),
@@ -38,7 +38,7 @@ $factory->define(Message::class, function (Faker $faker) {
 $factory->define(Favorite::class, function (Faker $faker) {
     return [
       'favoriteFrom_id' => $faker->numberBetween($min = 1, $max = 15),
-      'favoriteTo_id' => $faker->numberBetween($min = 16, $max = 30),
+      'favoriteTo_id' => $faker->numberBetween($min = 16, $max = 60),
       'created_at' => now(),
       'updated_at' => now()
     ];

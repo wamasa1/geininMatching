@@ -41,7 +41,7 @@
           </tr>
           @foreach ($senders as $sender)
             <!-- 既読未読判定 -->
-            @if ($sender->readed == 1)
+            @if ($sender->readed == 2)
               <tr class="font-weight-light text-muted">
                 <td>
                   <span class="badge badge-secondary">既読</span>
