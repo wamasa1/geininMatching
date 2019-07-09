@@ -44,6 +44,6 @@ class GeininsTableSeeder extends Seeder
           "updated_at" => new DateTime()
       ]);
 
-      factory(Geinin::class, 60)->create();  
+      factory(Geinin::class, 200)->create();  
     }
 }
