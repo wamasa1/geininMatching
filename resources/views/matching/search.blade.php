@@ -54,6 +54,7 @@
           </td>
           <td>
             <select name="genre">
+              <option value="not_select">未選択</option>
               <option value="manzai" @if($genre == 'manzai') selected @endif>漫才</option>
               <option value="konto" @if($genre == 'konto') selected @endif>コント</option>
               <option value="both" @if($genre == 'both') selected @endif>両方</option>
@@ -66,6 +67,7 @@
           </td>
           <td class="text-left">
             <select name="role">
+              <option value="not_select">未選択</option>
               <option value="boke" @if($role == 'boke') selected @endif>ボケ</option>
               <option value="tukkomi" @if($role == 'tukkomi') selected @endif>ツッコミ</option>
               <option value="boke_tukkomi" @if($role == 'boke_tukkomi') selected @endif>両方</option>
@@ -78,6 +80,7 @@
           </td>
           <td>
             <select name="creater">
+              <option value="not_select">未選択</option>
               <option value="me" @if($creater == 'me') selected @endif>自分が作る</option>
               <option value="together" @if($creater == 'together') selected @endif>一緒に作りたい</option>
               <option value="you" @if($creater == 'you') selected @endif>相方に作ってほしい</option>
@@ -90,6 +93,7 @@
           </td>
           <td>
             <select name="target">
+              <option value="not_select">未選択</option>
               <option value="golden" @if($target == 'golden') selected @endif>ゴールデンで冠番組を持つ</option>
               <option value="midnight" @if($target == 'midnight') selected @endif>深夜で面白い番組がしたい</option>
               <option value="theater" @if($target == 'theater') selected @endif>テレビより舞台で活躍したい</option>
@@ -184,6 +188,6 @@
         @endif
       @endforeach
     </div>
-  {{ $geinins->appends(['genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target])->links() }}
+  {{ $geinins->appends(['genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target])->onEachSide(1)->links() }}
   @endif
 @endsection

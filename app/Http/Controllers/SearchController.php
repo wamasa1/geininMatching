@@ -73,22 +73,22 @@ class SearchController extends Controller
     $geinins = Geinin::where('id', '!=', $auth_id);
     $allCount = $geinins->count();
     //検索条件適合
-    if (!empty($genreEn))
+    if ($genreEn != 'not_select' && $genreEn != null)
     {
-      $geinins = Geinin::where('genre', $genreJa);
+      $geinins = $geinins->where('genre', $genreJa);
     }
 
-    if (!empty($roleEn))
+    if ($roleEn != 'not_select' && $roleEn != null)
     {
       $geinins = $geinins->where('role', $roleJa);
     }
 
-    if (!empty($createrEn))
+    if ($createrEn != 'not_select' && $createrEn != null)
     {
       $geinins = $geinins->where('creater', $createrJa);
     }
 
-    if (!empty($targetEn))
+    if ($targetEn != 'not_select' && $targetEn != null)
     {
       $geinins = $geinins->where('target', $targetJa);
     }
