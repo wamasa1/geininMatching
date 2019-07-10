@@ -21,11 +21,7 @@
             メールアドレス
           </th>
           <td>
-            <input type="email" name="email" value="{{ old('email') }}">
-            <br><span class="text-primary">テストユーザー用：ikuta@gmail.com</span>
-            <!-- @if ($errors->has('email'))
-            <p class="text-danger">{{ $errors->first('email') }}</p>
-            @endif -->
+            <input type="email" size="17" name="email" value="{{ old('email') }}">
           </td>
         </tr>
         <tr>
@@ -33,11 +29,7 @@
             パスワード<br>(4文字以上)
           </th>
           <td>
-            <input type="password" name="password">
-            <br><span class="text-primary">テストユーザー用：ikuta</span>
-            <!-- @if ($errors->has('password'))
-            <p class="text-danger">{{ $errors->first('password') }}</p>
-            @endif -->
+            <input type="password" size="17" name="password">
           </td>
         </tr>
       </table>
@@ -56,4 +48,11 @@
   <a class="btn btn-danger" href="{{ url('/register')}}" role="button">
     新規登録
   </a>
+  <!-- テストユーザー -->
+  <p class="mt-4 mb-0">採用ご担当者様はこちらへ</p>
+  <form action="{{ url('/login') }}" method="post">
+    {{ csrf_field() }}
+    <input type="hidden" name="test_user_id" value="1">
+    <input class="btn btn-warning" style="cursor: pointer;" type="submit" value="テストユーザーでログイン">
+  </form>
 @endsection

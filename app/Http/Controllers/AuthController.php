@@ -13,7 +13,12 @@ class AuthController extends Controller
   }
 
   public function postAuth (Request $request)
-  {
+  { //テストユーザーでログイン
+    if ($request->test_user_id == 1) {
+      Auth::guard('geinin')->loginUsingId(1);
+      return redirect('/')->with('login', 'ログインしました');
+    }
+
     //認証 email passwordの照合
     $credentials = $request->only('email', 'password');
 
