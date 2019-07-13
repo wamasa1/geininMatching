@@ -14,7 +14,7 @@
   <body>
     <div id="app" class="container text-center mb-5">
       <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
-        <a class="navbar-brand text-dark" href="{{ url('/') }}">相方マッチング</a>
+        <a class="navbar-brand text-dark" href="{{ url('/') }}">相方マッチングサイト</a>
         <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,7 +24,7 @@
               <a class="nav-link active bg-secondary" href="{{ url('/search') }}">検索</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active bg-primary" href="{{ url('/show') }}">マッチング</a>
+              <a class="nav-link active bg-primary" href="{{ url('/show') }}">相性の良い相方</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active bg-info" href="{{ url('/event') }}">イベント</a>
