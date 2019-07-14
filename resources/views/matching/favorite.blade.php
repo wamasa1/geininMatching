@@ -24,21 +24,21 @@
       <figcaption>プロフィール画像</figcaption>
     </figure>
 
-    <table id="profile-table" class="table table-hover mb-2">
+    <table id="profile-table" class="table mb-2">
       <thead>
       </thead>
       <tbody>
         <tr>
           <th class="align-middle bg-primary text-white">ユーザー名</th>
-          <td>{{ $favorite->geininFavoriteTo->user }}</td>
+          <td><a href="{{ url('/profile/' . $favorite->geininFavoriteTo->id) }}" target="_blank">{{ $favorite->geininFavoriteTo->user }}</a></td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？</th>
-          <td>{{ $favorite->geininFavoriteTo->genre }}</td>
+          <td class="align-middle">{{ $favorite->geininFavoriteTo->genre }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">ボケとツッコミのどちらを担当したいですか？</th>
-          <td>{{ $favorite->geininFavoriteTo->role }}</td>
+          <td class="align-middle">{{ $favorite->geininFavoriteTo->role }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">ネタは作りますか？</th>
@@ -50,7 +50,7 @@
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">自己紹介</th>
-          <td>{{ $favorite->geininFavoriteTo->self_introduce }}</td>
+          <td class="align-middle">{{ $favorite->geininFavoriteTo->self_introduce }}</td>
         </tr>
       </tbody>
     </table>

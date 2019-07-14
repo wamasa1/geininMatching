@@ -64,12 +64,20 @@
         <td>{{ $geinin->user }}</td>
       </tr>
       <tr>
+        <th class="align-middle bg-success text-white">年齢</th>
+        <td>{{ $geinin->age }}</td>
+      </tr>
+      <tr>
+        <th class="align-middle bg-success text-white">希望の活動場所</th>
+        <td>{{ $geinin->activity_place }}</td>
+      </tr>
+      <tr>
         <th class="align-middle bg-success text-white">漫才とコントのどちらがやりたいですか？</th>
-        <td>{{ $geinin->genre }}</td>
+        <td class="align-middle">{{ $geinin->genre }}</td>
       </tr>
       <tr>
         <th class="align-middle bg-success text-white">ボケとツッコミのどちらを担当したいですか？</th>
-        <td>{{ $geinin->role }}</td>
+        <td class="align-middle">{{ $geinin->role }}</td>
       </tr>
       <tr>
         <th class="align-middle bg-success text-white">ネタは作りますか？</th>
@@ -78,6 +86,25 @@
       <tr>
         <th class="align-middle bg-success text-white">目標</th>
         <td>{{ $geinin->target }}</td>
+      </tr>
+      <th class="align-middle bg-success text-white">得意なモノマネ</th>
+      <td>{{ $geinin->monomane }}</td>
+      </tr>
+      <tr>
+        <th class="align-middle bg-success text-white">好きな芸人</th>
+        <td>{{ $geinin->favorite_geinin }}</td>
+      </tr>
+      <tr>
+        <th class="align-middle bg-success text-white">好きなネタ</th>
+        <td>{{ $geinin->favorite_neta }}</td>
+      </tr>
+      <tr>
+        <th class="align-middle bg-success text-white">好きなテレビ番組</th>
+        <td>{{ $geinin->favorite_tv_program }}</td>
+      </tr>
+      <tr>
+        <th class="align-middle bg-success text-white">最近笑ったこと</th>
+        <td>{{ $geinin->laughing_event }}</td>
       </tr>
       <tr>
         <th class="align-middle bg-success text-white">自己紹介</th>

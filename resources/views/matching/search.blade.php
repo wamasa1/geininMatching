@@ -130,15 +130,15 @@
       <tbody>
         <tr>
           <th class="align-middle bg-primary text-white">ユーザー名</th>
-          <td>{{ $geinin->user }}</td>
+          <td><a href="{{ url('/profile/' . $geinin->id) }}" target="_blank">{{ $geinin->user }}</a></td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？</th>
-          <td>{{ $geinin->genre }}</td>
+          <td class="align-middle">{{ $geinin->genre }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">ボケとツッコミのどちらを希望しますか？</th>
-          <td>{{ $geinin->role }}</td>
+          <td class="align-middle">{{ $geinin->role }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">ネタは作りますか？</th>
@@ -150,7 +150,7 @@
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">自己紹介</th>
-          <td>{{ $geinin->self_introduce }}</td>
+          <td class="align-middle">{{ $geinin->self_introduce }}</td>
         </tr>
       </tbody>
     </table>

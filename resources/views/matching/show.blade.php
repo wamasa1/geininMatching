@@ -49,27 +49,27 @@
       <tbody>
         <tr>
           <th class="align-middle bg-primary text-white">ユーザー名</th>
-          <td>{{ $partner->user }}</td>
+          <td class="align-middle"><a href="{{ url('/profile/' . $partner->id) }}" target="_blank">{{ $partner->user }}</a></td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？</th>
-          <td>{{ $partner->genre }}</td>
+          <td class="align-middle">{{ $partner->genre }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">ボケとツッコミのどちらを担当したいですか？</th>
-          <td>{{ $partner->role }}</td>
+          <td class="align-middle">{{ $partner->role }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">ネタは作りますか？</th>
-          <td>{{ $partner->creater }}</td>
+          <td class="align-middle">{{ $partner->creater }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">目標</th>
-          <td>{{ $partner->target }}</td>
+          <td class="align-middle">{{ $partner->target }}</td>
         </tr>
         <tr>
           <th class="align-middle bg-primary text-white">自己紹介</th>
-          <td>{{ $partner->self_introduce }}</td>
+          <td class="align-middle">{{ $partner->self_introduce }}</td>
         </tr>
       </tbody>
     </table>

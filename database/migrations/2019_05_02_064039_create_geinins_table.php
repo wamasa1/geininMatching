@@ -17,10 +17,17 @@ class CreateGeininsTable extends Migration
             $table->bigIncrements('id');
             $table->string('user');
             $table->string('image')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('activity_place')->nullable();
             $table->string('genre');
             $table->string('role');
             $table->string('creater');
             $table->string('target');
+            $table->string('monomane')->nullable();
+            $table->string('favorite_geinin')->nullable();
+            $table->string('favorite_neta')->nullable();
+            $table->string('favorite_tv_program')->nullable();
+            $table->string('laughing_event')->nullable();
             $table->text('self_introduce')->nullable();
             $table->string('email');
             $table->string('password');

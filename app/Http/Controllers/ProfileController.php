@@ -45,12 +45,7 @@ class ProfileController extends Controller
     if ($request->user) {
       $geinin->user = $request->user;
     }
-    $geinin->genre = $request->genre;
-    $geinin->role = $request->role;
-    $geinin->creater = $request->creater;
-    $geinin->target = $request->target;
-    $geinin->self_introduce = $request->self_introduce;
-    $geinin->save();
+    $geinin->fill($request->all())->save();
 
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
   }

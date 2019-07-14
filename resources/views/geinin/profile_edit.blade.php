@@ -37,6 +37,33 @@
         </td>
       </tr>
 
+      <!-- 年齢 -->
+      <tr>
+        <th class="align-middle bg-success text-white">年齢</th>
+        <td class="text-center">
+          <select name="age">
+            @for ($i = 15; $i < 100; $i++) 
+            <option>{{ $i }}</option>
+            @endfor
+          </select>
+        </td>
+      </tr>
+
+      <!-- 希望する活動場所 -->
+      <tr>
+        <th class="align-middle bg-success text-white">希望する活動場所<span class="text-danger">(必須)</span></th>
+        <td class="text-center">
+          <select name="activity_place">
+            <option>東京</option>
+            <option>大阪</option>
+            <option>福岡</option>
+            <option>仙台</option>
+            <option>札幌</option>
+            <option>沖縄</option>
+          </select>
+        </td>
+      </tr>
+
       <!-- ジャンル -->
       <tr>
         <th class="align-middle bg-success text-white">あなたは、漫才とコントのどちらがやりたいですか？<span class="text-danger">(必須)</span> </th>
@@ -91,11 +118,46 @@
         </td>
       </tr>
 
+      <!-- 得意なモノマネ -->
+      <tr>
+        <th class="align-middle bg-success text-white">得意なモノマネ</th>
+        <td class="text-center">
+          <textarea name="monomane" rows="1" cols="40" placeholder="ビートたけしさんなど">{{ $geinin->monomane }}</textarea>
+        </td>
+      </tr>
+      <!-- 好きな芸人 -->
+      <tr>
+        <th class="align-middle bg-success text-white">好きな芸人</th>
+        <td class="text-center">
+          <textarea name="favorite_geinin" rows="1" cols="40" placeholder="ダウンタウンさんなど">{{ $geinin->favorite_geinin }}</textarea>
+        </td>
+      </tr>
+      <!-- 好きなネタ -->
+      <tr>
+        <th class="align-middle bg-success text-white">好きなネタ</th>
+        <td class="text-center">
+          <textarea name="favorite_neta" rows="1" cols="40" placeholder="パーフェクトヒューマンなど">{{ $geinin->favorite_neta }}</textarea>
+        </td>
+      </tr>
+      <!-- 好きなテレビ番組 -->
+      <tr>
+        <th class="align-middle bg-success text-white">好きなテレビ番組</th>
+        <td class="text-center">
+          <textarea name="favorite_tv_program" rows="1" cols="40" placeholder="ガキ使など">{{ $geinin->favorite_tv_program }}</textarea>
+        </td>
+      </tr>
+      <!-- 最近笑ったこと -->
+      <tr>
+        <th class="align-middle bg-success text-white">最近笑ったこと</th>
+        <td class="text-center">
+          <textarea name="laughing_event" rows="1" cols="40" placeholder="">{{ $geinin->laughing_event }}</textarea>
+        </td>
+      </tr>
       <!-- 自己紹介 -->
       <tr>
         <th class="align-middle bg-success text-white">自己紹介</th>
         <td class="text-center">
-          <textarea name="self_introduce" rows="4" cols="40" placeholder="好きな芸人、特技、できるモノマネなど">{{ $geinin->self_introduce }}</textarea>
+          <textarea name="self_introduce" rows="4" cols="40" placeholder="">{{ $geinin->self_introduce }}</textarea>
         </td>
       </tr>
     </tbody>
