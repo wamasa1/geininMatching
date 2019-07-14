@@ -67,7 +67,7 @@
           <input type="radio" id="together" name="creater" value="一緒に作りたい" {{ old('creater') == '一緒に作りたい' ? 'checked' : '' }}><label for="together">一緒に作りたい</label><br>
           <input type="radio" id="you" name="creater" value="相方に作ってほしい" {{ old('creater') == '相方に作ってほしい' ? 'checked' : '' }}><label for="you">相方に作ってほしい</label>
           @if ($errors->has('creater'))
-            <p class="text-danger">{{ $errors->first('creater') }}</p>
+          <p class="text-danger">{{ $errors->first('creater') }}</p>
           @endif
         </td>
       </tr>
@@ -80,7 +80,7 @@
           <input type="radio" id="midnight" name="target" value="深夜で面白い番組がしたい" {{ old('target') == '深夜で面白い番組がしたい' ? 'checked' : '' }}><label for="midnight">深夜で面白い番組がしたい</label><br>
           <input type="radio" id="theater" name="target" value="テレビより舞台で活躍したい" {{ old('target') == 'テレビより舞台で活躍したい' ? 'checked' : '' }}><label for="theater">テレビより舞台で活躍したい</label>
           @if ($errors->has('target'))
-            <p class="text-danger">{{ $errors->first('target') }}</p>
+          <p class="text-danger">{{ $errors->first('target') }}</p>
           @endif
         </td>
       </tr>

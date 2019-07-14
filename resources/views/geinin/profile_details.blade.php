@@ -10,9 +10,9 @@
 <div style="background-color: ghostwhite;">
   <figure>
     @if ($geinin->image == null)
-      <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
+    <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
     @else
-      <img src="{{ Storage::disk('s3')->url('images/' . $geinin->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
+    <img src="{{ Storage::disk('s3')->url('images/' . $geinin->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
     @endif
     <figcaption>プロフィール画像</figcaption>
   </figure>
@@ -55,23 +55,23 @@
       {{ csrf_field() }}
       <input type="hidden" name="favoriteTo_id" value="{{ $geinin->id }}">
       @auth('geinin')
-        @forelse ($geinin->favoriteTo as $favoriteTo)
-          @if ($favoriteTo->favoriteFrom_id == $auth_id)
-            @method('delete')
-            <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
-          @elseif ($loop->last)
-            @method('patch')
-            <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
-          @endif
-        @empty
-          @method('patch')
-          <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
-        @endforelse
+      @forelse ($geinin->favoriteTo as $favoriteTo)
+      @if ($favoriteTo->favoriteFrom_id == $auth_id)
+      @method('delete')
+      <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人解除">
+      @elseif ($loop->last)
+      @method('patch')
+      <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+      @endif
+      @empty
+      @method('patch')
+      <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+      @endforelse
       @else
-        @method('patch')
-        <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
+      @method('patch')
+      <input class="btn btn-warning" style="cursor: pointer" type="submit" value="お気に入り芸人登録">
       @endauth
     </form>
   </div>
-  </div>
+</div>
 @endsection

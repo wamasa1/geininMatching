@@ -26,13 +26,13 @@
         </th>
         <td class="align-middle text-center">
           @if ($geinin->user == '松本紳助（テスト）')
-            <span>{{ $geinin->user }}</span><br>
-            <span class="text-danger">※テストユーザーは、ユーザー名を変更できません</span>
+          <span>{{ $geinin->user }}</span><br>
+          <span class="text-danger">※テストユーザーは、ユーザー名を変更できません</span>
           @else
-            <input type="text" name="user" value="{{ $geinin->user }}"><br>
+          <input type="text" name="user" value="{{ $geinin->user }}"><br>
           @endif
           @if ($errors->has('user'))
-            <p class="text-danger">{{ $errors->first('user') }}</p>
+          <p class="text-danger">{{ $errors->first('user') }}</p>
           @endif
         </td>
       </tr>
@@ -45,7 +45,7 @@
           <input type="radio" id="konto" name="genre" value="コント" {{ $geinin->genre == 'コント' ? 'checked' : '' }}><label for="konto">コント</label><br>
           <input type="radio" id="manzai_konto" name="genre" value="両方" {{ $geinin->genre == '両方' ? 'checked' : '' }}><label for="manzai_konto">両方</label><br>
           @if ($errors->has('genre'))
-            <p class="text-danger">{{ $errors->first('genre') }}</p>
+          <p class="text-danger">{{ $errors->first('genre') }}</p>
           @endif
         </td>
       </tr>
@@ -60,7 +60,7 @@
           <input type="radio" id="tukkomi" name="role" value="ツッコミ" {{ $geinin->role == 'ツッコミ' ? 'checked' : '' }}><label for="tukkomi">ツッコミ</label><br>
           <input type="radio" id="boke_tukkomi" name="role" value="こだわらない" {{ $geinin->role == 'こだわらない' ? 'checked' : '' }}><label for="boke_tukkomi">こだわらない</label>
           @if ($errors->has('role'))
-            <p class="text-danger">{{ $errors->first('role') }}</p>
+          <p class="text-danger">{{ $errors->first('role') }}</p>
           @endif
         </td>
       </tr>
@@ -73,7 +73,7 @@
           <input type="radio" id="together" name="creater" value="一緒に作りたい" {{ $geinin->creater == '一緒に作りたい' ? 'checked' : '' }}><label for="together">一緒に作りたい</label><br>
           <input type="radio" id="you" name="creater" value="相方に作ってほしい" {{ $geinin->creater == '相方に作ってほしい' ? 'checked' : '' }}><label for="you">相方に作ってほしい</label>
           @if ($errors->has('creater'))
-            <p class="text-danger">{{ $errors->first('creater') }}</p>
+          <p class="text-danger">{{ $errors->first('creater') }}</p>
           @endif
         </td>
       </tr>
@@ -86,7 +86,7 @@
           <input type="radio" id="midnight" name="target" value="深夜でもいいから、面白い番組がしたい" {{ $geinin->target == '深夜でもいいから、面白い番組がしたい' ? 'checked' : '' }}><label for="midnight">深夜でもいいから、面白い番組がしたい</label><br>
           <input type="radio" id="theater" name="target" value="テレビよりも舞台で活躍したい" {{ $geinin->target == 'テレビよりも舞台で活躍したい' ? 'checked' : '' }}><label for="theater">テレビよりも舞台で活躍したい</label>
           @if ($errors->has('target'))
-            <p class="text-danger">{{ $errors->first('target') }}</p>
+          <p class="text-danger">{{ $errors->first('target') }}</p>
           @endif
         </td>
       </tr>

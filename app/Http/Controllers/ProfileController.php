@@ -10,7 +10,7 @@ use App\Geinin;
 
 class ProfileController extends Controller
 {
-  public function profile ()
+  public function profile()
   {
     // 認証済みユーザーの取得
     $geinin = Auth::guard('geinin')->user();
@@ -18,7 +18,7 @@ class ProfileController extends Controller
     return view('matching.profile', ['geinin' => $geinin]);
   }
 
-  public function store (ProfileRequest $request)
+  public function store(ProfileRequest $request)
   {
     $geinin = Auth::guard('geinin')->user();
     //s3に画像保存
@@ -31,14 +31,14 @@ class ProfileController extends Controller
     return redirect('/profile')->with('image_success', '画像をアップロードしました！');
   }
 
-  public function edit ()
+  public function edit()
   {
     $geinin = Auth::guard('geinin')->user();
 
     return view('geinin.profile_edit', ['geinin' => $geinin]);
   }
 
-  public function reregistar (Request $request)
+  public function reregistar(Request $request)
   {
     $geinin = Auth::guard('geinin')->user();
 
@@ -55,7 +55,7 @@ class ProfileController extends Controller
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
   }
 
-  public function show ($id)
+  public function show($id)
   {
     $geinin = Geinin::findOrFail($id);
     $auth_id = Auth::guard('geinin')->id();

@@ -61,74 +61,74 @@ class AccessTest extends TestCase
     //認証済みのユーザー
     public function testAuth()
     {
-      $response = $this->post('/show', [
-          'user' => 'ikuta',
-          'genre' => '漫才',
-          'role' => 'ボケ',
-          'creater' => '自分が作る',
-          'target' => 'ゴールデンで冠番組を持つ',
-          'self_introduce' => '',
-          'email' => 'ikuta@gmail.com',
-          'password' => 'ikuta',
-      ]);
-      $response->assertStatus(200);
+        $response = $this->post('/show', [
+            'user' => 'ikuta',
+            'genre' => '漫才',
+            'role' => 'ボケ',
+            'creater' => '自分が作る',
+            'target' => 'ゴールデンで冠番組を持つ',
+            'self_introduce' => '',
+            'email' => 'ikuta@gmail.com',
+            'password' => 'ikuta',
+        ]);
+        $response->assertStatus(200);
 
-      $response = $this->get('/show');
-      $response->assertStatus(200);
+        $response = $this->get('/show');
+        $response->assertStatus(200);
 
-      $response = $this->patch('/show', [
-          'favoriteTo_id' => '1',
-      ]);
-      $response->assertStatus(302);
+        $response = $this->patch('/show', [
+            'favoriteTo_id' => '1',
+        ]);
+        $response->assertStatus(302);
 
-      $response = $this->delete('/show', [
-          'favoriteTo_id' => '1',
-      ]);
-      $response->assertStatus(302);
+        $response = $this->delete('/show', [
+            'favoriteTo_id' => '1',
+        ]);
+        $response->assertStatus(302);
 
-      $response = $this->patch('/search', [
-          'favoriteTo_id' => '1',
-      ]);
-      $response->assertStatus(302);
+        $response = $this->patch('/search', [
+            'favoriteTo_id' => '1',
+        ]);
+        $response->assertStatus(302);
 
-      $response = $this->delete('/search', [
-          'favoriteTo_id' => '1',
-      ]);
-      $response->assertStatus(302);
+        $response = $this->delete('/search', [
+            'favoriteTo_id' => '1',
+        ]);
+        $response->assertStatus(302);
 
-      $response = $this->get('/profile');
-      $response->assertStatus(200);
+        $response = $this->get('/profile');
+        $response->assertStatus(200);
 
-      $response = $this->get('/profile', [
-        'image' => 'shaking-hands.jpg'
-      ]);
-      $response->assertStatus(200);
+        $response = $this->get('/profile', [
+            'image' => 'shaking-hands.jpg'
+        ]);
+        $response->assertStatus(200);
 
-      $response = $this->get('/profile/edit');
-      $response->assertStatus(200);
+        $response = $this->get('/profile/edit');
+        $response->assertStatus(200);
 
-      $response = $this->post('/profile/edit', [
-          'user' => 'ikuta',
-          'genre' => '漫才',
-          'role' => 'ボケ',
-          'creater' => '自分が作る',
-          'target' => 'ゴールデンで冠番組を持つ',
-          'self_introduce' => '',
-      ]);
-      $response->assertStatus(302);
+        $response = $this->post('/profile/edit', [
+            'user' => 'ikuta',
+            'genre' => '漫才',
+            'role' => 'ボケ',
+            'creater' => '自分が作る',
+            'target' => 'ゴールデンで冠番組を持つ',
+            'self_introduce' => '',
+        ]);
+        $response->assertStatus(302);
 
-      $response = $this->get('/message/1');
-      $response->assertStatus(200);
+        $response = $this->get('/message/1');
+        $response->assertStatus(200);
 
-      $response = $this->get('/messagebox');
-      $response->assertStatus(200);
+        $response = $this->get('/messagebox');
+        $response->assertStatus(200);
 
-      $response = $this->get('/favorite');
-      $response->assertStatus(200);
+        $response = $this->get('/favorite');
+        $response->assertStatus(200);
 
-      $response = $this->delete('/favorite', [
-          'favoriteTo_id' => '1',
-      ]);
-      $response->assertStatus(302);
+        $response = $this->delete('/favorite', [
+            'favoriteTo_id' => '1',
+        ]);
+        $response->assertStatus(302);
     }
 }
