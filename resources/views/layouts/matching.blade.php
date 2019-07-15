@@ -16,7 +16,7 @@
 <body>
   <div id="app" class="container text-center mb-5">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
-      <a class="navbar-brand text-dark" href="{{ url('/') }}">相方マッチングサイト</a>
+      <a class="navbar-brand text-dark" href="{{ url('/') }}">相方matching site</a>
       <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,6 +33,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active bg-success" href="{{ url('/profile') }}">プロフィール</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ url('/footprint') }}" style="background-color: yellowgreen;">あしあと</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active bg-warning" href="{{ url('/favorite') }}">

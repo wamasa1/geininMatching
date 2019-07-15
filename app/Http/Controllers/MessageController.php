@@ -42,7 +42,7 @@ class MessageController extends Controller
     $auth_id = Auth::guard('geinin')->id();
     $receiver = Geinin::findOrFail($auth_id);
     $receiver_user = $receiver->user;
-    $senders = $receiver->messageReceiver;
+    $senders = $receiver->messageReceiver()->orderBy('created_at', 'desc')->get();
     //readedの値に１プラス
     foreach ($senders as $sender) {
       if ($sender->readed < 2) {
@@ -51,7 +51,7 @@ class MessageController extends Controller
       }
     }
     //認証者の送信済みメッセージ取得
-    $sent_messages = Message::where('sender_id', $auth_id)->get();
+    $sent_messages = Message::where('sender_id', $auth_id)->orderBy('created_at', 'desc')->get();
 
     return view('matching.messagebox', [
       'receiver_user' => $receiver_user,

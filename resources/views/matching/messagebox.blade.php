@@ -35,6 +35,7 @@
       <table class="table">
         <tr>
           <td></td>
+          <td>日時</td>
           <td>From</td>
           <td>Message</td>
           <td></td>
@@ -52,6 +53,7 @@
             <span class="badge badge-danger">未読</span>
           </td>
           @endif
+          <td>{{ $sender->created_at->format('m/d H:i') }}</td>
           <td>
             <a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sender->geininSender->user }}</a>
           </td>
@@ -69,11 +71,13 @@
     <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="send-tab">
       <table class="table">
         <tr class="font-weight-bold">
+          <td>日時</td>
           <td>To</td>
           <td>Message</td>
         </tr>
         @foreach ($sent_messages as $sent_message)
         <tr>
+          <td>{{ $sent_message->created_at->format('m/d H:i') }}</td>
           <td>
             <a href="{{ url('/profile/' . $sent_message->receiver_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}</a>
           </td>

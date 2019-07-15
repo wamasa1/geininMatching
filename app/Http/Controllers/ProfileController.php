@@ -7,10 +7,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Geinin;
+use App\Footprint;
 
 class ProfileController extends Controller
 {
-  public function profile()
+  public function self_profile()
   {
     // 認証済みユーザーの取得
     $geinin = Auth::guard('geinin')->user();
@@ -24,7 +25,7 @@ class ProfileController extends Controller
     //s3に画像保存
     $file = $request->file('image');
     $path = Storage::disk('s3')->putFileAs('/images', $file, $geinin->id . '.jpg', 'public');
-    //geininテーブルにファイル名保存
+    //geininsテーブルにファイル名保存
     $geinin->image = $geinin->id . '.jpg';
     $geinin->save();
 
@@ -49,11 +50,20 @@ class ProfileController extends Controller
 
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
   }
-
+//プロフィール詳細
   public function show($id)
   {
     $geinin = Geinin::findOrFail($id);
-    $auth_id = Auth::guard('geinin')->id();
+    if(Auth::guard('geinin')->check()){
+      $auth_id = Auth::guard('geinin')->id();
+    }else{
+      $auth_id = 0; //ゲストさんは0
+    }
+    //footprintsテーブルにデータ追加
+    $footprint = new Footprint();
+    $footprint->saw_id = $auth_id;
+    $footprint->be_seen_id = $geinin->id;
+    $footprint->save();
 
     return view('geinin.profile_details', [
       'geinin' => $geinin,

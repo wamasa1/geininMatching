@@ -35,16 +35,19 @@ Route::get('/event', function () {
     return view('matching.event', ['auth' => $auth]);
 });
 //プロフィール
-Route::get('/profile', 'ProfileController@profile')->middleware('auth:geinin');
+Route::get('/profile', 'ProfileController@self_profile')->middleware('auth:geinin');
 Route::post('/profile', 'ProfileController@store');
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth:geinin');
 Route::post('/profile/edit', 'ProfileController@reregistar');
+//プロフィール詳細
+Route::get('/profile/{id}', 'ProfileController@show');
+//あしあと
+Route::get('/footprint', 'FootprintController@index')->middleware('auth:geinin');
 //メッセージ送信
 Route::get('/message/{id}', 'MessageController@message')->middleware('auth:geinin')->name('message');
 Route::post('/message/{id}', 'MessageController@submit');
-//メッセージ
+//メッセージボックス
 Route::get('/messagebox', 'MessageController@receive')->middleware('auth:geinin');
-Route::get('/profile/{id}', 'ProfileController@show');
 //お気に入り
 Route::get('/favorite', 'FavoriteController@list')->middleware('auth:geinin');
 Route::delete('/favorite', 'FavoriteController@listDelete');
