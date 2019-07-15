@@ -5,6 +5,7 @@
 use App\Geinin;
 use App\Message;
 use App\Favorite;
+use App\Footprint;
 use Faker\Generator as Faker;
 
 $factory->define(Geinin::class, function (Faker $faker) {
@@ -47,6 +48,15 @@ $factory->define(Favorite::class, function (Faker $faker) {
     'favoriteFrom_id' => $faker->numberBetween($min = 1, $max = 15),
     'favoriteTo_id' => $faker->numberBetween($min = 16, $max = 80),
     'created_at' => now(),
+    'updated_at' => now()
+  ];
+});
+
+$factory->define(Footprint::class, function (Faker $faker) {
+  return [
+    'saw_id' => $faker->numberBetween($min = 3, $max = 80),
+    'be_seen_id' => $faker->numberBetween($min = 1, $max = 2),
+    'created_at' => $faker->dateTimeThisMonth($max = 'now'),
     'updated_at' => now()
   ];
 });
