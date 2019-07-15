@@ -16,7 +16,7 @@ class GeininsTableSeeder extends Seeder
         // テストユーザー1
         DB::table('geinins')->insert([
             "user" => "松本紳助（テスト）",
-            'image' => null,
+            'image' => "1.jpg",
             'age' => "25",
             'activity_place' => "東京",
             "genre" => "漫才",
@@ -38,7 +38,7 @@ class GeininsTableSeeder extends Seeder
         //テストユーザー２
         DB::table('geinins')->insert([
             "user" => "佐藤（テスト）",
-            'image' => null,
+            'image' => "2.jpg",
             'age' => "28",
             'activity_place' => "東京",
             "genre" => "漫才",
