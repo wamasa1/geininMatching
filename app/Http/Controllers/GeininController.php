@@ -25,7 +25,11 @@ class GeininController extends Controller
 
   public function register()
   {
-    return view('geinin.register');
+    if(Auth::guard('geinin')->check()){
+      return redirect('/show')->with('already_register', 'もうすでに登録されています');
+    }else{
+      return view('geinin.register');
+    }
   }
 
   public function add(GeininRequest $request)

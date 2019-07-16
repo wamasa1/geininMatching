@@ -12,6 +12,12 @@
 @endsection
 
 @section('body')
+<!-- 登録済み -->
+@if (session('already_register'))
+<div class="alert alert-success mt-5">
+  {{ session('already_register') }}
+</div>
+@endif
 <!-- メッセージ送信完了 -->
 @if (session('message_success'))
 <div class="alert alert-success mt-5">
@@ -112,7 +118,7 @@
   @break($loop->iteration == 4)
 
   @empty
-  <p>見つかりませんでした</p>
+  <p class="col">残念ながら、条件の合う芸人が見つかりませんでした</p>
   @endforelse
 </div>
 @endsection
