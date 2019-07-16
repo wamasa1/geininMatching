@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Auth;
-
+//ホーム
 Route::get('/', 'GeininController@index');
 //新規登録
 Route::get('/register', 'GeininController@register')->name('register');
@@ -56,5 +56,5 @@ Route::get('/account', 'AccountController@index')->middleware('auth:geinin');
 Route::post('/account', 'AccountController@post');
 Route::delete('/account', 'AccountController@delete');
 //CSV　download
-Route::get('/csv', 'CsvController@index');
-Route::get('/csv/download', 'CsvController@download');
+// Route::get('/csv', 'CsvController@index');
+// Route::get('/csv/download', 'CsvController@download');

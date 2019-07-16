@@ -20,7 +20,7 @@ class CsvController extends Controller
     //　文字化け回避
     stream_filter_prepend($stream, 'convert.iconv.utf-8/cp932//TRANSLIT');
     // タイトルを追加
-    fputcsv($stream, ['id', 'user', 'image', 'genre', 'role', 'creater', 'target', 'self_introduce', 'email', 'password', 'created_at', 'updated_at']);
+    fputcsv($stream, ['id', 'user', 'image', 'age', 'activity_place', 'genre', 'role', 'creater', 'target', 'monomane', 'favorite_geinin', 'favorite_neta', 'favorite_tv_program', 'laughing_event', 'self_introduce', 'email', 'password', 'created_at', 'updated_at']);
 
     foreach ($users as $user) {
       fputcsv($stream, $user);
