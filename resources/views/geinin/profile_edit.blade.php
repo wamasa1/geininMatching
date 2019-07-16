@@ -54,12 +54,12 @@
         <th class="align-middle bg-success text-white">希望する活動場所<span class="text-danger">(必須)</span></th>
         <td class="text-center">
           <select name="activity_place">
-            <option>東京</option>
-            <option>大阪</option>
-            <option>福岡</option>
-            <option>仙台</option>
-            <option>札幌</option>
-            <option>沖縄</option>
+            <option {{ $geinin->activity_place == '東京' ? 'selected' : '' }}>東京</option>
+            <option {{ $geinin->activity_place == '大阪' ? 'selected' : '' }}>大阪</option>
+            <option {{ $geinin->activity_place == '福岡' ? 'selected' : '' }}>福岡</option>
+            <option {{ $geinin->activity_place == '仙台' ? 'selected' : '' }}>仙台</option>
+            <option {{ $geinin->activity_place == '札幌' ? 'selected' : '' }}>札幌</option>
+            <option {{ $geinin->activity_place == '沖縄' ? 'selected' : '' }}>沖縄</option>
           </select>
         </td>
       </tr>
