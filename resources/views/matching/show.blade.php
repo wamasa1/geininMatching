@@ -52,6 +52,10 @@
           <td class="align-middle"><a href="{{ url('/profile/' . $partner->id) }}" target="_blank">{{ $partner->user }}</a></td>
         </tr>
         <tr>
+          <th class="align-middle bg-primary text-white">希望する活動場所</th>
+          <td class="align-middle">{{ $partner->activity_place }}</td>
+        </tr>
+        <tr>
           <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？</th>
           <td class="align-middle">{{ $partner->genre }}</td>
         </tr>

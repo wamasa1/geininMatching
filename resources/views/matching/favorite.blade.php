@@ -33,6 +33,10 @@
           <td><a href="{{ url('/profile/' . $favorite->geininFavoriteTo->id) }}" target="_blank">{{ $favorite->geininFavoriteTo->user }}</a></td>
         </tr>
         <tr>
+          <th class="align-middle bg-primary text-white">希望する活動場所</th>
+          <td class="align-middle">{{ $favorite->geininFavoriteTo->activity_place }}</td>
+        </tr>
+        <tr>
           <th class="align-middle bg-primary text-white">漫才とコントのどちらがやりたいですか？</th>
           <td class="align-middle">{{ $favorite->geininFavoriteTo->genre }}</td>
         </tr>

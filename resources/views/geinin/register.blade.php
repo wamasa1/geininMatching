@@ -19,6 +19,7 @@
     <thead>
     </thead>
     <tbody>
+      <!-- ユーザー名 -->
       <tr>
         <th class="align-middle bg-primary text-white">
           ユーザー名<span class="text-danger">(必須)</span>
@@ -28,6 +29,23 @@
           @if ($errors->has('user'))
           <p class="text-danger">{{ $errors->first('user') }}</p>
           @endif
+        </td>
+      </tr>
+
+      <!-- 希望する活動場所 -->
+      <tr>
+        <th class="align-middle bg-primary text-white">
+          希望する活動場所<span class="text-danger">(必須)</span>
+        </th>
+        <td class="text-center">
+          <select name="activity_place">
+            <option {{ old('activity_place') == '東京' ? 'selected' : '' }}>東京</option>
+            <option {{ old('activity_place') == '大阪' ? 'selected' : '' }}>大阪</option>
+            <option {{ old('activity_place') == '福岡' ? 'selected' : '' }}>福岡</option>
+            <option {{ old('activity_place') == '仙台' ? 'selected' : '' }}>仙台</option>
+            <option {{ old('activity_place') == '札幌' ? 'selected' : '' }}>札幌</option>
+            <option {{ old('activity_place') == '沖縄' ? 'selected' : '' }}>沖縄</option>
+          </select>
         </td>
       </tr>
 

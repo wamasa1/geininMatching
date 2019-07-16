@@ -122,28 +122,28 @@
       <tr>
         <th class="align-middle bg-success text-white">得意なモノマネ</th>
         <td class="text-center">
-          <textarea name="monomane" rows="1" cols="40" placeholder="ビートたけしさんなど">{{ $geinin->monomane }}</textarea>
+          <textarea name="monomane" rows="1" cols="40">{{ $geinin->monomane }}</textarea>
         </td>
       </tr>
       <!-- 好きな芸人 -->
       <tr>
         <th class="align-middle bg-success text-white">好きな芸人</th>
         <td class="text-center">
-          <textarea name="favorite_geinin" rows="1" cols="40" placeholder="ダウンタウンさんなど">{{ $geinin->favorite_geinin }}</textarea>
+          <textarea name="favorite_geinin" rows="1" cols="40">{{ $geinin->favorite_geinin }}</textarea>
         </td>
       </tr>
       <!-- 好きなネタ -->
       <tr>
         <th class="align-middle bg-success text-white">好きなネタ</th>
         <td class="text-center">
-          <textarea name="favorite_neta" rows="1" cols="40" placeholder="パーフェクトヒューマンなど">{{ $geinin->favorite_neta }}</textarea>
+          <textarea name="favorite_neta" rows="1" cols="40">{{ $geinin->favorite_neta }}</textarea>
         </td>
       </tr>
       <!-- 好きなテレビ番組 -->
       <tr>
         <th class="align-middle bg-success text-white">好きなテレビ番組</th>
         <td class="text-center">
-          <textarea name="favorite_tv_program" rows="1" cols="40" placeholder="ガキ使など">{{ $geinin->favorite_tv_program }}</textarea>
+          <textarea name="favorite_tv_program" rows="1" cols="40">{{ $geinin->favorite_tv_program }}</textarea>
         </td>
       </tr>
       <!-- 最近笑ったこと -->

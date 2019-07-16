@@ -63,6 +63,7 @@ class GeininController extends Controller
     }
     // Matchingデータの抽出
     $partners = Geinin::where('id', '!=', $auth_id)
+      ->where('activity_place', $geinin->activity_place)
       ->where('genre', $geinin->genre)
       ->when($role_boolean, function ($query) use ($role) {
         return $query->where('role', '!=', $role);
@@ -106,6 +107,7 @@ class GeininController extends Controller
     }
     // Matchingデータの抽出
     $partners = Geinin::where('id', '!=', $auth_id)
+      ->where('activity_place', $geinin->activity_place)
       ->where('genre', $geinin->genre)
       ->when($role_boolean, function ($query) use ($role) {
         return $query->where('role', '!=', $role);
