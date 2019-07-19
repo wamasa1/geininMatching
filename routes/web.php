@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Auth;
+
 //ホーム
 Route::get('/', 'GeininController@index');
 //新規登録

@@ -12,83 +12,83 @@ class SearchController extends Controller
 {
   public function search (Request $request)
   {
-    //$request->activity_placeを英語変換
-    $activity_place_Ja = $request->activity_place;
-    $activity_place_En = null;
-    switch ($activity_place_Ja) {
-      case '東京':
-        $activity_place_En = 'tokyo';
+    //$request->activity_placeを変換
+    $activity_place_En = $request->activity_place;
+    $activity_place_Ja = null;
+    switch ($activity_place_En) {
+      case 'tokyo':
+        $activity_place_Ja = '東京';
         break;
-      case '大阪':
-        $activity_place_En = 'osaka';
+      case 'osaka':
+        $activity_place_Ja = '大阪';
         break;
-      case '福岡':
-        $activity_place_En = 'fukuoka';
+      case 'fukuoka':
+        $activity_place_Ja = '福岡';
         break;
-      case '仙台':
-        $activity_place_En = 'sendai';
+      case 'sendai':
+        $activity_place_Ja = '仙台';
         break;
-      case '札幌':
-        $activity_place_En = 'sapporo';
+      case 'sapporo':
+        $activity_place_Ja = '札幌';
         break;
-      case '沖縄':
-        $activity_place_En = 'okinawa';
-        break;
-      }
-    //$request->genreを英語変換
-    $genreJa = $request->genre;
-    $genreEn = null;
-    switch ($genreJa) {
-      case '漫才':
-        $genreEn = 'manzai';
-        break;
-      case 'コント':
-        $genreEn = 'konto';
-        break;
-      case '両方':
-        $genreEn = 'both';
+      case 'okinawa':
+        $activity_place_Ja = '沖縄';
         break;
       }
-    //$request->roleを英語変換
-    $roleJa = $request->role;
-    $roleEn = null;
-    switch ($roleJa) {
-      case 'ボケ':
-        $roleEn = 'boke';
+    //$request->genreを変換
+    $genreEn = $request->genre;
+    $genreJa = null;
+    switch ($genreEn) {
+      case 'manzai':
+        $genreJa = '漫才';
         break;
-      case 'ツッコミ':
-        $roleEn = 'tukkomi';
+      case 'konto':
+        $genreJa = 'コント';
         break;
-      case 'こだわらない':
-        $roleEn = 'boke_tukkomi';
-        break;
-      }
-    //$request->createrを英語変換
-    $createrJa = $request->creater;
-    $createrEn = null;
-    switch ($createrJa) {
-      case '自分が作る':
-        $createrEn = 'me';
-        break;
-      case '一緒に作りたい':
-        $createrEn = 'together';
-        break;
-      case '相方に作ってほしい':
-        $createrEn = 'you';
+      case 'both':
+        $genreJa = '両方';
         break;
       }
-    //$request->targetを日本語変換
-    $targetJa = $request->target;
-    $targetEn = null;
-    switch ($targetJa) {
-      case 'ゴールデンで冠番組を持つ':
-        $targetEn = 'golden';
+    //$request->roleを変換
+    $roleEn = $request->role;
+    $roleJa = null;
+    switch ($roleEn) {
+      case 'boke':
+        $roleJa = 'ボケ';
         break;
-      case '深夜で面白い番組がしたい':
-        $targetEn = 'midnight';
+      case 'tukkomi':
+        $roleJa = 'ツッコミ';
         break;
-      case 'テレビより舞台で活躍したい':
-        $targetEn = 'theater';
+      case 'boke_tukkomi':
+        $roleJa = 'こだわらない';
+        break;
+      }
+    //$request->createrを変換
+    $createrEn = $request->creater;
+    $createrJa = null;
+    switch ($createrEn) {
+      case 'me':
+        $createrJa = '自分が作る';
+        break;
+      case 'together':
+        $createrJa = '一緒に作りたい';
+        break;
+      case 'you':
+        $createrJa = '相方に作ってほしい';
+        break;
+      }
+    //$request->targetを変換
+    $targetEn = $request->target;
+    $targetJa = null;
+    switch ($targetEn) {
+      case 'golden':
+        $targetJa = 'ゴールデンで冠番組を持つ';
+        break;
+      case 'midnight':
+        $targetJa = '深夜で面白い番組がしたい';
+        break;
+      case 'theater':
+        $targetJa = 'テレビより舞台で活躍したい';
         break;
       }
     //全件数
@@ -96,27 +96,27 @@ class SearchController extends Controller
     $geinins = Geinin::where('id', '!=', $auth_id);
     $allCount = $geinins->count();
     //検索条件適合
-    if ($activity_place_Ja != '未選択' && $activity_place_Ja != null)
+    if ($activity_place_Ja != 'no_select' && $activity_place_Ja != null)
     {
       $geinins = $geinins->where('activity_place', $activity_place_Ja);
     }
 
-    if ($genreJa != '未選択' && $genreJa != null)
+    if ($genreJa != 'no_select' && $genreJa != null)
     {
       $geinins = $geinins->where('genre', $genreJa);
     }
 
-    if ($roleJa != '未選択' && $roleJa != null)
+    if ($roleJa != 'no_select' && $roleJa != null)
     {
       $geinins = $geinins->where('role', $roleJa);
     }
 
-    if ($createrJa != '未選択' && $createrJa != null)
+    if ($createrJa != 'no_select' && $createrJa != null)
     {
       $geinins = $geinins->where('creater', $createrJa);
     }
 
-    if ($targetJa != '未選択' && $targetJa != null)
+    if ($targetJa != 'no_select' && $targetJa != null)
     {
       $geinins = $geinins->where('target', $targetJa);
     }

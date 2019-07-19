@@ -54,13 +54,13 @@
         </td>
         <td>
           <select name="activity_place">
-            <option>未選択</option>
-            <option @if($activity_place=='tokyo' ) selected @endif>東京</option>
-            <option @if($activity_place=='osaka' ) selected @endif>大阪</option>
-            <option @if($activity_place=='fukuoka' ) selected @endif>福岡</option>
-            <option @if($activity_place=='sendai' ) selected @endif>仙台</option>
-            <option @if($activity_place=='sapporo' ) selected @endif>札幌</option>
-            <option @if($activity_place=='okinawa' ) selected @endif>沖縄</option>
+            <option value="no_select">未選択</option>
+            <option value="tokyo" @if($activity_place=='tokyo' ) selected @endif>東京</option>
+            <option value="osaka" @if($activity_place=='osaka' ) selected @endif>大阪</option>
+            <option value="fukuoka" @if($activity_place=='fukuoka' ) selected @endif>福岡</option>
+            <option value="sendai" @if($activity_place=='sendai' ) selected @endif>仙台</option>
+            <option value="sapporo" @if($activity_place=='sapporo' ) selected @endif>札幌</option>
+            <option value="okinawa" @if($activity_place=='okinawa' ) selected @endif>沖縄</option>
           </select>
         </td>
       </tr>
@@ -70,10 +70,10 @@
         </td>
         <td>
           <select name="genre">
-            <option>未選択</option>
-            <option @if($genre=='manzai' ) selected @endif>漫才</option>
-            <option @if($genre=='konto' ) selected @endif>コント</option>
-            <option @if($genre=='both' ) selected @endif>両方</option>
+            <option value="no_select">未選択</option>
+            <option value="manzai" @if($genre=='manzai' ) selected @endif>漫才</option>
+            <option value="konto" @if($genre=='konto' ) selected @endif>コント</option>
+            <option value="both" @if($genre=='both' ) selected @endif>両方</option>
           </select>
         </td>
       </tr>
@@ -83,10 +83,10 @@
         </td>
         <td class="text-left">
           <select name="role">
-            <option>未選択</option>
-            <option @if($role=='boke' ) selected @endif>ボケ</option>
-            <option @if($role=='tukkomi' ) selected @endif>ツッコミ</option>
-            <option @if($role=='boke_tukkomi' ) selected @endif>両方</option>
+            <option value="no_select">未選択</option>
+            <option value="boke" @if($role=='boke' ) selected @endif>ボケ</option>
+            <option value="tukkomi" @if($role=='tukkomi' ) selected @endif>ツッコミ</option>
+            <option value="boke_tukkomi" @if($role=='boke_tukkomi' ) selected @endif>両方</option>
           </select>
         </td>
       </tr>
@@ -96,10 +96,10 @@
         </td>
         <td>
           <select name="creater">
-            <option>未選択</option>
-            <option @if($creater=='me') selected @endif>自分が作る</option>
-            <option @if($creater=='together') selected @endif>一緒に作りたい</option>
-            <option @if($creater=='you') selected @endif>相方に作ってほしい</option>
+            <option value="no_select">未選択</option>
+            <option value="me" @if($creater=='me') selected @endif>自分が作る</option>
+            <option value="together" @if($creater=='together') selected @endif>一緒に作りたい</option>
+            <option value="you" @if($creater=='you') selected @endif>相方に作ってほしい</option>
           </select>
         </td>
       </tr>
@@ -109,10 +109,10 @@
         </td>
         <td>
           <select name="target">
-            <option>未選択</option>
-            <option @if($target=='golden') selected @endif>ゴールデンで冠番組を持つ</option>
-            <option @if($target=='midnight') selected @endif>深夜で面白い番組がしたい</option>
-            <option @if($target=='theater') selected @endif>テレビより舞台で活躍したい</option>
+            <option value="no_select">未選択</option>
+            <option value="golden" @if($target=='golden') selected @endif>ゴールデンで冠番組を持つ</option>
+            <option value="midnight" @if($target=='midnight') selected @endif>深夜で面白い番組がしたい</option>
+            <option value="theater" @if($target=='theater') selected @endif>テレビより舞台で活躍したい</option>
           </select>
         </td>
       </tr>
