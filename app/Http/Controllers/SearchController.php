@@ -96,32 +96,44 @@ class SearchController extends Controller
     $geinins = Geinin::where('id', '!=', $auth_id);
     $allCount = $geinins->count();
     //検索条件適合
-    if ($activity_place_Ja != 'no_select' && $activity_place_Ja != null)
+    if ($activity_place_En != 'no_select' && $activity_place_En != null)
     {
       $geinins = $geinins->where('activity_place', $activity_place_Ja);
     }
 
-    if ($genreJa != 'no_select' && $genreJa != null)
+    if ($genreEn != 'no_select' && $genreEn != null)
     {
       $geinins = $geinins->where('genre', $genreJa);
     }
 
-    if ($roleJa != 'no_select' && $roleJa != null)
+    if ($roleEn != 'no_select' && $roleEn != null)
     {
       $geinins = $geinins->where('role', $roleJa);
     }
 
-    if ($createrJa != 'no_select' && $createrJa != null)
+    if ($createrEn != 'no_select' && $createrEn != null)
     {
       $geinins = $geinins->where('creater', $createrJa);
     }
-
-    if ($targetJa != 'no_select' && $targetJa != null)
+    
+    if ($targetEn != 'no_select' && $targetEn != null)
     {
       $geinins = $geinins->where('target', $targetJa);
     }
 
+    //キーワード検索
+    $keyword = $request->keyword;
+    if ($keyword != null) {
+      $geinins = $geinins->where('activity_place', 'like', '%'.$keyword.'%')
+                        ->orWhere('genre', 'like', '%'.$keyword.'%')
+                        ->orWhere('role', 'like', '%'.$keyword.'%')
+                        ->orWhere('creater', 'like', '%'.$keyword.'%')
+                        ->orWhere('target', 'like', '%'.$keyword.'%')
+                        ->orWhere('self_introduce', 'like', '%'.$keyword.'%');
+    }
+    // 検索適合件数
     $hitCount = $geinins->count();
+    
     //ペジネーション
     if ($allCount != $hitCount)
     {
@@ -144,6 +156,7 @@ class SearchController extends Controller
       'role' => $roleEn,
       'creater' => $createrEn,
       'target' => $targetEn,
+      'keyword' => $keyword,
     ]);
   }
 }

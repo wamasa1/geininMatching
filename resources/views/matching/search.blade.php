@@ -122,6 +122,11 @@
       </tr>
     </table>
   </form>
+  <form action="{{ url('/search') }}" method="get">
+    {{ csrf_field() }}
+    <input type="text" name="keyword" value="{{ $keyword }}">
+    <input type="submit" value="キーワード検索">
+  </form>
 </div>
 
 <p class="font-weight-bold text-primary">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</p>
@@ -209,5 +214,6 @@
   @endforeach
 </div>
 {{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target])->onEachSide(1)->links() }}
+{{ $geinins->appends(['keyword' => $keyword])->links() }}
 @endif
 @endsection
