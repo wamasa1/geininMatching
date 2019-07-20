@@ -16,10 +16,10 @@
   @foreach($favorites as $favorite)
   <div class="col col-md-6 border border-primary rounded-top" style="background-color: ivory;">
     <figure>
-      @if ($favorite->image == null)
+      @if ($favorite->geininFavoriteTo->image == null)
       <img src="{{ Storage::disk('s3')->url('images/noimage.png') }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
       @else
-      <img src="{{ Storage::disk('s3')->url('images/' . $favorite->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
+      <img src="{{ Storage::disk('s3')->url('images/' . $favorite->geininFavoriteTo->image) }}" class="rounded-circle mt-5" width="150" height="150" alt="画像">
       @endif
       <figcaption>プロフィール画像</figcaption>
     </figure>
