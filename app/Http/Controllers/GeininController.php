@@ -74,37 +74,35 @@ class GeininController extends Controller
         return $query->where('role', '!=', $role);
       })
       ->where('creater', $creater)
-      ->where('target', $auth_geinin->target);
-      $matching_percent = 100;
+      ->where('target', $auth_geinin->target)
+      ->inRandomOrder()->get();
 
     //マッチング率80%
-    if ($partners->count() == 0){
-      $partners = Geinin::where('id', '!=', $auth_id)
-        ->where('activity_place', $auth_geinin->activity_place)
-        ->where('genre', $auth_geinin->genre)
-        ->when($role_boolean, function ($query) use ($role) {
-            return $query->where('role', '!=', $role);
-          })
-        ->where('creater', $creater);
-        $matching_percent = 80;
-    }
+    $eighty_partners = Geinin::where('id', '!=', $auth_id)
+      ->where('activity_place', $auth_geinin->activity_place)
+      ->where('genre', $auth_geinin->genre)
+      ->when($role_boolean, function ($query) use ($role) {
+          return $query->where('role', '!=', $role);
+        })
+      ->where('creater', $creater)
+      ->where('target', '!=', $auth_geinin->target)
+      ->inRandomOrder()->get();
 
     //マッチング率60%
-    if ($partners->count() == 0){
-      $partners = Geinin::where('id', '!=', $auth_id)
-        ->where('activity_place', $auth_geinin->activity_place)
-        ->where('genre', $auth_geinin->genre)
-        ->when($role_boolean, function ($query) use ($role) {
-            return $query->where('role', '!=', $role);
-          });
-        $matching_percent = 60;
-    }
-
-    $partners = $partners->inRandomOrder()->get();
+    $sixty_partners = Geinin::where('id', '!=', $auth_id)
+      ->where('activity_place', $auth_geinin->activity_place)
+      ->where('genre', $auth_geinin->genre)
+      ->when($role_boolean, function ($query) use ($role) {
+          return $query->where('role', '!=', $role);
+        })
+      ->where('creater', '!=', $creater)
+      ->where('target', '!=', $auth_geinin->target)
+      ->inRandomOrder()->get();
 
     return view('matching.show', [
       'partners' => $partners,
-      'matching_percent' => $matching_percent,
+      'eighty_partners' => $eighty_partners,
+      'sixty_partners' => $sixty_partners,
       'auth_geinin' => $auth_geinin
     ]);
   }
@@ -144,37 +142,35 @@ class GeininController extends Controller
         return $query->where('role', '!=', $role);
       })
       ->where('creater', $creater)
-      ->where('target', $auth_geinin->target);
-      $matching_percent = 100;
+      ->where('target', $auth_geinin->target)
+      ->inRandomOrder()->get();
 
     //マッチング率80%
-    if ($partners->count() == 0){
-      $partners = Geinin::where('id', '!=', $auth_id)
-        ->where('activity_place', $auth_geinin->activity_place)
-        ->where('genre', $auth_geinin->genre)
-        ->when($role_boolean, function ($query) use ($role) {
-            return $query->where('role', '!=', $role);
-          })
-        ->where('creater', $creater);
-        $matching_percent = 80;
-    }
+    $eighty_partners = Geinin::where('id', '!=', $auth_id)
+      ->where('activity_place', $auth_geinin->activity_place)
+      ->where('genre', $auth_geinin->genre)
+      ->when($role_boolean, function ($query) use ($role) {
+          return $query->where('role', '!=', $role);
+        })
+      ->where('creater', $creater)
+      ->where('target', '!=', $auth_geinin->target)
+      ->inRandomOrder()->get();
 
     //マッチング率60%
-    if ($partners->count() == 0){
-      $partners = Geinin::where('id', '!=', $auth_id)
-        ->where('activity_place', $auth_geinin->activity_place)
-        ->where('genre', $auth_geinin->genre)
-        ->when($role_boolean, function ($query) use ($role) {
-            return $query->where('role', '!=', $role);
-          });
-        $matching_percent = 60;
-    }
-
-    $partners = $partners->inRandomOrder()->get();
+    $sixty_partners = Geinin::where('id', '!=', $auth_id)
+      ->where('activity_place', $auth_geinin->activity_place)
+      ->where('genre', $auth_geinin->genre)
+      ->when($role_boolean, function ($query) use ($role) {
+          return $query->where('role', '!=', $role);
+        })
+      ->where('creater', '!=', $creater)
+      ->where('target', '!=', $auth_geinin->target)
+      ->inRandomOrder()->get();
 
     return view('matching.show', [
       'partners' => $partners,
-      'matching_percent' => $matching_percent,
+      'eighty_partners' => $eighty_partners,
+      'sixty_partners' => $sixty_partners,
       'auth_geinin' => $auth_geinin
     ]);
   }
