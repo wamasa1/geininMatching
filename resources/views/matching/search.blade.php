@@ -44,12 +44,12 @@
 @endif
 
 <!-- 検索フォーム -->
-<div class="mx-auto my-5 bg-light border border-primary">
+<div class="mx-auto mt-1 mb-3 border border-primary">
   <form action="{{ url('/search') }}" method="get">
     {{ csrf_field() }}
     <!-- 活動場所 -->
     <fieldset>
-      <legend><u>活動場所</u></legend>
+      <legend class="bg-light"><small>活動場所</small></legend>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tokyo" name="activity_place[]" value="tokyo" @if (is_array($activity_place) && in_array("tokyo", $activity_place)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="tokyo">東京</label>
@@ -76,8 +76,8 @@
       </div>
     </fieldset>
     <!-- 希望するジャンル -->
-    <fieldset class="mt-3">
-      <legend><u>希望するジャンル</u></legend>
+    <fieldset class="mt-2">
+      <legend class="bg-light"><small>希望するジャンル</small></legend>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="manzai" name="genre[]" value="manzai" @if (is_array($genre) && in_array("manzai", $genre)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="manzai">漫才</label>
@@ -92,8 +92,8 @@
       </div>
     </fieldset>
     <!-- 役割 -->
-    <fieldset class="mt-3">
-      <legend><u>役割</u></legend>
+    <fieldset class="mt-2">
+      <legend class="bg-light"><small>役割</small></legend>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="boke" name="role[]" value="boke" @if (is_array($role) && in_array("boke", $role)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="boke">ボケ</label>
@@ -108,8 +108,8 @@
       </div>
     </fieldset>
     <!-- ネタ作り -->
-    <fieldset class="mt-3">
-      <legend><u>ネタ作り</u></legend>
+    <fieldset class="mt-2">
+      <legend class="bg-light"><small>ネタ作り</small></legend>
       <div class="form-check form-check-inline">
         <input class="form-check-input pt-1" type="checkbox" id="me" name="creater[]" value="me" @if (is_array($creater) && in_array("me", $creater)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="me">自分が作る</label>
@@ -124,8 +124,8 @@
       </div>
     </fieldset>
     <!-- 目標 -->
-    <fieldset class="mt-3">
-      <legend><u>目標</u></legend>
+    <fieldset class="mt-2">
+    <legend class="bg-light"><small>目標</small></legend>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="golden" name="target[]" value="golden" @if (is_array($target) && in_array("golden", $target)) checked @endif>
         <label class="form-check-label pl-0 pr-4" for="golden">ゴールデンで冠番組を持つ</label>
@@ -140,11 +140,11 @@
       </div>
     </fieldset>
     <!-- キーワード -->
-    <fieldset class="mt-3">
-      <legend><u>キーワード</u></legend>
+    <fieldset class="mt-2">
+    <legend class="bg-light"><small>キーワード</small></legend>
       <input type="text" name="keyword" value="{{ $keyword }}">
     </fieldset>
-    <button type="submit" class="col-6 my-3 btn btn-lg btn-primary" style="cursor: pointer">検索</button>
+    <button type="submit" class="col-6 my-2 btn btn-primary" style="cursor: pointer">検索</button>
   </form>
 </div>
 

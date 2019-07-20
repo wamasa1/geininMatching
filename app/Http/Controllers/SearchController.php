@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Geinin;
-use App\Favorite;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class SearchController extends Controller
 {
@@ -174,15 +173,20 @@ class SearchController extends Controller
     //キーワード検索
     $keyword = $request->keyword;
     if ($keyword != null) {
-      $geinins = $geinins->where(function($query) use($keyword){
-        $query->where('user', 'like', '%'.$keyword.'%')
-              ->orWhere('activity_place', 'like', '%'.$keyword.'%')
-              ->orWhere('genre', 'like', '%'.$keyword.'%')
-              ->orWhere('role', 'like', '%'.$keyword.'%')
-              ->orWhere('creater', 'like', '%'.$keyword.'%')
-              ->orWhere('target', 'like', '%'.$keyword.'%')
-              ->orWhere('self_introduce', 'like', '%'.$keyword.'%');
-      });
+      $keyword = mb_convert_kana($keyword, 's'); //全角スペースを半角に変換
+      $keyword_array = preg_split("/[\s]+/", $keyword); //半角スペースで区切られた文字列を配列化
+      $keyword_count = count($keyword_array);
+      for ($i=0; $i<$keyword_count; $i++) {
+        $geinins = $geinins->where(function($query) use($keyword_array, $i){
+          $query->where('user', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('activity_place', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('genre', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('role', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('creater', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('target', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('self_introduce', 'like', '%'.$keyword_array[$i].'%');
+        });
+      }
     }
 
     // 検索適合件数
