@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\PasswordChangeRequest;
+use App\Http\Requests\AccountDeleteRequest;
 use App\Geinin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,33 +18,38 @@ class AccountController extends Controller
     return view('matching.account', ['geinin' => $geinin]);
   }
 
-  public function post(PasswordRequest $request)
+  public function post(PasswordChangeRequest $request)
   {
     $geinin = Auth::guard('geinin')->user();
     //テストユーザー
     if ($geinin->user == '松本紳助（テスト）') {
       return redirect('/account')->with('test_user', 'テストユーザーであるため、パスワードは変更できません');
     }
-    //パスワード照合、変更
-    if (Hash::check($request->current_password, $geinin->password)) {
+    //照合後、パスワード変更
+    if ($geinin->email == $request->current_email &&
+         Hash::check($request->current_password, $geinin->password)) {
       $geinin->password = Hash::make($request->new_password);
       $geinin->save();
       return redirect('/account')->with('password_success', 'パスワードを変更しました');
     } else {
-      return redirect('/account')->with('password_failure', '現在のパスワードが異なるため、変更できませんでした');
+      return redirect('/account')->with('password_failure', '現在のメールアドレス又はパスワードが異なるため、変更できませんでした');
     }
   }
 
-  public function delete()
+  public function delete(AccountDeleteRequest $request)
   {
     $geinin = Auth::guard('geinin')->user();
     //テストユーザー
     if ($geinin->user == '松本紳助（テスト）') {
       return redirect('/account')->with('test_user', 'テストユーザーであるため、アカウントは削除できません');
     }
-    //アカウント削除
-    $geinin->delete();
-
-    return redirect('/')->with('account_delete', 'アカウントが削除されました');
+    //照合後、アカウント削除
+    if ($geinin->email == $request->current_email_del &&
+        Hash::check($request->current_password_del, $geinin->password)){
+      $geinin->delete();
+      return redirect('/')->with('account_delete', 'アカウントが削除されました');
+    } else {
+      return redirect('/account')->with('del_failure', '現在のメールアドレス又はパスワードが異なるため、削除できませんでした');
+    }
   }
 }

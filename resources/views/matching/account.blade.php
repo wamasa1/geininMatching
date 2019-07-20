@@ -39,22 +39,31 @@
       <div class="card-body">
         <form action="{{ url('/account') }}" method="post">
           {{ csrf_field() }}
+          <!-- 現在のメールアドレス -->
           <div class="form-group">
-            <label for="exampleInputPassword1">現在のパスワード</label>
-            <input name="current_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="現在のパスワード">
+            <label for="email">現在のメールアドレス</label>
+            <input name="current_email" type="email" class="form-control" id="email" placeholder="現在のメールアドレス">
+            @if ($errors->has('current_email'))
+            <p class="text-danger">{{ $errors->first('current_email') }}</p>
+            @endif
+          </div>
+          <!-- 現在のパスワード -->
+          <div class="form-group">
+            <label for="password1">現在のパスワード</label>
+            <input name="current_password" type="password" class="form-control" id="password1" placeholder="現在のパスワード">
             @if ($errors->has('current_password'))
             <p class="text-danger">{{ $errors->first('current_password') }}</p>
             @endif
-            <!-- 現在のパスワードが異なる旨のメッセージ -->
+            <!-- パスワード又はアドレスの不一致メッセージ -->
             @if (session('password_failure'))
-            <div class="alert alert-danger">
+            <div class="alert alert-danger mt-2">
               {{ session('password_failure') }}
             </div>
             @endif
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">新しいパスワード</label>
-            <input name="new_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="新しいパスワード" aria-describedby="passwordHelp">
+            <label for="password1">新しいパスワード</label>
+            <input name="new_password" type="password" class="form-control" id="password1" placeholder="新しいパスワード" aria-describedby="passwordHelp">
             <small id="passwordHelp" class="form-text text-muted">４文字以上</small>
             @if ($errors->has('new_password'))
             <p class="text-danger">{{ $errors->first('new_password') }}</p>
@@ -75,12 +84,35 @@
         </button>
       </h4>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
-        <p>{{ $geinin->user }}さんの登録情報を全て削除します。<br>一度削除した場合、データの復元はできませんが、よろしいですか？</p>
         <form action="{{ url('/account') }}" method="post">
           {{ csrf_field() }}
           @method('delete')
+          <!-- 現在のメールアドレス -->
+          <div class="form-group">
+            <label for="email">現在のメールアドレス</label>
+            <input name="current_email_del" type="email" class="form-control" id="email" placeholder="現在のメールアドレス">
+            @if ($errors->has('current_email_del'))
+            <p class="text-danger">{{ $errors->first('current_email_del') }}</p>
+            @endif
+          </div>
+          <!-- 現在のパスワード -->
+          <div class="form-group">
+            <label for="password2">現在のパスワード</label>
+            <input name="current_password_del" type="password" class="form-control" id="password2" placeholder="現在のパスワード">
+            @if ($errors->has('current_password_del'))
+            <p class="text-danger">{{ $errors->first('current_password_del') }}</p>
+            @endif
+            <!-- パスワード又はアドレスの不一致メッセージ -->
+            @if (session('del_failure'))
+            <div class="alert alert-danger mt-2">
+              {{ session('del_failure') }}
+            </div>
+            @endif
+          </div>
+
+          <p>{{ $geinin->user }}さんの登録情報を全て削除します。<br>一度削除した場合、データの復元はできませんが、よろしいですか？</p>
           <input class="btn btn-primary" type="submit" value="削除する" style="cursor: pointer"><br>
           <small>※テストユーザーは削除されません</small>
         </form>
