@@ -124,13 +124,17 @@ class SearchController extends Controller
     //キーワード検索
     $keyword = $request->keyword;
     if ($keyword != null) {
-      $geinins = $geinins->where('activity_place', 'like', '%'.$keyword.'%')
-                        ->orWhere('genre', 'like', '%'.$keyword.'%')
-                        ->orWhere('role', 'like', '%'.$keyword.'%')
-                        ->orWhere('creater', 'like', '%'.$keyword.'%')
-                        ->orWhere('target', 'like', '%'.$keyword.'%')
-                        ->orWhere('self_introduce', 'like', '%'.$keyword.'%');
+      $geinins = $geinins->where(function($query) use($keyword){
+        $query->where('user', 'like', '%'.$keyword.'%')
+              ->orWhere('activity_place', 'like', '%'.$keyword.'%')
+              ->orWhere('genre', 'like', '%'.$keyword.'%')
+              ->orWhere('role', 'like', '%'.$keyword.'%')
+              ->orWhere('creater', 'like', '%'.$keyword.'%')
+              ->orWhere('target', 'like', '%'.$keyword.'%')
+              ->orWhere('self_introduce', 'like', '%'.$keyword.'%');
+      });
     }
+
     // 検索適合件数
     $hitCount = $geinins->count();
     

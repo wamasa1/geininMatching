@@ -44,7 +44,7 @@
 @endif
 
 <!-- 検索フォーム -->
-<div class="mx-auto my-5 bg-light border border-primary" style="width: 330px;">
+<div class="mx-auto my-5 bg-light border border-primary" style="width: 360px;">
   <form action="{{ url('/search') }}" method="get">
     {{ csrf_field() }}
     <table class="table-sm text-left">
@@ -117,15 +117,14 @@
         </td>
       </tr>
       <tr>
+        <td>キーワード</td>
+        <td><input type="text" name="keyword" value="{{ $keyword }}"></td>
+      </tr>
+      <tr>
         <td></td>
         <td><input type="submit" value="検索"></td>
       </tr>
     </table>
-  </form>
-  <form action="{{ url('/search') }}" method="get">
-    {{ csrf_field() }}
-    <input type="text" name="keyword" value="{{ $keyword }}">
-    <input type="submit" value="キーワード検索">
   </form>
 </div>
 
@@ -213,7 +212,6 @@
   @endif
   @endforeach
 </div>
-{{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target])->onEachSide(1)->links() }}
-{{ $geinins->appends(['keyword' => $keyword])->links() }}
+{{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target, 'keyword' => $keyword])->onEachSide(1)->links() }}
 @endif
 @endsection
