@@ -8,7 +8,8 @@
     ログアウト
   </a>
 </div>
-<h1 id="title-font" class="text-primary display-3 pt-2 mt-2 mb-5">あなたの相性の良い相方</h1>
+<h1 id="title-font" class="text-primary display-3 pt-2 mt-2 mb-5">{{ $auth_geinin->user }}さんの相性の良い相方</h1>
+<h1 id="title-font" class="text-danger pt-2 mt-2 mb-5">マッチング率{{ $matching_percent }}%</h1>
 @endsection
 
 @section('body')
@@ -93,7 +94,7 @@
         <input type="hidden" name="favoriteTo_id" value="{{ $partner->id }}">
         @auth('geinin')
         @forelse ($partner->favoriteTo as $favoriteTo)
-        @if ($favoriteTo->favoriteFrom_id == $auth_id)
+        @if ($favoriteTo->favoriteFrom_id == $auth_geinin->id)
         @method('delete')
         <input class="btn btn-warning" style="cursor: pointer;" type="submit" value="お気に入り芸人解除">
         @elseif ($loop->last)

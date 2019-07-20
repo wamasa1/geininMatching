@@ -34,18 +34,18 @@ class GeininController extends Controller
 
   public function add(GeininRequest $request)
   {
-    $geinin = new Geinin;
+    $auth_geinin = new Geinin;
     $form = $request->all();
     $form = array_add($form, 'favorite_count', 0);
     unset($form['__token']);
     $form['password'] = Hash::make($form['password']);
-    $geinin->fill($form)->save();
-    Auth::guard('geinin')->login($geinin);
+    $auth_geinin->fill($form)->save();
+    Auth::guard('geinin')->login($auth_geinin);
 
-    $auth_id = $geinin->id;
+    $auth_id = $auth_geinin->id;
 
     // roleのMatching
-    $role = $geinin->role;
+    $role = $auth_geinin->role;
     switch ($role) {
       case 'ボケ':
       case 'ツッコミ':
@@ -56,7 +56,7 @@ class GeininController extends Controller
         break;
     }
     // createrのMatching
-    $creater = $geinin->creater;
+    $creater = $auth_geinin->creater;
     switch ($creater) {
       case '自分が作る':
         $creater = '相方に作ってほしい';
@@ -65,31 +65,58 @@ class GeininController extends Controller
         $creater = '自分が作る';
         break;
     }
-    // Matchingデータの抽出
+    
+    // マッチング率100%
     $partners = Geinin::where('id', '!=', $auth_id)
-      ->where('activity_place', $geinin->activity_place)
-      ->where('genre', $geinin->genre)
+      ->where('activity_place', $auth_geinin->activity_place)
+      ->where('genre', $auth_geinin->genre)
       ->when($role_boolean, function ($query) use ($role) {
         return $query->where('role', '!=', $role);
       })
       ->where('creater', $creater)
-      ->where('target', $geinin->target)
-      ->inRandomOrder()
-      ->get();
+      ->where('target', $auth_geinin->target);
+      $matching_percent = 100;
+
+    //マッチング率80%
+    if ($partners->count() == 0){
+      $partners = Geinin::where('id', '!=', $auth_id)
+        ->where('activity_place', $auth_geinin->activity_place)
+        ->where('genre', $auth_geinin->genre)
+        ->when($role_boolean, function ($query) use ($role) {
+            return $query->where('role', '!=', $role);
+          })
+        ->where('creater', $creater);
+        $matching_percent = 80;
+    }
+
+    //マッチング率60%
+    if ($partners->count() == 0){
+      $partners = Geinin::where('id', '!=', $auth_id)
+        ->where('activity_place', $auth_geinin->activity_place)
+        ->where('genre', $auth_geinin->genre)
+        ->when($role_boolean, function ($query) use ($role) {
+            return $query->where('role', '!=', $role);
+          });
+        $matching_percent = 60;
+    }
+
+    $partners = $partners->inRandomOrder()->get();
 
     return view('matching.show', [
       'partners' => $partners,
-      'auth_id' => $auth_id
+      'matching_percent' => $matching_percent,
+      'auth_geinin' => $auth_geinin
     ]);
   }
 
+  
   public function show()
   {
-    $geinin = Auth::guard('geinin')->user();
-    $auth_id = $geinin->id;
+    $auth_geinin = Auth::guard('geinin')->user();
+    $auth_id = $auth_geinin->id;
 
     // roleのMatching
-    $role = $geinin->role;
+    $role = $auth_geinin->role;
     switch ($role) {
       case 'ボケ':
       case 'ツッコミ':
@@ -100,7 +127,7 @@ class GeininController extends Controller
         break;
     }
     // createrのMatching
-    $creater = $geinin->creater;
+    $creater = $auth_geinin->creater;
     switch ($creater) {
       case '自分が作る':
         $creater = '相方に作ってほしい';
@@ -109,21 +136,46 @@ class GeininController extends Controller
         $creater = '自分が作る';
         break;
     }
-    // Matchingデータの抽出
+    // マッチング率100%
     $partners = Geinin::where('id', '!=', $auth_id)
-      ->where('activity_place', $geinin->activity_place)
-      ->where('genre', $geinin->genre)
+      ->where('activity_place', $auth_geinin->activity_place)
+      ->where('genre', $auth_geinin->genre)
       ->when($role_boolean, function ($query) use ($role) {
         return $query->where('role', '!=', $role);
       })
       ->where('creater', $creater)
-      ->where('target', $geinin->target)
-      ->inRandomOrder()
-      ->get();
+      ->where('target', $auth_geinin->target);
+      $matching_percent = 100;
+
+    //マッチング率80%
+    if ($partners->count() == 0){
+      $partners = Geinin::where('id', '!=', $auth_id)
+        ->where('activity_place', $auth_geinin->activity_place)
+        ->where('genre', $auth_geinin->genre)
+        ->when($role_boolean, function ($query) use ($role) {
+            return $query->where('role', '!=', $role);
+          })
+        ->where('creater', $creater);
+        $matching_percent = 80;
+    }
+
+    //マッチング率60%
+    if ($partners->count() == 0){
+      $partners = Geinin::where('id', '!=', $auth_id)
+        ->where('activity_place', $auth_geinin->activity_place)
+        ->where('genre', $auth_geinin->genre)
+        ->when($role_boolean, function ($query) use ($role) {
+            return $query->where('role', '!=', $role);
+          });
+        $matching_percent = 60;
+    }
+
+    $partners = $partners->inRandomOrder()->get();
 
     return view('matching.show', [
       'partners' => $partners,
-      'auth_id' => $auth_id
+      'matching_percent' => $matching_percent,
+      'auth_geinin' => $auth_geinin
     ]);
   }
 }
