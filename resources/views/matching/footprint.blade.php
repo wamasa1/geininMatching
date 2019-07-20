@@ -16,9 +16,10 @@
 <table class="table table-striped table-borderless mt-1">
    <thead style="color: yellowgreen;">
       <tr>
-         <th></th>
+         <th>画像</th>
          <th>ユーザー名</th>
          <th>年月日</th>
+         <th></th>
       </tr>
    </thead>
    <tbody>
@@ -36,6 +37,11 @@
             <a href="{{ url('/profile/' . $footprint->saw_id) }}" target="_blank">{{ $footprint->sawGeinin->user }}さん</a>
          </th>
          <th class="align-middle">{{ $footprint->created_at->format('Y/m/d' )}}</th>
+         <th class="align-middle">
+            <a class="btn btn-sm btn-danger" href="{{ action('MessageController@message', $footprint->saw_id)}}">
+              メッセージを送る
+            </a>
+         </th>
       </tr>
       @else
       <!-- ゲストさん -->
