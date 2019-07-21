@@ -59,7 +59,7 @@
     {{ csrf_field() }}
     <!-- 活動場所 -->
     <fieldset>
-      <legend class="bg-light"><small>活動場所</small></legend>
+      <h5 class="bg-light font-weight-bold">活動場所<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tokyo" name="activity_place[]" value="tokyo" @if (is_array($activity_place) && in_array("tokyo", $activity_place)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="tokyo">東京</label>
@@ -87,7 +87,7 @@
     </fieldset>
     <!-- 希望するジャンル -->
     <fieldset class="mt-2">
-      <legend class="bg-light"><small>希望するジャンル</small></legend>
+      <h5 class="bg-light font-weight-bold">希望するジャンル<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="manzai" name="genre[]" value="manzai" @if (is_array($genre) && in_array("manzai", $genre)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="manzai">漫才</label>
@@ -103,8 +103,8 @@
     </fieldset>
     <!-- 役割 -->
     <fieldset class="mt-2">
-      <legend class="bg-light"><small>役割</small></legend>
-      <div class="form-check form-check-inline">
+    <h5 class="bg-light font-weight-bold">役割<small>（複数選択可）</small></h5>
+    <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="boke" name="role[]" value="boke" @if (is_array($role) && in_array("boke", $role)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="boke">ボケ</label>
       </div>
@@ -119,7 +119,7 @@
     </fieldset>
     <!-- ネタ作り -->
     <fieldset class="mt-2">
-      <legend class="bg-light"><small>ネタ作り</small></legend>
+      <h5 class="bg-light font-weight-bold">ネタ作り<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input pt-1" type="checkbox" id="me" name="creater[]" value="me" @if (is_array($creater) && in_array("me", $creater)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="me">自分が作る</label>
@@ -135,14 +135,14 @@
     </fieldset>
     <!-- 目標 -->
     <fieldset class="mt-2">
-    <legend class="bg-light"><small>目標</small></legend>
+    <h5 class="bg-light font-weight-bold">目標<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="golden" name="target[]" value="golden" @if (is_array($target) && in_array("golden", $target)) checked @endif>
-        <label class="form-check-label pl-0 pr-4" for="golden">ゴールデンで冠番組を持つ</label>
+        <label class="form-check-label pl-0 pr-3" for="golden">ゴールデンで冠番組を持つ</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="midnight" name="target[]" value="midnight" @if (is_array($target) && in_array("midnight", $target)) checked @endif>
-        <label class="form-check-label pl-0 pr-4" for="midnight">深夜で面白い番組がしたい</label>
+        <label class="form-check-label pl-0 pr-3" for="midnight">深夜で面白い番組がしたい</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="theater" name="target[]" value="theater" @if (is_array($target) && in_array("theater", $target)) checked @endif>
@@ -153,11 +153,24 @@
     <fieldset class="mt-2 bg-light">
       <input class="py-1" type="search" name="keyword" value="{{ $keyword }}" placeholder="キーワードを入力">
     </fieldset>
-    <button type="submit" class="col-6 my-2 btn btn-primary" style="cursor: pointer">検索</button>
+    <!-- 並び順 -->
+    <fieldset class="mt-2">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="order" id="orderFavorite" value="orderFavorite" {{ $order == 'orderFavorite' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0 pr-4" for="orderFavorite">人気順</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="order" id="orderRegister" value="orderRegister" {{ $order == 'orderRegister' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0" for="orderRegister">新規登録順</label>
+      </div>
+    </fieldset>
+    <button type="submit" class="col-6 my-1 btn btn-primary" style="cursor: pointer">検索</button>
   </form>
 </div>
 
-<p class="font-weight-bold text-primary">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</p>
+<div class="my-2">
+  <mark class="font-weight-bold">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</mark>
+</div>
 
 <!-- 芸人一覧 -->
 <div class="row">
@@ -243,7 +256,7 @@
 </div>
 
 @if(!$omikuji)
-{{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target, 'keyword' => $keyword])->onEachSide(1)->links() }}
+{{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target, 'keyword' => $keyword, 'order' => $order])->onEachSide(1)->links() }}
 @endif
 
 @endif

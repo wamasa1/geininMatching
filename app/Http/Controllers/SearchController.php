@@ -179,28 +179,42 @@ class SearchController extends Controller
       for ($i=0; $i<$keyword_count; $i++) {
         $geinins = $geinins->where(function($query) use($keyword_array, $i){
           $query->where('user', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('age', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('activity_place', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('genre', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('role', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('creater', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('target', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('monomane', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('favorite_geinin', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('favorite_neta', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('favorite_tv_program', 'like', '%'.$keyword_array[$i].'%')
+                ->orWhere('laughing_event', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('self_introduce', 'like', '%'.$keyword_array[$i].'%');
         });
       }
     }
-    // 検索適合件数
+    //検索適合件数
     $hitCount = $geinins->count();
-    //ペジネーション
-    if ($allCount != $hitCount)
-    {
-      $geinins = $geinins->paginate(4);
-    } else {
-      $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);
+    //並び替え
+    switch ($request->order) {
+      case 'orderFavorite':
+        $geinins = $geinins->orderBy('favorite_count', 'desc');
+        break;
+      case 'orderRegister':
+        $geinins = $geinins->latest();
+        break;
     }
-    // おみくじ検索
+    //ペジネーション
+    $geinins = $geinins->paginate(4);
+    //おみくじ検索
     if ($request->omikuji) {
       $geinins = Geinin::where('id', '!=', $auth_id)->inRandomOrder()->paginate(1);
       $hitCount = $geinins->count();
+    }
+    //未検索時
+    if ($request->all() == null) {
+      $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);
     }
     //認証関連
     $auth = Auth::guard('geinin')->check();
@@ -218,6 +232,7 @@ class SearchController extends Controller
       'creater' => $createrEn,
       'target' => $targetEn,
       'keyword' => $keyword,
+      'order' => $request->order,
       'omikuji' => $request->omikuji,
     ]);
   }
