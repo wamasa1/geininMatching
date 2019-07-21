@@ -51,6 +51,7 @@
          </th>
          <th class="align-middle">ゲストさん</th>
          <th class="align-middle">{{ $footprint->created_at->format('Y/m/d' )}}</th>
+         <th></th>
       </tr>
       @endif
       @break($loop->iteration == 20)

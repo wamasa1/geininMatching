@@ -43,6 +43,16 @@
 </div>
 @endif
 
+<div class="mx-auto mt-1 mb-3 border border-primary">
+  <form action="{{ url('/search') }}" method="get">
+    {{ csrf_field() }}
+    <strong>完全ランダムで１人表示！その芸人が運命の相方かも！　</strong>
+    <button type="submit" name="omikuji" value="true" class="my-2 btn btn-primary" style="cursor: pointer">
+      おみくじ検索
+    </button>
+  </form>
+</div>
+
 <!-- 検索フォーム -->
 <div class="mx-auto mt-1 mb-3 border border-primary">
   <form action="{{ url('/search') }}" method="get">
@@ -140,9 +150,8 @@
       </div>
     </fieldset>
     <!-- キーワード -->
-    <fieldset class="mt-2">
-    <legend class="bg-light"><small>キーワード</small></legend>
-      <input type="text" name="keyword" value="{{ $keyword }}">
+    <fieldset class="mt-2 bg-light">
+      <input class="py-1" type="search" name="keyword" value="{{ $keyword }}" placeholder="キーワードを入力">
     </fieldset>
     <button type="submit" class="col-6 my-2 btn btn-primary" style="cursor: pointer">検索</button>
   </form>
@@ -232,6 +241,10 @@
   @endif
   @endforeach
 </div>
+
+@if(!$omikuji)
 {{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target, 'keyword' => $keyword])->onEachSide(1)->links() }}
+@endif
+
 @endif
 @endsection

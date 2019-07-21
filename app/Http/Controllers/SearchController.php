@@ -188,16 +188,19 @@ class SearchController extends Controller
         });
       }
     }
-
     // 検索適合件数
     $hitCount = $geinins->count();
-    
     //ペジネーション
     if ($allCount != $hitCount)
     {
       $geinins = $geinins->paginate(4);
     } else {
       $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);
+    }
+    // おみくじ検索
+    if ($request->omikuji) {
+      $geinins = Geinin::where('id', '!=', $auth_id)->inRandomOrder()->paginate(1);
+      $hitCount = $geinins->count();
     }
     //認証関連
     $auth = Auth::guard('geinin')->check();
@@ -215,6 +218,7 @@ class SearchController extends Controller
       'creater' => $createrEn,
       'target' => $targetEn,
       'keyword' => $keyword,
+      'omikuji' => $request->omikuji,
     ]);
   }
 }
