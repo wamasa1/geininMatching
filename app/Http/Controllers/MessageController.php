@@ -29,10 +29,15 @@ class MessageController extends Controller
     $sender = Auth::guard('geinin')->user();
 
     //受信者に受信をお知らせするメール送信
-    $title = '[相方マッチングサイト]メッセージ受信のお知らせ';
-    $text = $sender->user . 'さんからメッセージが届いております。';
-    Mail::to($receiver->email)->send(new MessageNotification($title, $text));
-
+    try {
+      $title = '[相方マッチングサイト]メッセージ受信のお知らせ';
+      $text = $sender->user . 'さんからメッセージが届いております。';
+      Mail::to($receiver->email)->send(new MessageNotification($title, $text));
+    } catch (\Exception $e) {
+      return redirect('/messagebox')
+      ->with('message_success', $receiver->user . 'さんに送信しました');
+    }
+    
     return redirect('/messagebox')
       ->with('message_success', $receiver->user . 'さんに送信しました');
   }
