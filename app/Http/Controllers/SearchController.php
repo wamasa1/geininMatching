@@ -204,6 +204,12 @@ class SearchController extends Controller
       case 'orderRegister':
         $geinins = $geinins->latest();
         break;
+      case 'orderYoung':
+        $geinins = $geinins->orderBy('age', 'asc');
+        break;
+      case 'orderRandom':
+        $geinins = $geinins->inRandomOrder();
+        break;
     }
     //ペジネーション
     $geinins = $geinins->paginate(4);

@@ -151,17 +151,30 @@
     </fieldset>
     <!-- キーワード -->
     <fieldset class="mt-2 bg-light">
-      <input class="py-1" type="search" name="keyword" value="{{ $keyword }}" placeholder="キーワードを入力">
+      <input class="py-1" size="30" type="search" name="keyword" value="{{ $keyword }}" placeholder="キーワードを入力" autocomplete="on" list="keywords">
+      <datalist id="keywords">
+        <option value="テスト">
+        <option value="ナイナイ ボケ">
+        <option value="ダウンタウン　ガキ使">
+      </datalist>
     </fieldset>
     <!-- 並び順 -->
     <fieldset class="mt-2">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="order" id="orderFavorite" value="orderFavorite" {{ $order == 'orderFavorite' ? 'checked' : '' }}>
-        <label class="form-check-label pl-0 pr-4" for="orderFavorite">人気順</label>
+        <label class="form-check-label pl-0 pr-3" for="orderFavorite">人気順</label>
       </div>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="order" id="orderRegister" value="orderRegister" {{ $order == 'orderRegister' ? 'checked' : '' }}>
-        <label class="form-check-label pl-0" for="orderRegister">新規登録順</label>
+        <label class="form-check-label pl-0 pr-3" for="orderRegister">新規登録順</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="order" id="orderYoung" value="orderYoung" {{ $order == 'orderYoung' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0 pr-3" for="orderYoung">年齢が若い順</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="order" id="orderRandom" value="orderRandom" {{ $order == 'orderRandom' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0" for="orderRandom">ランダム順</label>
       </div>
     </fieldset>
     <button type="submit" class="col-6 my-1 btn btn-primary" style="cursor: pointer">検索</button>
