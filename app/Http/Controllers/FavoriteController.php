@@ -20,8 +20,7 @@ class FavoriteController extends Controller
     $geinin->favorite_count++;
     $geinin->save();
 
-    return redirect('/search')
-      ->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
+    return back()->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
   }
 
   public function delete(Request $request)
@@ -35,8 +34,7 @@ class FavoriteController extends Controller
     $geinin->favorite_count--;
     $geinin->save();
 
-    return redirect('/search')
-      ->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
+    return back()->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
 
   public function list()
