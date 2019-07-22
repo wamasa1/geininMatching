@@ -26,8 +26,8 @@ $factory->define(Geinin::class, function (Faker $faker) {
     'self_introduce' => $faker->realText(20),
     'email' => $faker->safeEmail,
     'password' => $faker->password,
-    'favorite_count' => 0,
-    'created_at' => now(),
+    'favorite_count' => $faker->numberBetween($min = 1, $max = 9),
+    'created_at' => $faker->dateTimeThisMonth($max = 'now'),
     'updated_at' => now()
   ];
 });
@@ -38,15 +38,15 @@ $factory->define(Message::class, function (Faker $faker) {
     'receiver_id' => $faker->numberBetween($min = 1, $max = 2),
     'message' => $faker->realText(10),
     'readed' => 0,
-    'created_at' => now(),
+    'created_at' => $faker->dateTimeThisMonth($max = 'now'),
     'updated_at' => now()
   ];
 });
 
 $factory->define(Favorite::class, function (Faker $faker) {
   return [
-    'favoriteFrom_id' => $faker->numberBetween($min = 1, $max = 15),
-    'favoriteTo_id' => $faker->numberBetween($min = 16, $max = 80),
+    'favoriteFrom_id' => $faker->numberBetween($min = 1, $max = 10),
+    'favoriteTo_id' => $faker->numberBetween($min = 11, $max = 200),
     'created_at' => now(),
     'updated_at' => now()
   ];
