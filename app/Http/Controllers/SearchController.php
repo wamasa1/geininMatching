@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Geinin;
+use App\Favorite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -169,6 +170,36 @@ class SearchController extends Controller
         }
       });
     }
+    //画像がある
+    if ($request->imageUpload) {
+      $geinins = $geinins->where('image', '!=', null);
+    }
+    //認証関連
+    $auth = Auth::guard('geinin')->check();
+    $auth_id = Auth::guard('geinin')->id();
+    //ログインユーザー限定項目
+    $noAgeMessage = null;
+    $guestMessage = null;
+    if ($auth) {
+      //自分の年齢±３才
+      if ($request->threeAge) {
+        $auth_age = Auth::guard('geinin')->user()->age;
+        if ($auth_age != null) {
+          $geinins = $geinins->whereBetween('age',[$auth_age-3, $auth_age+3]);
+        } else {
+          $noAgeMessage = '年齢が未登録のため、「自分の年齢±３才」にフィルタリングされていません';
+        }
+      }
+      //お気に入り登録済み芸人除く
+      if ($request->exceptFavorite) {
+        $favorites = Favorite::where('favoriteFrom_id', $auth_id)->get();
+        foreach ($favorites as $favorite) {
+          $geinins = $geinins->where('id', '!=', $favorite->favoriteTo_id);
+        }
+      }
+    } elseif ($request->threeAge || $request->exceptFavorite) {
+      $guestMessage = 'ログインしていないため、ログイン限定項目は機能していません';
+    }
     
     //キーワード検索
     $keyword = $request->keyword;
@@ -222,9 +253,6 @@ class SearchController extends Controller
     if ($request->all() == null) {
       $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);
     }
-    //認証関連
-    $auth = Auth::guard('geinin')->check();
-    $auth_id = Auth::guard('geinin')->id();
 
     return view('matching.search', [
       'allCount' => $allCount,
@@ -237,6 +265,11 @@ class SearchController extends Controller
       'role' => $roleEn,
       'creater' => $createrEn,
       'target' => $targetEn,
+      'imageUpload' => $request->imageUpload,
+      'threeAge' => $request->threeAge,
+      'noAgeMessage' => $noAgeMessage,
+      'exceptFavorite' => $request->exceptFavorite,
+      'guestMessage' => $guestMessage,
       'keyword' => $keyword,
       'order' => $request->order,
       'omikuji' => $request->omikuji,

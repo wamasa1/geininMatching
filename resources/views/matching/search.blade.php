@@ -18,7 +18,7 @@
 </div>
 @endif
 
-<h1 id="title-font" class="text-secondary display-3 pt-2 my-2">検索画面</h1>
+<h1 id="title-font" class="text-secondary display-3 pt-2 my-1">検索画面</h1>
 @endsection
 
 @section('body')
@@ -42,24 +42,24 @@
   {{ session('favorite_delete') }}
 </div>
 @endif
-
-<div class="mx-auto mt-1 mb-3 border border-primary">
+<!-- おみくじ検索 -->
+<div class="mx-auto my-1 border border-primary">
   <form action="{{ url('/search') }}" method="get">
     {{ csrf_field() }}
     <strong>完全ランダムで１人表示！その芸人が運命の相方かも！　</strong>
-    <button type="submit" name="omikuji" value="true" class="my-2 btn btn-primary" style="cursor: pointer">
+    <button type="submit" name="omikuji" value="true" class="my-1 btn btn-primary" style="cursor: pointer">
       おみくじ検索
     </button>
   </form>
 </div>
 
 <!-- 検索フォーム -->
-<div class="mx-auto mt-1 mb-3 border border-primary">
+<div class="mx-auto mb-3 border border-primary">
   <form action="{{ url('/search') }}" method="get">
     {{ csrf_field() }}
     <!-- 活動場所 -->
     <fieldset>
-      <h5 class="bg-light font-weight-bold">活動場所<small>（複数選択可）</small></h5>
+      <h5 class="font-weight-bold" style="background-color: whitesmoke;">活動場所<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tokyo" name="activity_place[]" value="tokyo" @if (is_array($activity_place) && in_array("tokyo", $activity_place)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="tokyo">東京</label>
@@ -87,7 +87,7 @@
     </fieldset>
     <!-- 希望するジャンル -->
     <fieldset class="mt-2">
-      <h5 class="bg-light font-weight-bold">希望するジャンル<small>（複数選択可）</small></h5>
+      <h5 class="font-weight-bold" style="background-color: whitesmoke;">希望するジャンル<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="manzai" name="genre[]" value="manzai" @if (is_array($genre) && in_array("manzai", $genre)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="manzai">漫才</label>
@@ -103,7 +103,7 @@
     </fieldset>
     <!-- 役割 -->
     <fieldset class="mt-2">
-    <h5 class="bg-light font-weight-bold">役割<small>（複数選択可）</small></h5>
+    <h5 class="font-weight-bold" style="background-color: whitesmoke;">役割<small>（複数選択可）</small></h5>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="boke" name="role[]" value="boke" @if (is_array($role) && in_array("boke", $role)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="boke">ボケ</label>
@@ -119,9 +119,9 @@
     </fieldset>
     <!-- ネタ作り -->
     <fieldset class="mt-2">
-      <h5 class="bg-light font-weight-bold">ネタ作り<small>（複数選択可）</small></h5>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input pt-1" type="checkbox" id="me" name="creater[]" value="me" @if (is_array($creater) && in_array("me", $creater)) checked @endif>
+      <h5 class="font-weight-bold" style="background-color: whitesmoke;">ネタ作り<small>（複数選択可）</small></h5>
+      <div class="form-check form-check-inline ml-2">
+        <input class="form-check-input" type="checkbox" id="me" name="creater[]" value="me" @if (is_array($creater) && in_array("me", $creater)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="me">自分が作る</label>
       </div>
       <div class="form-check form-check-inline">
@@ -135,8 +135,8 @@
     </fieldset>
     <!-- 目標 -->
     <fieldset class="mt-2">
-    <h5 class="bg-light font-weight-bold">目標<small>（複数選択可）</small></h5>
-      <div class="form-check form-check-inline">
+    <h5 class="font-weight-bold" style="background-color: whitesmoke;">目標<small>（複数選択可）</small></h5>
+      <div class="form-check form-check-inline ml-3">
         <input class="form-check-input" type="checkbox" id="golden" name="target[]" value="golden" @if (is_array($target) && in_array("golden", $target)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="golden">ゴールデンで冠番組を持つ</label>
       </div>
@@ -149,8 +149,28 @@
         <label class="form-check-label pl-0 pr-3" for="theater">テレビより舞台で活躍したい</label>
       </div>
     </fieldset>
+    <!-- その他 -->
+    <fieldset class="mt-2">
+    <h5 class="font-weight-bold" style="background-color: whitesmoke;">その他<small></small></h5>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="imageUpload" name="imageUpload" value="true" {{ $imageUpload == 'true' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0 pr-3" for="imageUpload">画像がある</label>
+      </div>
+    </fieldset>
+    <!-- ログインユーザー限定項目 -->
+    <fieldset class="mt-2">
+      <h5 class="font-weight-bold" style="background-color: whitesmoke;">ログインユーザー限定項目<small></small></h5>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="threeAge" name="threeAge" value="true" {{ $threeAge == 'true' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0 pr-3" for="threeAge">自分の年齢±３才</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="exceptFavorite" name="exceptFavorite" value="true" {{ $exceptFavorite == 'true' ? 'checked' : '' }}>
+        <label class="form-check-label pl-0 pr-3" for="exceptFavorite">お気に入り登録済み芸人除く</label>
+      </div>
+    </fieldset>
     <!-- キーワード -->
-    <fieldset class="mt-2 bg-light">
+    <fieldset class="mt-2" style="background-color: whitesmoke;">
       <input class="py-1" size="30" type="search" name="keyword" value="{{ $keyword }}" placeholder="キーワードを入力" autocomplete="on" list="keywords">
       <datalist id="keywords">
         <option value="テスト">
@@ -184,7 +204,9 @@
 <div class="my-2">
   <mark class="font-weight-bold">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</mark>
 </div>
-
+<!-- ログインユーザー限定項目に関するメッセージ -->
+<p class="text-danger">{{ $noAgeMessage }}</p>
+<p class="text-danger">{{ $guestMessage }}</p>
 <!-- 芸人一覧 -->
 <div class="row">
   @if($geinins)
@@ -269,7 +291,18 @@
 </div>
 
 @if(!$omikuji)
-{{ $geinins->appends(['activity_place' => $activity_place, 'genre' => $genre, 'role' => $role, 'creater' => $creater, 'target' => $target, 'keyword' => $keyword, 'order' => $order])->onEachSide(1)->links() }}
+  {{ $geinins->appends([
+    'activity_place' => $activity_place, 
+    'genre' => $genre, 
+    'role' => $role, 
+    'creater' => $creater, 
+    'target' => $target, 
+    'imageUpload' => $imageUpload, 
+    'threeAge' => $threeAge, 
+    'exceptFavorite' => $exceptFavorite, 
+    'keyword' => $keyword, 
+    'order' => $order
+    ])->onEachSide(1)->links() }}
 @endif
 
 @endif
