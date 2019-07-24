@@ -4,21 +4,13 @@
 
 @section('header')
 <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
-@if ($auth)
-<div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
-    ログアウト
-  </a>
-</div>
-@else
-<div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/login') }}" role="button">
-    ログイン
-  </a>
-</div>
-@endif
+  @if ($auth)
+    @include('shared.logout_button')
+  @else
+    @include('shared.login_button')
+  @endif
 
-<h1 id="title-font" class="text-info display-3 pt-2 mt-2 mb-5">イベント</h1>
+  <h1 id="title-font" class="text-info display-3 pt-2 mt-2 mb-5">イベント</h1>
 @endsection
 
 @section('body')

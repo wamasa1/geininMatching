@@ -3,12 +3,8 @@
 @section('title', 'メッセージ・ボックス')
 
 @section('header')
-<div class="text-right mt-1">
-  <a class="btn btn-primary" href="{{ url('/logout') }}" role="button">
-    ログアウト
-  </a>
-</div>
-<h1 id="title-font" class="text-danger display-3 pt-2 mt-2 mb-5">メッセージ・ボックス</h1>
+  @include('shared.logout_button')
+  <h1 id="title-font" class="text-danger display-3 pt-2 mt-2 mb-5">メッセージ・ボックス</h1>
 @endsection
 
 @section('body')

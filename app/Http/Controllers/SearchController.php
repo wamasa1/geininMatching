@@ -176,14 +176,15 @@ class SearchController extends Controller
     }
     //認証関連
     $auth = Auth::guard('geinin')->check();
-    $auth_id = Auth::guard('geinin')->id();
+    $auth_geinin = Auth::guard('geinin')->user();
+    
     //ログインユーザー限定項目
     $noAgeMessage = null;
     $guestMessage = null;
     if ($auth) {
       //自分の年齢±３才
       if ($request->threeAge) {
-        $auth_age = Auth::guard('geinin')->user()->age;
+        $auth_age = $auth_geinin->age;
         if ($auth_age != null) {
           $geinins = $geinins->whereBetween('age',[$auth_age-3, $auth_age+3]);
         } else {
@@ -259,7 +260,7 @@ class SearchController extends Controller
       'hitCount' => $hitCount,
       'geinins' => $geinins,
       'auth' => $auth,
-      'auth_id' => $auth_id,
+      'auth_geinin' => $auth_geinin,
       'activity_place' => $activity_place_En,
       'genre' => $genreEn,
       'role' => $roleEn,
