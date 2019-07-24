@@ -52,7 +52,7 @@
     <!-- 活動場所 -->
     <fieldset>
       <h5 class="font-weight-bold" style="background-color: whitesmoke;">活動場所<small>（複数選択可）</small></h5>
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline ml-3">
         <input class="form-check-input" type="checkbox" id="tokyo" name="activity_place[]" value="tokyo" @if (is_array($activity_place) && in_array("tokyo", $activity_place)) checked @endif>
         <label class="form-check-label pl-0 pr-3" for="tokyo">東京</label>
       </div>
@@ -172,7 +172,7 @@
     </fieldset>
     <!-- 並び順 -->
     <fieldset class="mt-2">
-      <div class="form-check form-check-inline">
+      <div class="form-check form-check-inline ml-3">
         <input class="form-check-input" type="radio" name="order" id="orderFavorite" value="orderFavorite" {{ $order == 'orderFavorite' ? 'checked' : '' }}>
         <label class="form-check-label pl-0 pr-3" for="orderFavorite">人気順</label>
       </div>

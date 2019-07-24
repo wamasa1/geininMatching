@@ -177,7 +177,7 @@ class SearchController extends Controller
     //認証関連
     $auth = Auth::guard('geinin')->check();
     $auth_geinin = Auth::guard('geinin')->user();
-    
+
     //ログインユーザー限定項目
     $noAgeMessage = null;
     $guestMessage = null;
