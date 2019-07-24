@@ -196,8 +196,49 @@
 <div class="my-2">
   <mark class="font-weight-bold">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</mark>
 </div>
+<!-- 検索した条件表示 -->
+<div class="text-left my-2">
+  <small class="text-left font-italic font-weight-light">
+    @if ($omikuji)
+      \おみくじ検索
+    @endif
+    @include('shared.search_condition', ['search_condition' => $activity_place_Ja])
+    @include('shared.search_condition', ['search_condition' => $genreJa])
+    @include('shared.search_condition', ['search_condition' => $roleJa])
+    @include('shared.search_condition', ['search_condition' => $createrJa])
+    @include('shared.search_condition', ['search_condition' => $targetJa])
+    @if ($imageUpload)
+      \画像がある
+    @endif
+    @if ($auth && $threeAge)
+      \自分の年齢±３才
+    @endif
+    @if ($auth && $exceptFavorite)
+      \お気に入り登録済み芸人除く
+    @endif
+    @if ($keyword != null)
+      \{{ $keyword }}
+    @endif
+    @if ($order != null)
+      @switch ($order)
+        @case ('orderFavorite')
+          \人気順
+          @break;
+        @case ('orderRegister')
+          \新規登録順
+          @break;
+        @case ('orderYoung')
+          \年齢が若い順
+          @break;
+        @case ('orderRandom')
+          \ランダム順
+          @break;
+      @endswitch
+    @endif
+  </small>
+</div>
 <!-- ログインユーザー限定項目に関するメッセージ -->
-<p class="text-danger">{{ $noAgeMessage }}</p>
+<p class="text-danger my-1">{{ $noAgeMessage }}</p>
 <p class="text-danger">{{ $guestMessage }}</p>
 <!-- 芸人一覧 -->
 <div class="row">

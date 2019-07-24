@@ -14,9 +14,9 @@ class SearchController extends Controller
   {
     //$request->activity_placeを変換
     $activity_place_En = $request->activity_place;
+    $activity_place_Ja = null;
     if ($activity_place_En != null) {
       $activity_place_count = count($activity_place_En);
-      $activity_place_Ja = null;
       for ($i=0; $i<$activity_place_count; $i++) {
         switch ($activity_place_En[$i]) {
           case 'tokyo':
@@ -42,9 +42,9 @@ class SearchController extends Controller
     }
     //$request->genreを変換
     $genreEn = $request->genre;
+    $genreJa = null;
     if ($genreEn != null) {
       $genre_count = count($genreEn);
-      $genreJa = null;
       for ($i=0; $i<$genre_count; $i++) {
         switch ($genreEn[$i]) {
           case 'manzai':
@@ -61,9 +61,9 @@ class SearchController extends Controller
     }
     //$request->roleを変換
     $roleEn = $request->role;
+    $roleJa = null;
     if ($roleEn != null) {
       $role_count = count($roleEn);
-      $roleJa = null;
       for ($i=0; $i<$role_count; $i++) {
         switch ($roleEn[$i]) {
           case 'boke':
@@ -80,9 +80,9 @@ class SearchController extends Controller
     }
     //$request->createrを変換
     $createrEn = $request->creater;
+    $createrJa = null;
     if ($createrEn != null) {
       $creater_count = count($createrEn);
-      $createrJa = null;
       for ($i=0; $i<$creater_count; $i++) {
         switch ($createrEn[$i]) {
           case 'me':
@@ -99,9 +99,9 @@ class SearchController extends Controller
     }
     //$request->targetを変換
     $targetEn = $request->target;
+    $targetJa = null;
     if ($targetEn != null) {
       $target_count = count($targetEn);
-      $targetJa = null;
       for ($i=0; $i<$target_count; $i++) {
         switch ($targetEn[$i]) {
           case 'golden':
@@ -262,10 +262,15 @@ class SearchController extends Controller
       'auth' => $auth,
       'auth_geinin' => $auth_geinin,
       'activity_place' => $activity_place_En,
+      'activity_place_Ja' => $activity_place_Ja,
       'genre' => $genreEn,
+      'genreJa' => $genreJa,
       'role' => $roleEn,
+      'roleJa' => $roleJa,
       'creater' => $createrEn,
+      'createrJa' => $createrJa,
       'target' => $targetEn,
+      'targetJa' => $targetJa,
       'imageUpload' => $request->imageUpload,
       'threeAge' => $request->threeAge,
       'noAgeMessage' => $noAgeMessage,
