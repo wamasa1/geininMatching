@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Geinin;
 use App\Favorite;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class SearchController extends Controller
 {
@@ -259,8 +258,6 @@ class SearchController extends Controller
       'allCount' => $allCount,
       'hitCount' => $hitCount,
       'geinins' => $geinins,
-      'auth' => $auth,
-      'auth_geinin' => $auth_geinin,
       'activity_place' => $activity_place_En,
       'activity_place_Ja' => $activity_place_Ja,
       'genre' => $genreEn,

@@ -108,7 +108,7 @@
             @endif
           </div>
 
-          <p>{{ $geinin->user }}さんの登録情報を全て削除します。<br>一度削除した場合、データの復元はできませんが、よろしいですか？</p>
+          <p>{{ $auth_geinin->user }}さんの登録情報を全て削除します。<br>一度削除した場合、データの復元はできませんが、よろしいですか？</p>
           <input class="btn btn-primary" type="submit" value="削除する" style="cursor: pointer"><br>
           <small>※テストユーザーは削除されません</small>
         </form>

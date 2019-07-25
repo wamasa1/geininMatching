@@ -30,6 +30,16 @@ class AppServiceProvider extends ServiceProvider
     if (\App::environment('production')) {
       \URL::forceScheme('https');
     }
+    // 全ビューで使う値（認証関連）
+    View::composer('*', function ($view) {
+      $auth = Auth::guard('geinin')->check();
+      $auth_geinin = Auth::guard('geinin')->user();
+
+      $view->with([
+        'auth' => $auth,
+        'auth_geinin' => $auth_geinin
+      ]);
+    });
     //全ビューで使う値(お気に入り登録数)
     View::composer('*', function ($view) {
       if (Auth::guard('geinin')->check()) {

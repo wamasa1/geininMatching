@@ -171,7 +171,6 @@ class GeininController extends Controller
       'partners' => $partners,
       'eighty_partners' => $eighty_partners,
       'sixty_partners' => $sixty_partners,
-      'auth_geinin' => $auth_geinin
     ]);
   }
 }

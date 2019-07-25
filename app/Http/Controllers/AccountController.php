@@ -13,9 +13,7 @@ class AccountController extends Controller
 {
   public function index()
   {
-    $geinin = Auth::guard('geinin')->user();
-
-    return view('matching.account', ['geinin' => $geinin]);
+    return view('matching.account');
   }
 
   public function post(PasswordChangeRequest $request)
