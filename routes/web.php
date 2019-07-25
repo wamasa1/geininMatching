@@ -52,6 +52,10 @@ Route::get('/messagebox', 'MessageController@receive')->middleware('auth:geinin'
 //お気に入り
 Route::get('/favorite', 'FavoriteController@list')->middleware('auth:geinin');
 Route::delete('/favorite', 'FavoriteController@listDelete');
+// 閲覧履歴
+Route::get('/history', 'HistoryController@index')->middleware('auth:geinin');
+Route::patch('/history', 'FavoriteController@historyRegister')->middleware('auth:geinin');
+Route::delete('/history', 'FavoriteController@historyDelete')->middleware('auth:geinin');
 //登録情報
 Route::get('/account', 'AccountController@index')->middleware('auth:geinin');
 Route::post('/account', 'AccountController@post');

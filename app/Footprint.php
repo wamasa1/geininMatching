@@ -10,4 +10,9 @@ class Footprint extends Model
     {
       return $this->belongsTo('App\Geinin', 'saw_id');
     }
+
+    public function seenGeinin()
+    {
+      return $this->belongsTo('App\Geinin', 'be_seen_id');
+    }
 }

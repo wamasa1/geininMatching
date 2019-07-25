@@ -48,9 +48,9 @@ class FavoriteController extends Controller
   public function listDelete(Request $request)
   { //お気に入り登録解除
     $auth_id = Auth::guard('geinin')->id();
-    $favorite = Favorite::where('favoriteTo_id', $request->favoriteTo_id)
-      ->where('favoriteFrom_id', $auth_id)
-      ->delete();
+    Favorite::where('favoriteTo_id', $request->favoriteTo_id)
+            ->where('favoriteFrom_id', $auth_id)
+            ->delete();
     //favorite_countを１減らす
     $geinin = Geinin::findOrFail($request->favoriteTo_id);
     $geinin->favorite_count--;
@@ -58,7 +58,7 @@ class FavoriteController extends Controller
 
     return redirect('/favorite');
   }
-
+  //show画面
   public function showRegister(Request $request)
   { //お気に入り登録
     $favorite = new Favorite;
@@ -73,19 +73,49 @@ class FavoriteController extends Controller
     return redirect('/show')
       ->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
   }
-
+  
   public function showDelete(Request $request)
   { //お気に入り登録解除
     $auth_id = Auth::guard('geinin')->id();
-    $favorite = Favorite::where('favoriteTo_id', $request->favoriteTo_id)
-      ->where('favoriteFrom_id', $auth_id)
-      ->delete();
+    Favorite::where('favoriteTo_id', $request->favoriteTo_id)
+            ->where('favoriteFrom_id', $auth_id)
+            ->delete();
     //favorite_countを１減らす
     $geinin = Geinin::findOrFail($request->favoriteTo_id);
     $geinin->favorite_count--;
     $geinin->save();
 
     return redirect('/show')
+      ->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
+  }
+  // history画面
+  public function historyRegister(Request $request)
+  { //お気に入り登録
+    $favorite = new Favorite;
+    $favorite->favoriteTo_id = $request->favoriteTo_id;
+    $favorite->favoriteFrom_id = Auth::guard('geinin')->id();
+    $favorite->save();
+    //favorite_countを１増やす
+    $geinin = Geinin::findOrFail($request->favoriteTo_id);
+    $geinin->favorite_count++;
+    $geinin->save();
+
+    return redirect('/history')
+      ->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
+  }
+
+  public function historyDelete(Request $request)
+  { //お気に入り登録解除
+    $auth_id = Auth::guard('geinin')->id();
+    Favorite::where('favoriteTo_id', $request->favoriteTo_id)
+            ->where('favoriteFrom_id', $auth_id)
+            ->delete();
+    //favorite_countを１減らす
+    $geinin = Geinin::findOrFail($request->favoriteTo_id);
+    $geinin->favorite_count--;
+    $geinin->save();
+
+    return redirect('/history')
       ->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
 }

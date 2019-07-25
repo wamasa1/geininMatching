@@ -256,7 +256,7 @@
   @endif
   @endforeach
 </div>
-<!-- ページネーション  -->
+<!-- ページネーションリンク  -->
 @if(!$omikuji)
   {{ $geinins->appends([
     'activity_place' => $activity_place, 

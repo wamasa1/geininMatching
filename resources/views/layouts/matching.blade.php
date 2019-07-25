@@ -16,7 +16,7 @@
 <body>
   <div id="app" class="container text-center mb-5">
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
-      <a class="navbar-brand text-dark" href="{{ url('/') }}">相方matching site</a>
+      <a class="navbar-brand text-dark" href="{{ url('/') }}">相方マッチング</a>
       <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -35,12 +35,19 @@
             <a class="nav-link active bg-success" href="{{ url('/profile') }}">プロフィール</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="{{ url('/footprint') }}" style="background-color: yellowgreen;">あしあと</a>
+            <a class="nav-link active text-light" href="{{ url('/footprint') }}" style="background-color: yellowgreen;">
+              あしあと
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link active bg-warning" href="{{ url('/favorite') }}">
               お気に入り
               <span class="badge badge-pill badge-light">{{ $favorite_badgeCount }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-light" href="{{ url('/history') }}" style="background-color: darkorange;">
+              閲覧履歴
             </a>
           </li>
           <li class="nav-item">
