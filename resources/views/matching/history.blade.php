@@ -14,8 +14,20 @@
 @endsection
 
 @section('body')
-   <h4>最近あなたがプロフィール詳細を閲覧した芸人</h4>
-   <div class="row">
+  <!-- お気に入り登録完了メッセージ -->
+  @if (session('favorite_success'))
+  <div class="alert alert-success mt-5">
+    {{ session('favorite_success') }}
+  </div>
+  @endif
+  <!-- お気に入り登録解除メッセージ -->
+  @if (session('favorite_delete'))
+  <div class="alert alert-success mt-5">
+    {{ session('favorite_delete') }}
+  </div>
+  @endif
+  <h4>最近あなたがプロフィール詳細を閲覧した芸人</h4>
+  <div class="row">
     @foreach($histories as $history)
     <div class="col col-md-6 border border-primary rounded-top" style="background-color: peachpuff;">
       <!-- プロフィール画像・芸人テーブル・メッセージ送信 -->

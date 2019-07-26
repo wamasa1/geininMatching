@@ -20,14 +20,12 @@
   {{ session('message_success') }}
 </div>
 @endif
-
 <!-- お気に入り登録完了メッセージ -->
 @if (session('favorite_success'))
 <div class="alert alert-success mt-5">
   {{ session('favorite_success') }}
 </div>
 @endif
-
 <!-- お気に入り登録解除メッセージ -->
 @if (session('favorite_delete'))
 <div class="alert alert-success mt-5">
