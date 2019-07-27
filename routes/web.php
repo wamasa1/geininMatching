@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Auth;
-
 //ホーム
 Route::get('/', 'GeininController@index');
 //新規登録
@@ -32,8 +30,7 @@ Route::patch('/search', 'FavoriteController@register')->middleware('auth:geinin'
 Route::delete('/search', 'FavoriteController@delete')->middleware('auth:geinin');
 //イベント
 Route::get('/event', function () {
-    $auth = Auth::guard('geinin')->check();
-    return view('matching.event', ['auth' => $auth]);
+    return view('matching.event');
 });
 //プロフィール
 Route::get('/profile', 'ProfileController@self_profile')->middleware('auth:geinin');

@@ -40,13 +40,13 @@
               <label for="password1">現在のパスワード</label>
               <input name="current_password" type="password" class="form-control" id="password1" placeholder="現在のパスワード">
               @if ($errors->has('current_password'))
-              <p class="text-danger">{{ $errors->first('current_password') }}</p>
+                <p class="text-danger">{{ $errors->first('current_password') }}</p>
               @endif
               <!-- パスワード又はアドレスの不一致メッセージ -->
               @if (session('password_failure'))
-              <div class="alert alert-danger mt-2">
-                {{ session('password_failure') }}
-              </div>
+                <div class="alert alert-danger mt-2">
+                  {{ session('password_failure') }}
+                </div>
               @endif
             </div>
             <div class="form-group">
@@ -54,7 +54,7 @@
               <input name="new_password" type="password" class="form-control" id="password1" placeholder="新しいパスワード" aria-describedby="passwordHelp">
               <small id="passwordHelp" class="form-text text-muted">４文字以上</small>
               @if ($errors->has('new_password'))
-              <p class="text-danger">{{ $errors->first('new_password') }}</p>
+                <p class="text-danger">{{ $errors->first('new_password') }}</p>
               @endif
             </div>
             <input class="btn btn-primary" type="submit" value="変更する" style="cursor: pointer"><br>
@@ -82,7 +82,7 @@
               <label for="email">現在のメールアドレス</label>
               <input name="current_email_del" type="email" class="form-control" id="email" placeholder="現在のメールアドレス">
               @if ($errors->has('current_email_del'))
-              <p class="text-danger">{{ $errors->first('current_email_del') }}</p>
+                <p class="text-danger">{{ $errors->first('current_email_del') }}</p>
               @endif
             </div>
             <!-- 現在のパスワード -->
@@ -90,13 +90,13 @@
               <label for="password2">現在のパスワード</label>
               <input name="current_password_del" type="password" class="form-control" id="password2" placeholder="現在のパスワード">
               @if ($errors->has('current_password_del'))
-              <p class="text-danger">{{ $errors->first('current_password_del') }}</p>
+                <p class="text-danger">{{ $errors->first('current_password_del') }}</p>
               @endif
               <!-- パスワード又はアドレスの不一致メッセージ -->
               @if (session('del_failure'))
-              <div class="alert alert-danger mt-2">
-                {{ session('del_failure') }}
-              </div>
+                <div class="alert alert-danger mt-2">
+                  {{ session('del_failure') }}
+                </div>
               @endif
             </div>
 

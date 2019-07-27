@@ -22,16 +22,16 @@
   <h4>最近あなたがプロフィール詳細を閲覧した芸人</h4>
   <div class="row">
     @foreach($histories as $history)
-    <div class="col col-md-6 border border-primary rounded-top" style="background-color: peachpuff;">
-      <!-- プロフィール画像・芸人テーブル・メッセージ送信 -->
-      @include('shared.geinin_table', ['geinin' => $history->seenGeinin])
-      <!-- お気に入り芸人登録・解除ボタン -->
-      @include('shared.favorite_button', ['geinin' => $history->seenGeinin, 'url' => 'history'])
-    </div>
-    @if($loop->iteration % 2 == 0)
+      <div class="col col-md-6 border border-primary rounded-top" style="background-color: peachpuff;">
+        <!-- プロフィール画像・芸人テーブル・メッセージ送信 -->
+        @include('shared.geinin_table', ['geinin' => $history->seenGeinin])
+        <!-- お気に入り芸人登録・解除ボタン -->
+        @include('shared.favorite_button', ['geinin' => $history->seenGeinin, 'url' => 'history'])
+      </div>
+      @if($loop->iteration % 2 == 0)
   </div>
   <div class="row">
-    @endif
+      @endif
     @endforeach
   </div>
 @endsection

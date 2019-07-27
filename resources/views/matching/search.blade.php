@@ -221,34 +221,34 @@
   <!-- 芸人一覧 -->
   <div class="row">
     @if($geinins)
-    @foreach($geinins as $geinin)
-    <div class="col col-md-6 border border-primary rounded-top" style="background-color: whitesmoke;">
-      <!-- プロフィール画像・芸人テーブル・メッセージ送信 -->
-      @include('shared.geinin_table')
-      <!-- お気に入り芸人登録・解除ボタン -->
-      @include('shared.favorite_button', ['url' => 'search'])
-    </div>
-    @if($loop->iteration == 2)
+      @foreach($geinins as $geinin)
+        <div class="col col-md-6 border border-primary rounded-top" style="background-color: whitesmoke;">
+          <!-- プロフィール画像・芸人テーブル・メッセージ送信 -->
+          @include('shared.geinin_table')
+          <!-- お気に入り芸人登録・解除ボタン -->
+          @include('shared.favorite_button', ['url' => 'search'])
+        </div>
+        @if($loop->iteration == 2)
   </div>
   <div class="row">
-    @endif
-    @endforeach
-  </div>
-  <!-- ページネーションリンク  -->
-  @if(!$omikuji)
-    {{ $geinins->appends([
-      'activity_place' => $activity_place, 
-      'genre' => $genre, 
-      'role' => $role, 
-      'creater' => $creater, 
-      'target' => $target, 
-      'imageUpload' => $imageUpload, 
-      'threeAge' => $threeAge, 
-      'exceptFavorite' => $exceptFavorite, 
-      'keyword' => $keyword, 
-      'order' => $order
-      ])->onEachSide(1)->links() }}
-  @endif
+        @endif
+      @endforeach
+      </div>
+      <!-- ページネーションリンク  -->
+      @if(!$omikuji)
+        {{ $geinins->appends([
+          'activity_place' => $activity_place, 
+          'genre' => $genre, 
+          'role' => $role, 
+          'creater' => $creater, 
+          'target' => $target, 
+          'imageUpload' => $imageUpload, 
+          'threeAge' => $threeAge, 
+          'exceptFavorite' => $exceptFavorite, 
+          'keyword' => $keyword, 
+          'order' => $order
+          ])->onEachSide(1)->links() }}
+      @endif
 
-  @endif
+    @endif
 @endsection

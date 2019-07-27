@@ -42,6 +42,7 @@ class FavoriteController extends Controller
 
     return redirect('/favorite')->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
+
   //show画面
   public function showRegister(Request $request)
   {
@@ -60,6 +61,7 @@ class FavoriteController extends Controller
     return redirect('/show')
       ->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
+  
   // history画面
   public function historyRegister(Request $request)
   {
