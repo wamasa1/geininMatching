@@ -10,7 +10,7 @@
     @include('shared.login_button')
   @endif
 
-  <h1 id="title-font" class="text-secondary display-3 pt-2 my-1">検索画面</h1>
+  <h1 id="title-font" class="text-secondary">検索画面</h1>
 @endsection
 
 @section('body')
@@ -43,10 +43,10 @@
   </form>
 </div>
 
-<!-- 検索フォーム -->
-<div class="mx-auto mb-3 border border-primary">
-  <form action="{{ url('/search') }}" method="get">
-    {{ csrf_field() }}
+<!-- 詳細検索 -->
+<form action="{{ url('/search') }}" method="get">
+  {{ csrf_field() }}
+  <div class="mx-auto mb-3 border border-primary">
     <!-- 活動場所 -->
     <fieldset>
       <h5 class="font-weight-bold" style="background-color: whitesmoke;">活動場所<small>（複数選択可）</small></h5>
@@ -76,7 +76,7 @@
       </div>
     </fieldset>
     <!-- 希望するジャンル -->
-    <fieldset class="mt-2">
+    <fieldset class="mt-1">
       <h5 class="font-weight-bold" style="background-color: whitesmoke;">希望するジャンル<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="manzai" name="genre[]" value="manzai" @if (is_array($genre) && in_array("manzai", $genre)) checked @endif>
@@ -92,7 +92,7 @@
       </div>
     </fieldset>
     <!-- 役割 -->
-    <fieldset class="mt-2">
+    <fieldset class="mt-1">
     <h5 class="font-weight-bold" style="background-color: whitesmoke;">役割<small>（複数選択可）</small></h5>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="boke" name="role[]" value="boke" @if (is_array($role) && in_array("boke", $role)) checked @endif>
@@ -108,7 +108,7 @@
       </div>
     </fieldset>
     <!-- ネタ作り -->
-    <fieldset class="mt-2">
+    <fieldset class="mt-1">
       <h5 class="font-weight-bold" style="background-color: whitesmoke;">ネタ作り<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline ml-2">
         <input class="form-check-input" type="checkbox" id="me" name="creater[]" value="me" @if (is_array($creater) && in_array("me", $creater)) checked @endif>
@@ -124,7 +124,7 @@
       </div>
     </fieldset>
     <!-- 目標 -->
-    <fieldset class="mt-2">
+    <fieldset class="mt-1">
     <h5 class="font-weight-bold" style="background-color: whitesmoke;">目標<small>（複数選択可）</small></h5>
       <div class="form-check form-check-inline ml-3">
         <input class="form-check-input" type="checkbox" id="golden" name="target[]" value="golden" @if (is_array($target) && in_array("golden", $target)) checked @endif>
@@ -140,7 +140,7 @@
       </div>
     </fieldset>
     <!-- その他 -->
-    <fieldset class="mt-2">
+    <fieldset class="mt-1">
     <h5 class="font-weight-bold" style="background-color: whitesmoke;">その他<small></small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="imageUpload" name="imageUpload" value="true" {{ $imageUpload == 'true' ? 'checked' : '' }}>
@@ -148,7 +148,7 @@
       </div>
     </fieldset>
     <!-- ログインユーザー限定項目 -->
-    <fieldset class="mt-2">
+    <fieldset class="mt-1">
       <h5 class="font-weight-bold" style="background-color: whitesmoke;">ログインユーザー限定項目<small></small></h5>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="threeAge" name="threeAge" value="true" {{ $threeAge == 'true' ? 'checked' : '' }}>
@@ -160,7 +160,7 @@
       </div>
     </fieldset>
     <!-- キーワード -->
-    <fieldset class="mt-2" style="background-color: whitesmoke;">
+    <fieldset class="my-1" style="background-color: whitesmoke;">
       <input class="py-1" size="30" type="search" name="keyword" value="{{ $keyword }}" placeholder="キーワードを入力" autocomplete="on" list="keywords">
       <datalist id="keywords">
         <option value="テスト">
@@ -168,73 +168,64 @@
         <option value="ダウンタウン　ガキ使">
       </datalist>
     </fieldset>
-    <!-- 並び順 -->
-    <fieldset class="mt-2">
-      <div class="form-check form-check-inline ml-3">
-        <input class="form-check-input" type="radio" name="order" id="orderFavorite" value="orderFavorite" {{ $order == 'orderFavorite' ? 'checked' : '' }}>
-        <label class="form-check-label pl-0 pr-3" for="orderFavorite">人気順</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="order" id="orderRegister" value="orderRegister" {{ $order == 'orderRegister' ? 'checked' : '' }}>
-        <label class="form-check-label pl-0 pr-3" for="orderRegister">新規登録順</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="order" id="orderYoung" value="orderYoung" {{ $order == 'orderYoung' ? 'checked' : '' }}>
-        <label class="form-check-label pl-0 pr-3" for="orderYoung">年齢が若い順</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="order" id="orderRandom" value="orderRandom" {{ $order == 'orderRandom' ? 'checked' : '' }}>
-        <label class="form-check-label pl-0" for="orderRandom">ランダム順</label>
-      </div>
-    </fieldset>
     <button type="submit" class="col-6 my-1 btn btn-primary" style="cursor: pointer">検索</button>
-  </form>
-</div>
+  </div>
+  <!-- 検索した条件表示 -->
+  <div class="float-left">
+    <small class="text-left font-italic font-weight-light">
+      @if ($omikuji)
+        \おみくじ検索
+      @endif
+      @include('shared.search_condition', ['search_condition' => $activity_place_Ja])
+      @include('shared.search_condition', ['search_condition' => $genreJa])
+      @include('shared.search_condition', ['search_condition' => $roleJa])
+      @include('shared.search_condition', ['search_condition' => $createrJa])
+      @include('shared.search_condition', ['search_condition' => $targetJa])
+      @if ($imageUpload)
+        \画像がある
+      @endif
+      @if ($auth && $threeAge)
+        \自分の年齢±３才
+      @endif
+      @if ($auth && $exceptFavorite)
+        \お気に入り登録済み芸人除く
+      @endif
+      @if ($keyword != null)
+        \{{ $keyword }}
+      @endif
+      @if ($order != null)
+        @switch ($order)
+          @case ('orderFavorite')
+            \人気順
+          @break;
+          @case ('orderRegister')
+            \新規登録順
+          @break;
+          @case ('orderYoung')
+            \年齢が若い順
+          @break;
+          @case ('orderRandom')
+            \ランダム順
+          @break;
+        @endswitch
+      @endif
+    </small>
+  </div>
+  <!-- 並び順 -->
+  <fieldset class="text-right">
+    <select name="order" onChange="this.form.submit()">
+      <option value="orderFavorite" {{ $order == 'orderFavorite' ? 'selected' : '' }}>人気順</option>
+      <option value="orderRegister" {{ $order == 'orderRegister' ? 'selected' : '' }}>新規登録順</option>
+      <option value="orderYoung" {{ $order == 'orderYoung' ? 'selected' : '' }}>年齢が若い順</option>
+      <option value="orderRandom" {{ $order == 'orderRandom' ? 'selected' : '' }}>ランダム順</option>
+    </select>
+  </fieldset>
+</form>
 
 <div class="my-2">
   <mark class="font-weight-bold">現在、全{{ $allCount }}件中{{ $hitCount }}件がヒット！</mark>
 </div>
-<!-- 検索した条件表示 -->
-<div class="text-left my-2">
-  <small class="text-left font-italic font-weight-light">
-    @if ($omikuji)
-      \おみくじ検索
-    @endif
-    @include('shared.search_condition', ['search_condition' => $activity_place_Ja])
-    @include('shared.search_condition', ['search_condition' => $genreJa])
-    @include('shared.search_condition', ['search_condition' => $roleJa])
-    @include('shared.search_condition', ['search_condition' => $createrJa])
-    @include('shared.search_condition', ['search_condition' => $targetJa])
-    @if ($imageUpload)
-      \画像がある
-    @endif
-    @if ($auth && $threeAge)
-      \自分の年齢±３才
-    @endif
-    @if ($auth && $exceptFavorite)
-      \お気に入り登録済み芸人除く
-    @endif
-    @if ($keyword != null)
-      \{{ $keyword }}
-    @endif
-    @if ($order != null)
-      @switch ($order)
-        @case ('orderFavorite')
-          \人気順
-          @break;
-        @case ('orderRegister')
-          \新規登録順
-          @break;
-        @case ('orderYoung')
-          \年齢が若い順
-          @break;
-        @case ('orderRandom')
-          \ランダム順
-          @break;
-      @endswitch
-    @endif
-  </small>
-</div>
+
 <!-- ログインユーザー限定項目に関するメッセージ -->
 <p class="text-danger my-1">{{ $noAgeMessage }}</p>
 <p class="text-danger">{{ $guestMessage }}</p>

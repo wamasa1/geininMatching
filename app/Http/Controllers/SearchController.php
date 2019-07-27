@@ -236,7 +236,7 @@ class SearchController extends Controller
         $geinins = $geinins->latest();
         break;
       case 'orderYoung':
-        $geinins = $geinins->orderBy('age', 'asc');
+        $geinins = $geinins->whereNotNull('age')->orderBy('age', 'asc');
         break;
       case 'orderRandom':
         $geinins = $geinins->inRandomOrder();
