@@ -8,30 +8,14 @@
 @endsection
 
 @section('body')
-  <!-- 登録済み -->
-  @if (session('already_register'))
-    <div class="alert alert-success mt-5">
-      {{ session('already_register') }}
-    </div>
-  @endif
-  <!-- メッセージ送信完了 -->
-  @if (session('message_success'))
-    <div class="alert alert-success mt-5">
-      {{ session('message_success') }}
-    </div>
-  @endif
-  <!-- お気に入り登録完了 -->
-  @if (session('favorite_success'))
-    <div class="alert alert-success mt-5">
-      {{ session('favorite_success') }}
-    </div>
-  @endif
-  <!-- お気に入り登録解除 -->
-  @if (session('favorite_delete'))
-    <div class="alert alert-success mt-5">
-      {{ session('favorite_delete') }}
-    </div>
-  @endif
+  <!-- 登録済みメッセージ -->
+  @include('shared.flash_message', ['message' => 'already_register'])
+  <!-- メッセージ送信完了メッセージ -->
+  @include('shared.flash_message', ['message' => 'message_success'])
+  <!-- お気に入り登録完了メッセージ -->
+  @include('shared.flash_message', ['message' => 'favorite_success'])
+  <!-- お気に入り登録解除メッセージ -->
+  @include('shared.flash_message', ['message' => 'favorite_delete'])
 
   @include('shared.show_geinin', ['matching_percent' => '100'])
   @include('shared.show_geinin', ['partners' => $eighty_partners, 'matching_percent' => '80'])

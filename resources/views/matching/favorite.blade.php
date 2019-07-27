@@ -9,11 +9,8 @@
 
 @section('body')
   <!-- お気に入り登録解除メッセージ -->
-  @if (session('favorite_delete'))
-  <div class="alert alert-success mt-5">
-    {{ session('favorite_delete') }}
-  </div>
-  @endif
+  @include('shared.flash_message', ['message' => 'favorite_delete'])
+  
   <div class="row">
     @foreach($favorites as $favorite)
     <div class="col col-md-6 border border-primary rounded-top" style="background-color: ivory;">

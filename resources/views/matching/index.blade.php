@@ -15,17 +15,10 @@
 
 @section('body')
 <!-- ログアウトメッセージ -->
-@if (session('logout'))
-<div class="alert alert-success">
-  {{ session('logout') }}
-</div>
-@endif
+@include('shared.flash_message', ['message' => 'logout'])
 <!-- アカウント削除完了メッセージ -->
-@if (session('account_delete'))
-<div class="alert alert-success">
-  {{ session('account_delete') }}
-</div>
-@endif
+@include('shared.flash_message', ['message' => 'account_delete'])
+
 <div style="background-color: ghostwhite;">
   <!-- スライド写真 -->
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

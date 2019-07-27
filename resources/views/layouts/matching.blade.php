@@ -66,14 +66,14 @@
     <div class="text-right mt-5 pt-5">
       <a class="twitter-share-button" href="https://twitter.com/intent/tweet?url={{ url('/') }}&text=相方マッチングサイト" data-size="large">Tweet</a>
     </div>
+
     @yield('header')
+
     <!-- ログイン完了メッセージ -->
-    @if (session('login'))
-    <div class="alert alert-success mt-5">
-      {{ session('login') }}
-    </div>
-    @endif
+    @include('shared.flash_message', ['message' => 'login'])
+    
     @yield('body')
+    
   </div>
   @yield('GoogleMap')
   <!-- twitter -->

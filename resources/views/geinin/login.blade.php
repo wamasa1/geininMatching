@@ -35,12 +35,8 @@
     </table>
 
     <!-- ログイン失敗メッセージ -->
-    @if (session('login_failure'))
-    <div class="alert alert-success mt-3">
-      {{ session('login_failure') }}
-    </div>
-    @endif
-
+    @include('shared.flash_message', ['message' => 'login_failure'])
+    
     <input class="btn btn-primary" style="cursor: pointer;" type="submit" value="ログイン">
   </form>
 </div>

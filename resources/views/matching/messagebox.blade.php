@@ -8,12 +8,8 @@
 @endsection
 
 @section('body')
-<!-- 送信完了のメッセージ -->
-@if (session('message_success'))
-<div class="alert alert-success mt-5">
-  {{ session('message_success') }}
-</div>
-@endif
+<!-- メッセージ送信完了メッセージ -->
+@include('shared.flash_message', ['message' => 'message_success'])
 <p class="mb-4">{{ $receiver_user }}さん</p>
 <!-- Navs -->
 <div style="background-color: snow;">

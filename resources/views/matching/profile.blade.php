@@ -19,11 +19,7 @@
     <figcaption>プロフィール画像</figcaption>
   </figure>
   <!-- アップロード成功メッセージ -->
-  @if (session('image_success'))
-  <div class="alert alert-success">
-    {{ session('image_success') }}
-  </div>
-  @endif
+  @include('shared.flash_message', ['message' => 'image_success'])
 
   @if ($errors->any())
   <div class="alert alert-danger">
@@ -35,17 +31,13 @@
   </div>
   @endif
 
-  <form class="mt-3 mb-5 pb-5" action="{{ url('/profile') }}" method="post" enctype="multipart/form-data">
+  <form class="mt-3 mb-5" action="{{ url('/profile') }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     <input type="file" name="image">
     <input type="submit" value="アップロード">
   </form>
   <!-- 編集成功メッセージ -->
-  @if (session('profile_success'))
-  <div class="alert alert-success">
-    {{ session('profile_success') }}
-  </div>
-  @endif
+  @include('shared.flash_message', ['message' => 'profile_success'])
   <!-- 編集ボタン -->
   <div class="text-center">
     <a class="btn btn-success col-4" href="{{ url('/profile/edit') }}">編集</a>
