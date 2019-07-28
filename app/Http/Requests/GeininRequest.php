@@ -30,7 +30,7 @@ class GeininRequest extends FormRequest
           'creater' => 'required',
           'target' => 'required',
           'email' => 'required|email',
-          'password' => ['required', 'min:8', 'regex:/[0-9a-z]{8,}/', 'not_regex:/password/', 'not_regex:/.{8,}/'],
+          'password' => ['required', 'min:8', 'regex:/[0-9a-z]{8,}/', 'not_regex:/password/'],
         ];
     }
 

@@ -29,7 +29,7 @@ class PasswordChangeRequest extends FormRequest
         return [
           'current_email' => 'required',
           'current_password' => 'required',
-          'new_password' => ['required', 'min:8', 'regex:/[0-9a-z]{8,}/', 'not_regex:/password/', 'not_regex:/.{8,}/'],
+          'new_password' => ['required', 'min:8', 'regex:/[0-9a-z]{8,}/', 'not_regex:/password/'],
         ];
     }
 
