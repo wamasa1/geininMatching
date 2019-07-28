@@ -30,7 +30,7 @@ class GeininRequest extends FormRequest
           'creater' => 'required',
           'target' => 'required',
           'email' => 'required|email',
-          'password' => 'required|min:4',
+          'password' => ['required', 'min:8', 'regex:/[0-9a-z]{8,}/', 'not_regex:/password/', 'not_regex:/.{8,}/'],
         ];
     }
 
@@ -45,7 +45,9 @@ class GeininRequest extends FormRequest
           'email.required' => '※入力して下さい',
           'email.email' => '※メールアドレスを入力して下さい',
           'password.required' => '※入力して下さい',
-          'password.min' => '※4文字以上入力して下さい',
+          'password.min' => '※8文字以上入力して下さい',
+          'password.regex' => '※半角英数字のみで入力して下さい',
+          'password.not_regex' => '※パスワードが簡単すぎます',
         ];
     }
 }

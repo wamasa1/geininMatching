@@ -29,7 +29,7 @@ class PasswordChangeRequest extends FormRequest
         return [
           'current_email' => 'required',
           'current_password' => 'required',
-          'new_password' => 'required|min:4',
+          'new_password' => ['required', 'min:8', 'regex:/[0-9a-z]{8,}/', 'not_regex:/password/', 'not_regex:/.{8,}/'],
         ];
     }
 
@@ -39,7 +39,9 @@ class PasswordChangeRequest extends FormRequest
           'current_email.required' => '※入力して下さい',
           'current_password.required' => '※入力して下さい',
           'new_password.required' => '※入力して下さい',
-          'new_password.min' => '※4文字以上入力して下さい',
+          'new_password.min' => '※8文字以上入力して下さい',
+          'new_password.regex' => '※半角英数字のみで入力して下さい',
+          'new_password.not_regex' => '※パスワードが簡単すぎます',
         ];
     }
 }

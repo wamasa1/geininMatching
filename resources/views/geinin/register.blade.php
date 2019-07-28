@@ -124,7 +124,7 @@
         </tr>
         <tr>
           <th class="align-middle bg-dark text-white">
-            パスワード(4文字以上)<span class="text-danger">(必須)</span>
+            パスワード<span class="text-danger">(必須、半角英数字8文字以上)</span>
           </th>
           <td>
             <input type="password" name="password">

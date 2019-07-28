@@ -52,7 +52,7 @@
             <div class="form-group">
               <label for="password1">新しいパスワード</label>
               <input name="new_password" type="password" class="form-control" id="password1" placeholder="新しいパスワード" aria-describedby="passwordHelp">
-              <small id="passwordHelp" class="form-text text-muted">４文字以上</small>
+              <small id="passwordHelp" class="form-text text-muted">８文字以上</small>
               @if ($errors->has('new_password'))
                 <p class="text-danger">{{ $errors->first('new_password') }}</p>
               @endif
