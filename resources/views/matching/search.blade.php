@@ -132,20 +132,20 @@
       <fieldset class="mt-1">
       <h5 class="font-weight-bold" style="background-color: whitesmoke;">その他<small></small></h5>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="imageUpload" name="imageUpload" value="true" {{ $imageUpload == 'true' ? 'checked' : '' }}>
-          <label class="form-check-label pl-0 pr-3" for="imageUpload">画像がある</label>
+          <input class="form-check-input" type="checkbox" id="image_upload" name="image_upload" value="true" {{ $image_upload == 'true' ? 'checked' : '' }}>
+          <label class="form-check-label pl-0 pr-3" for="image_upload">画像がある</label>
         </div>
       </fieldset>
       <!-- ログインユーザー限定項目 -->
       <fieldset class="mt-1">
         <h5 class="font-weight-bold" style="background-color: whitesmoke;">ログインユーザー限定項目<small></small></h5>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="threeAge" name="threeAge" value="true" {{ $threeAge == 'true' ? 'checked' : '' }}>
-          <label class="form-check-label pl-0 pr-3" for="threeAge">自分の年齢±３才</label>
+          <input class="form-check-input" type="checkbox" id="three_age" name="three_age" value="true" {{ $three_age == 'true' ? 'checked' : '' }}>
+          <label class="form-check-label pl-0 pr-3" for="three_age">自分の年齢±３才</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="exceptFavorite" name="exceptFavorite" value="true" {{ $exceptFavorite == 'true' ? 'checked' : '' }}>
-          <label class="form-check-label pl-0 pr-3" for="exceptFavorite">お気に入り登録済み芸人除く</label>
+          <input class="form-check-input" type="checkbox" id="except_favorite" name="except_favorite" value="true" {{ $except_favorite == 'true' ? 'checked' : '' }}>
+          <label class="form-check-label pl-0 pr-3" for="except_favorite">お気に入り登録済み芸人除く</label>
         </div>
       </fieldset>
       <!-- キーワード -->
@@ -166,17 +166,17 @@
           \おみくじ検索
         @endif
         @include('shared.search_condition', ['search_condition' => $activity_place_Ja])
-        @include('shared.search_condition', ['search_condition' => $genreJa])
-        @include('shared.search_condition', ['search_condition' => $roleJa])
-        @include('shared.search_condition', ['search_condition' => $createrJa])
-        @include('shared.search_condition', ['search_condition' => $targetJa])
-        @if ($imageUpload)
+        @include('shared.search_condition', ['search_condition' => $genre_Ja])
+        @include('shared.search_condition', ['search_condition' => $role_Ja])
+        @include('shared.search_condition', ['search_condition' => $creater_Ja])
+        @include('shared.search_condition', ['search_condition' => $target_Ja])
+        @if ($image_upload)
           \画像がある
         @endif
-        @if ($auth && $threeAge)
+        @if ($auth && $three_age)
           \自分の年齢±３才
         @endif
-        @if ($auth && $exceptFavorite)
+        @if ($auth && $except_favorite)
           \お気に入り登録済み芸人除く
         @endif
         @if ($keyword != null)
@@ -184,16 +184,16 @@
         @endif
         @if ($order != null)
           @switch ($order)
-            @case ('orderFavorite')
+            @case ('order_favorite')
               \人気順
             @break;
-            @case ('orderRegister')
+            @case ('order_register')
               \新規登録順
             @break;
-            @case ('orderYoung')
+            @case ('order_young')
               \年齢が若い順
             @break;
-            @case ('orderRandom')
+            @case ('order_random')
               \ランダム順
             @break;
           @endswitch
@@ -203,10 +203,10 @@
     <!-- 並び順 -->
     <fieldset class="text-right">
       <select name="order" onChange="this.form.submit()">
-        <option value="orderFavorite" {{ $order == 'orderFavorite' ? 'selected' : '' }}>人気順</option>
-        <option value="orderRegister" {{ $order == 'orderRegister' ? 'selected' : '' }}>新規登録順</option>
-        <option value="orderYoung" {{ $order == 'orderYoung' ? 'selected' : '' }}>年齢が若い順</option>
-        <option value="orderRandom" {{ $order == 'orderRandom' ? 'selected' : '' }}>ランダム順</option>
+        <option value="order_favorite" {{ $order == 'order_favorite' ? 'selected' : '' }}>人気順</option>
+        <option value="order_register" {{ $order == 'order_register' ? 'selected' : '' }}>新規登録順</option>
+        <option value="order_young" {{ $order == 'order_young' ? 'selected' : '' }}>年齢が若い順</option>
+        <option value="order_random" {{ $order == 'order_random' ? 'selected' : '' }}>ランダム順</option>
       </select>
     </fieldset>
   </form>
@@ -216,8 +216,8 @@
   </div>
 
   <!-- ログインユーザー限定項目に関するメッセージ -->
-  <p class="text-danger my-1">{{ $noAgeMessage }}</p>
-  <p class="text-danger">{{ $guestMessage }}</p>
+  <p class="text-danger my-1">{{ $no_age_message }}</p>
+  <p class="text-danger">{{ $guest_message }}</p>
   <!-- 芸人一覧 -->
   <div class="row">
     @if($geinins)
@@ -242,9 +242,9 @@
           'role' => $role, 
           'creater' => $creater, 
           'target' => $target, 
-          'imageUpload' => $imageUpload, 
-          'threeAge' => $threeAge, 
-          'exceptFavorite' => $exceptFavorite, 
+          'image_upload' => $image_upload, 
+          'three_age' => $three_age, 
+          'except_favorite' => $except_favorite, 
           'keyword' => $keyword, 
           'order' => $order
           ])->onEachSide(1)->links() }}

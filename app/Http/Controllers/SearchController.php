@@ -40,77 +40,77 @@ class SearchController extends Controller
       }
     }
     //$request->genreを変換
-    $genreEn = $request->genre;
-    $genreJa = null;
-    if ($genreEn != null) {
-      $genre_count = count($genreEn);
+    $genre_En = $request->genre;
+    $genre_Ja = null;
+    if ($genre_En != null) {
+      $genre_count = count($genre_En);
       for ($i=0; $i<$genre_count; $i++) {
-        switch ($genreEn[$i]) {
+        switch ($genre_En[$i]) {
           case 'manzai':
-            $genreJa[$i] = '漫才';
+            $genre_Ja[$i] = '漫才';
             break;
           case 'konto':
-            $genreJa[$i] = 'コント';
+            $genre_Ja[$i] = 'コント';
             break;
           case 'both':
-            $genreJa[$i] = '両方';
+            $genre_Ja[$i] = '両方';
             break;
         }
       }
     }
     //$request->roleを変換
-    $roleEn = $request->role;
-    $roleJa = null;
-    if ($roleEn != null) {
-      $role_count = count($roleEn);
+    $role_En = $request->role;
+    $role_Ja = null;
+    if ($role_En != null) {
+      $role_count = count($role_En);
       for ($i=0; $i<$role_count; $i++) {
-        switch ($roleEn[$i]) {
+        switch ($role_En[$i]) {
           case 'boke':
-            $roleJa[$i] = 'ボケ';
+            $role_Ja[$i] = 'ボケ';
             break;
           case 'tukkomi':
-            $roleJa[$i] = 'ツッコミ';
+            $role_Ja[$i] = 'ツッコミ';
             break;
           case 'boke_tukkomi':
-            $roleJa[$i] = 'こだわらない';
+            $role_Ja[$i] = 'こだわらない';
             break;
         }
       }
     }
     //$request->createrを変換
-    $createrEn = $request->creater;
-    $createrJa = null;
-    if ($createrEn != null) {
-      $creater_count = count($createrEn);
+    $creater_En = $request->creater;
+    $creater_Ja = null;
+    if ($creater_En != null) {
+      $creater_count = count($creater_En);
       for ($i=0; $i<$creater_count; $i++) {
-        switch ($createrEn[$i]) {
+        switch ($creater_En[$i]) {
           case 'me':
-            $createrJa[$i] = '自分が作る';
+            $creater_Ja[$i] = '自分が作る';
             break;
           case 'together':
-            $createrJa[$i] = '一緒に作りたい';
+            $creater_Ja[$i] = '一緒に作りたい';
             break;
           case 'you':
-            $createrJa[$i] = '相方に作ってほしい';
+            $creater_Ja[$i] = '相方に作ってほしい';
             break;
         }
       }
     }
     //$request->targetを変換
-    $targetEn = $request->target;
-    $targetJa = null;
-    if ($targetEn != null) {
-      $target_count = count($targetEn);
+    $target_En = $request->target;
+    $target_Ja = null;
+    if ($target_En != null) {
+      $target_count = count($target_En);
       for ($i=0; $i<$target_count; $i++) {
-        switch ($targetEn[$i]) {
+        switch ($target_En[$i]) {
           case 'golden':
-            $targetJa[$i] = 'ゴールデンで冠番組を持つ';
+            $target_Ja[$i] = 'ゴールデンで冠番組を持つ';
             break;
           case 'midnight':
-            $targetJa[$i] = '深夜で面白い番組がしたい';
+            $target_Ja[$i] = '深夜で面白い番組がしたい';
             break;
           case 'theater':
-            $targetJa[$i] = 'テレビより舞台で活躍したい';
+            $target_Ja[$i] = 'テレビより舞台で活躍したい';
             break;
         }
       }
@@ -130,47 +130,47 @@ class SearchController extends Controller
       });
     }
     //ジャンルの条件適合
-    if ($genreEn != null)
+    if ($genre_En != null)
     { 
-      $geinins = $geinins->where(function($query) use($genreJa, $genre_count){
-        $query->where('genre', $genreJa[0]);
+      $geinins = $geinins->where(function($query) use($genre_Ja, $genre_count){
+        $query->where('genre', $genre_Ja[0]);
         for ($i=1; $i<$genre_count; $i++) {
-          $query->orWhere('genre', $genreJa[$i]);
+          $query->orWhere('genre', $genre_Ja[$i]);
         }
       });
     }
     //役割の条件適合
-    if ($roleEn != null)
+    if ($role_En != null)
     { 
-      $geinins = $geinins->where(function($query) use($roleJa, $role_count){
-        $query->where('role', $roleJa[0]);
+      $geinins = $geinins->where(function($query) use($role_Ja, $role_count){
+        $query->where('role', $role_Ja[0]);
         for ($i=1; $i<$role_count; $i++) {
-          $query->orWhere('role', $roleJa[$i]);
+          $query->orWhere('role', $role_Ja[$i]);
         }
       });
     }
     //ネタ作りの条件適合
-    if ($createrEn != null)
+    if ($creater_En != null)
     { 
-      $geinins = $geinins->where(function($query) use($createrJa, $creater_count){
-        $query->where('creater', $createrJa[0]);
+      $geinins = $geinins->where(function($query) use($creater_Ja, $creater_count){
+        $query->where('creater', $creater_Ja[0]);
         for ($i=1; $i<$creater_count; $i++) {
-          $query->orWhere('creater', $createrJa[$i]);
+          $query->orWhere('creater', $creater_Ja[$i]);
         }
       });
     }
     //目標の条件適合
-    if ($targetEn != null)
+    if ($target_En != null)
     { 
-      $geinins = $geinins->where(function($query) use($targetJa, $target_count){
-        $query->where('target', $targetJa[0]);
+      $geinins = $geinins->where(function($query) use($target_Ja, $target_count){
+        $query->where('target', $target_Ja[0]);
         for ($i=1; $i<$target_count; $i++) {
-          $query->orWhere('target', $targetJa[$i]);
+          $query->orWhere('target', $target_Ja[$i]);
         }
       });
     }
     //画像がある
-    if ($request->imageUpload) {
+    if ($request->image_upload) {
       $geinins = $geinins->where('image', '!=', null);
     }
     //認証関連
@@ -178,27 +178,27 @@ class SearchController extends Controller
     $auth_geinin = Auth::guard('geinin')->user();
 
     //ログインユーザー限定項目
-    $noAgeMessage = null;
-    $guestMessage = null;
+    $no_age_message = null;
+    $guest_message = null;
     if ($auth) {
       //自分の年齢±３才
-      if ($request->threeAge) {
+      if ($request->three_age) {
         $auth_age = $auth_geinin->age;
         if ($auth_age != null) {
           $geinins = $geinins->whereBetween('age',[$auth_age-3, $auth_age+3]);
         } else {
-          $noAgeMessage = '年齢が未登録のため、「自分の年齢±３才」にフィルタリングされていません';
+          $no_age_message = '年齢が未登録のため、「自分の年齢±３才」にフィルタリングされていません';
         }
       }
       //お気に入り登録済み芸人除く
-      if ($request->exceptFavorite) {
+      if ($request->except_favorite) {
         $favorites = Favorite::where('favoriteFrom_id', $auth_id)->get();
         foreach ($favorites as $favorite) {
           $geinins = $geinins->where('id', '!=', $favorite->favoriteTo_id);
         }
       }
-    } elseif ($request->threeAge || $request->exceptFavorite) {
-      $guestMessage = 'ログインしていないため、ログイン限定項目は機能していません';
+    } elseif ($request->three_age || $request->except_favorite) {
+      $guest_message = 'ログインしていないため、ログイン限定項目は機能していません';
     }
     
     //キーワード検索
@@ -229,16 +229,16 @@ class SearchController extends Controller
     $hitCount = $geinins->count();
     //並び替え
     switch ($request->order) {
-      case 'orderFavorite':
+      case 'order_favorite':
         $geinins = $geinins->orderBy('favorite_count', 'desc');
         break;
-      case 'orderRegister':
+      case 'order_register':
         $geinins = $geinins->latest();
         break;
-      case 'orderYoung':
+      case 'order_young':
         $geinins = $geinins->whereNotNull('age')->orderBy('age', 'asc');
         break;
-      case 'orderRandom':
+      case 'order_random':
         $geinins = $geinins->inRandomOrder();
         break;
     }
@@ -260,19 +260,19 @@ class SearchController extends Controller
       'geinins' => $geinins,
       'activity_place' => $activity_place_En,
       'activity_place_Ja' => $activity_place_Ja,
-      'genre' => $genreEn,
-      'genreJa' => $genreJa,
-      'role' => $roleEn,
-      'roleJa' => $roleJa,
-      'creater' => $createrEn,
-      'createrJa' => $createrJa,
-      'target' => $targetEn,
-      'targetJa' => $targetJa,
-      'imageUpload' => $request->imageUpload,
-      'threeAge' => $request->threeAge,
-      'noAgeMessage' => $noAgeMessage,
-      'exceptFavorite' => $request->exceptFavorite,
-      'guestMessage' => $guestMessage,
+      'genre' => $genre_En,
+      'genre_Ja' => $genre_Ja,
+      'role' => $role_En,
+      'role_Ja' => $role_Ja,
+      'creater' => $creater_En,
+      'creater_Ja' => $creater_Ja,
+      'target' => $target_En,
+      'target_Ja' => $target_Ja,
+      'image_upload' => $request->image_upload,
+      'three_age' => $request->three_age,
+      'no_age_message' => $no_age_message,
+      'except_favorite' => $request->except_favorite,
+      'guest_message' => $guest_message,
       'keyword' => $keyword,
       'order' => $request->order,
       'omikuji' => $request->omikuji,
