@@ -12,6 +12,10 @@
 @endsection
 
 @section('body')
+<!-- お気に入り登録完了メッセージ -->
+@include('shared.flash_message', ['message' => 'favorite_success'])
+<!-- お気に入り登録解除メッセージ -->
+@include('shared.flash_message', ['message' => 'favorite_delete'])
 <div style="background-color: ghostwhite;">
     <figure>
         @if ($geinin->image == null)
