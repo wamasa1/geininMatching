@@ -14,7 +14,7 @@
 <tbody>
    <tr>
       <th class="align-middle bg-primary text-white">ユーザー名</th>
-      <td><a href="{{ url('/profile/' . $geinin->id) }}" target="_blank">{{ $geinin->user }}</a></td>
+      <td><a href="{{ url('/profile/' . $geinin->id) }}">{{ $geinin->user }}</a></td>
    </tr>
    <tr>
       <th class="align-middle bg-primary text-white">希望する活動場所</th>
