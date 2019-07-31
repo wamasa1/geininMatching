@@ -9,11 +9,12 @@ use App\Footprint;
 
 class HistoryController extends Controller
 {
-  public function index ()
-  {
-    $auth_id = Auth::guard('geinin')->id();
-    $histories = Footprint::where('saw_id', $auth_id)->orderBy('created_at', 'desc')->take(10)->get();
+    public function index ()
+    {
+        $auth_id = Auth::guard('geinin')->id();
+        // 閲覧履歴は最新10件取得
+        $histories = Footprint::where('saw_id', $auth_id)->orderBy('created_at', 'desc')->take(10)->get();
 
-    return view('matching.history',['histories' => $histories]);
-  }
+        return view('matching.history',['histories' => $histories]);
+    }
 }

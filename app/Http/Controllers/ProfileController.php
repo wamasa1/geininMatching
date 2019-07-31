@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Geinin;
 use App\Footprint;
 
@@ -13,8 +14,11 @@ class ProfileController extends Controller
 {
   public function self_profile()
   {
-    // 認証済みユーザーの取得
+    //認証済みユーザーの取得
     $geinin = Auth::guard('geinin')->user();
+    // 誕生日から年齢計算
+    $geinin_age = Carbon::parse($geinin->birthday)->age;
+    $geinin->fill(['age' => $geinin_age]);
 
     return view('matching.profile', ['geinin' => $geinin]);
   }
@@ -24,7 +28,7 @@ class ProfileController extends Controller
     $geinin = Auth::guard('geinin')->user();
     //s3に画像保存
     $file = $request->file('image');
-    $path = Storage::disk('s3')->putFileAs('/images', $file, $geinin->id . '.jpg', 'public');
+    Storage::disk('s3')->putFileAs('/images', $file, $geinin->id . '.jpg', 'public');
     //geininsテーブルにファイル名保存
     $geinin->image = $geinin->id . '.jpg';
     $geinin->save();
@@ -35,8 +39,17 @@ class ProfileController extends Controller
   public function edit()
   {
     $geinin = Auth::guard('geinin')->user();
+    //今年の西暦
+    $this_year = Carbon::now()->year;
+    //誕生日の年月日
+    $birthday = Carbon::parse($geinin->birthday);
+    $geinin->fill([
+        'birthday_year' => $birthday->year,
+        'birthday_month' => $birthday->month,
+        'birthday_day' => $birthday->day,
+    ]);
 
-    return view('geinin.profile_edit', ['geinin' => $geinin]);
+    return view('geinin.profile_edit', ['geinin' => $geinin, 'this_year' => $this_year]);
   }
 
   public function reregistar(Request $request)
@@ -46,7 +59,10 @@ class ProfileController extends Controller
     if ($request->user) {
       $geinin->user = $request->user;
     }
-    $geinin->fill($request->all())->save();
+    // 誕生日 1985-7-15の形式でテーブルに保存
+    $birthday = $request->birthday_year . '-' . $request->birthday_month . '-' . $request->birthday_day;
+    $geinin->birthday = $birthday;
+    $geinin->fill($request->except('birthday_year', 'birthday_month', 'birthday_day'))->save();
 
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
   }
@@ -54,6 +70,10 @@ class ProfileController extends Controller
   public function show($id)
   {
     $geinin = Geinin::findOrFail($id);
+    // 誕生日から年齢計算
+    $geinin_age = Carbon::parse($geinin->birthday)->age;
+    $geinin->fill(['age' => $geinin_age]);
+
     if(Auth::guard('geinin')->check()){
       $auth_id = Auth::guard('geinin')->id();
     }else{

@@ -12,7 +12,7 @@ $factory->define(Geinin::class, function (Faker $faker) {
   return [
     'user' => $faker->name,
     'image' => $faker->randomElement(['2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', null]),
-    'age' => $faker->numberBetween($min = 15, $max = 40),
+    'birthday' => $faker->dateTimeBetween($startDate = '-60 years', $endDate = '-15 years', $timezone = null),
     'activity_place' => $faker->randomElement(['東京', '大阪', '福岡', '仙台', '札幌', '沖縄']),
     'genre' => $faker->randomElement(['漫才', 'コント', '両方']),
     'role' => $faker->randomElement(['ボケ', 'ツッコミ', 'こだわらない']),

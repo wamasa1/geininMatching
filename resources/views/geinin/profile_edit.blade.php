@@ -39,12 +39,22 @@
 
         <!-- 年齢 -->
         <tr>
-          <th class="align-middle bg-success text-white">年齢</th>
+          <th class="align-middle bg-success text-white">誕生日</th>
           <td class="text-center">
-            <select name="age">
-              @for ($i = 15; $i < 100; $i++) 
-                <option>{{ $i }}</option>
-              @endfor
+            <select name="birthday_year">
+                @for ($i = 1950; $i < $this_year -15; $i++) {{--15才以上--}}
+                    <option value={{ $i }} {{ $i == $geinin->birthday_year ? 'selected' : '' }}>{{ $i }}年</option>
+                @endfor
+            </select>
+            <select name="birthday_month">
+                @for ($i = 1; $i <= 12; $i++)
+                    <option value={{ $i }} {{ $i == $geinin->birthday_month ? 'selected' : '' }}>{{ $i }}月</option>
+                @endfor
+            </select>
+            <select name="birthday_day">
+                @for ($i = 1; $i <= 31; $i++)
+                    <option value={{ $i }} {{ $i == $geinin->birthday_day ? 'selected' : '' }}>{{ $i }}日</option>
+                @endfor
             </select>
           </td>
         </tr>

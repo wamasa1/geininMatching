@@ -37,7 +37,7 @@
             </tr>
             <tr>
                 <th class="align-middle bg-primary text-white py-3">年齢</th>
-                <td class="align-middle">{{ $geinin->age }}</td>
+                <td class="align-middle">{{ $geinin->age }}才</td>
             </tr>
             <tr>
                 <th class="align-middle bg-primary text-white py-3">希望の活動場所</th>

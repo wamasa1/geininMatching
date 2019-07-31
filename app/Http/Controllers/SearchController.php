@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Geinin;
 use App\Favorite;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class SearchController extends Controller
 {
@@ -183,9 +184,10 @@ class SearchController extends Controller
     if ($auth) {
       //自分の年齢±３才
       if ($request->three_age) {
-        $auth_age = $auth_geinin->age;
-        if ($auth_age != null) {
-          $geinins = $geinins->whereBetween('age',[$auth_age-3, $auth_age+3]);
+        if ($auth_geinin->birthday != null) {
+          $birthday_add_three = Carbon::parse($auth_geinin->birthday)->addYear(3);
+          $birthday_sub_three = Carbon::parse($auth_geinin->birthday)->subYear(3);
+          $geinins = $geinins->whereBetween('birthday',[$birthday_sub_three, $birthday_add_three]);
         } else {
           $no_age_message = '年齢が未登録のため、「自分の年齢±３才」にフィルタリングされていません';
         }
@@ -210,7 +212,6 @@ class SearchController extends Controller
       for ($i=0; $i<$keyword_count; $i++) {
         $geinins = $geinins->where(function($query) use($keyword_array, $i){
           $query->where('user', 'like', '%'.$keyword_array[$i].'%')
-                ->orWhere('age', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('activity_place', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('genre', 'like', '%'.$keyword_array[$i].'%')
                 ->orWhere('role', 'like', '%'.$keyword_array[$i].'%')
@@ -236,7 +237,7 @@ class SearchController extends Controller
         $geinins = $geinins->latest();
         break;
       case 'order_young':
-        $geinins = $geinins->whereNotNull('age')->orderBy('age', 'asc');
+        $geinins = $geinins->whereNotNull('birthday')->orderBy('birthday', 'desc');
         break;
       case 'order_random':
         $geinins = $geinins->inRandomOrder();

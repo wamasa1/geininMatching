@@ -17,7 +17,7 @@ class CreateGeininsTable extends Migration
             $table->bigIncrements('id');
             $table->string('user');
             $table->string('image')->nullable();
-            $table->integer('age')->nullable();
+            $table->date('birthday')->nullable();
             $table->string('activity_place')->nullable();
             $table->string('genre');
             $table->string('role');
