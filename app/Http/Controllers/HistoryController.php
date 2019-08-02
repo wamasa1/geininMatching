@@ -13,7 +13,8 @@ class HistoryController extends Controller
     {
         $auth_id = Auth::guard('geinin')->id();
         // 閲覧履歴は最新10件取得
-        $histories = Footprint::where('saw_id', $auth_id)->orderBy('created_at', 'desc')->take(10)->get();
+        $displayed_number = 10;
+        $histories = Footprint::where('saw_id', $auth_id)->orderBy('created_at', 'desc')->take($displayed_number)->get();
 
         return view('matching.history',['histories' => $histories]);
     }
