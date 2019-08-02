@@ -29,9 +29,7 @@ Route::get('/search', 'SearchController@search');
 Route::patch('/search', 'FavoriteController@register')->middleware('auth:geinin');
 Route::delete('/search', 'FavoriteController@delete')->middleware('auth:geinin');
 //イベント
-Route::get('/event', function () {
-    return view('matching.event');
-});
+Route::view('/event', 'matching.event');
 //プロフィール
 Route::get('/profile', 'ProfileController@self_profile')->middleware('auth:geinin');
 Route::post('/profile', 'ProfileController@store');

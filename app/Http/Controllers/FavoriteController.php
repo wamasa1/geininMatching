@@ -40,7 +40,7 @@ class FavoriteController extends Controller
     event(new FavoriteDeleteClick($request->favoriteTo_id));
     $geinin = Geinin::findOrFail($request->favoriteTo_id);
 
-    return redirect('/favorite')->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
+    return back()->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
 
   //show画面
@@ -58,8 +58,7 @@ class FavoriteController extends Controller
     event(new FavoriteDeleteClick($request->favoriteTo_id));
     $geinin = Geinin::findOrFail($request->favoriteTo_id);
 
-    return redirect('/show')
-      ->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
+    return back()->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
   
   // history画面
@@ -68,8 +67,7 @@ class FavoriteController extends Controller
     event(new FavoriteRegisterClick($request->favoriteTo_id));
     $geinin = Geinin::findOrFail($request->favoriteTo_id);
 
-    return redirect('/history')
-      ->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
+    return back()->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
   }
 
   public function historyDelete(Request $request)
@@ -77,7 +75,6 @@ class FavoriteController extends Controller
     event(new FavoriteDeleteClick($request->favoriteTo_id));
     $geinin = Geinin::findOrFail($request->favoriteTo_id);
 
-    return redirect('/history')
-      ->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
+    return back()->with('favorite_delete', $geinin->user . 'さんをお気に入り解除しました');
   }
 }
