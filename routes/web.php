@@ -36,12 +36,12 @@ Route::post('/profile', 'ProfileController@store');
 Route::get('/profile/edit', 'ProfileController@edit')->middleware('auth:geinin');
 Route::post('/profile/edit', 'ProfileController@reregistar');
 //プロフィール詳細
-Route::get('/profile/{id}', 'ProfileController@show');
+Route::get('/profile/{geinin}', 'ProfileController@show');
 //あしあと
 Route::get('/footprint', 'FootprintController@index')->middleware('auth:geinin');
 //メッセージ送信
-Route::get('/message/{id}', 'MessageController@message')->middleware('auth:geinin')->name('message');
-Route::post('/message/{id}', 'MessageController@submit');
+Route::get('/message/{geinin}', 'MessageController@message')->middleware('auth:geinin')->name('message');
+Route::post('/message/{geinin}', 'MessageController@submit');
 //メッセージボックス
 Route::get('/messagebox', 'MessageController@receive')->middleware('auth:geinin');
 //お気に入り

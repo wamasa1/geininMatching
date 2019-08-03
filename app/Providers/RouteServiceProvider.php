@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Geinin;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,8 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+        // これを書くことで、コントローラのメソッドの引数にGeininを書かずに、$geininを使える
+        Route::model('geinin', Geinin::class);
     }
 
     /**

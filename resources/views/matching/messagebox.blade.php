@@ -47,7 +47,7 @@
             @endif
               <td>{{ $sender->created_at->format('m/d H:i') }}</td>
               <td>
-                <a href="{{ url('/profile/' . $sender->sender_id) }}" target="_blank">{{ $sender->geininSender->user }}</a>
+                <a href="{{ url('/profile/' . $sender->sender_id) }}">{{ $sender->geininSender->user }}</a>
               </td>
               <td>{{ $sender->message }}</td>
               <td>

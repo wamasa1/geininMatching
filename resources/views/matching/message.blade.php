@@ -12,7 +12,7 @@
 @endsection
 
 @section('body')
-  <form action="{{ url('/message/' . $id) }}" method="post">
+  <form action="{{ url('/message/' . $geinin->id) }}" method="post">
     {{ csrf_field() }}
     <table class="table">
       <tr>

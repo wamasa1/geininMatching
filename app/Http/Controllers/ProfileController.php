@@ -67,9 +67,8 @@ class ProfileController extends Controller
     return redirect('/profile')->with('profile_success', 'プロフィールが変更されました');
   }
 //プロフィール詳細
-  public function show($id)
+  public function show($geinin)
   {
-    $geinin = Geinin::findOrFail($id);
     // 誕生日から年齢計算
     $geinin_age = Carbon::parse($geinin->birthday)->age;
     $geinin->fill(['age' => $geinin_age]);

@@ -11,10 +11,9 @@ use App\Mail\MessageNotification;
 
 class MessageController extends Controller
 {
-  public function message(Request $request, $id)
+  public function message($geinin)
   {
-    $geinin = Geinin::findOrFail($id);
-    return view('matching.message', ['geinin' => $geinin, 'id' => $id]);
+    return view('matching.message', ['geinin' => $geinin]);
   }
 
   public function submit(Request $request)
