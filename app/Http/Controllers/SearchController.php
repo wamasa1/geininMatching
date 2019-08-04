@@ -20,56 +20,31 @@ class SearchController extends Controller
         $activity_place_En = $request->activity_place;
         $activity_place_Ja = $request->activity_place_Ja;
         if ($activity_place_En != null) {
-            $geinins = $geinins->where(function ($query) use ($activity_place_Ja) {
-                $query->where('activity_place', $activity_place_Ja[0]);
-                for ($i = 1; $i < count($activity_place_Ja); $i++) {
-                    $query->orWhere('activity_place', $activity_place_Ja[$i]);
-                }
-            });
+            $geinins = $geinins->matching('activity_place', $activity_place_Ja);
         }
         //ジャンルの条件適合
         $genre_En = $request->genre;
         $genre_Ja = $request->genre_Ja;
         if ($genre_En != null) {
-            $geinins = $geinins->where(function ($query) use ($genre_Ja) {
-                $query->where('genre', $genre_Ja[0]);
-                for ($i = 1; $i < count($genre_Ja); $i++) {
-                    $query->orWhere('genre', $genre_Ja[$i]);
-                }
-            });
+            $geinins = $geinins->matching('genre', $genre_Ja);
         }
         //役割の条件適合
         $role_En = $request->role;
         $role_Ja = $request->role_Ja;
         if ($role_En != null) {
-            $geinins = $geinins->where(function ($query) use ($role_Ja) {
-                $query->where('role', $role_Ja[0]);
-                for ($i = 1; $i < count($role_Ja); $i++) {
-                    $query->orWhere('role', $role_Ja[$i]);
-                }
-            });
+            $geinins = $geinins->matching('role', $role_Ja);
         }
         //ネタ作りの条件適合
         $creater_En = $request->creater;
         $creater_Ja = $request->creater_Ja;
         if ($creater_En != null) {
-            $geinins = $geinins->where(function ($query) use ($creater_Ja) {
-                $query->where('creater', $creater_Ja[0]);
-                for ($i = 1; $i < count($creater_Ja); $i++) {
-                    $query->orWhere('creater', $creater_Ja[$i]);
-                }
-            });
+            $geinins = $geinins->matching('creater', $creater_Ja);
         }
         //目標の条件適合
         $target_En = $request->target;
         $target_Ja = $request->target_Ja;
         if ($target_En != null) {
-            $geinins = $geinins->where(function ($query) use ($target_Ja) {
-                $query->where('target', $target_Ja[0]);
-                for ($i = 1; $i < count($target_Ja); $i++) {
-                    $query->orWhere('target', $target_Ja[$i]);
-                }
-            });
+            $geinins = $geinins->matching('target', $target_Ja);
         }
         //画像がある
         if ($request->image_upload) {
