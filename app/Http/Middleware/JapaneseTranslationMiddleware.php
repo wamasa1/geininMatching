@@ -19,100 +19,44 @@ class JapaneseTranslationMiddleware
         $activity_place_En = $request->activity_place;
         $activity_place_Ja = null;
         if ($activity_place_En != null) {
-            for ($i = 0; $i < count($activity_place_En); $i++) {
-                switch ($activity_place_En[$i]) {
-                    case 'tokyo':
-                        $activity_place_Ja[$i] = '東京';
-                        break;
-                    case 'osaka':
-                        $activity_place_Ja[$i] = '大阪';
-                        break;
-                    case 'fukuoka':
-                        $activity_place_Ja[$i] = '福岡';
-                        break;
-                    case 'sendai':
-                        $activity_place_Ja[$i] = '仙台';
-                        break;
-                    case 'sapporo':
-                        $activity_place_Ja[$i] = '札幌';
-                        break;
-                    case 'okinawa':
-                        $activity_place_Ja[$i] = '沖縄';
-                        break;
-                }
-            }
+            $activity_place = str_replace('tokyo', '東京', $activity_place_En);
+            $activity_place = str_replace('osaka', '大阪', $activity_place);
+            $activity_place = str_replace('fukuoka', '福岡', $activity_place);
+            $activity_place = str_replace('sendai', '仙台', $activity_place);
+            $activity_place = str_replace('sapporo', '札幌', $activity_place);
+            $activity_place_Ja = str_replace('okinawa', '沖縄', $activity_place);
         }
         //$request->genreを和訳
         $genre_En = $request->genre;
         $genre_Ja = null;
         if ($genre_En != null) {
-            for ($i = 0; $i < count($genre_En); $i++) {
-                switch ($genre_En[$i]) {
-                    case 'manzai':
-                        $genre_Ja[$i] = '漫才';
-                        break;
-                    case 'konto':
-                        $genre_Ja[$i] = 'コント';
-                        break;
-                    case 'both':
-                        $genre_Ja[$i] = '両方';
-                        break;
-                }
-            }
+            $genre = str_replace('manzai', '漫才', $genre_En);
+            $genre = str_replace('konto', 'コント', $genre);
+            $genre_Ja = str_replace('both', '両方', $genre);
         }
         //$request->roleを和訳
         $role_En = $request->role;
         $role_Ja = null;
         if ($role_En != null) {
-            for ($i = 0; $i < count($role_En); $i++) {
-                switch ($role_En[$i]) {
-                    case 'boke':
-                        $role_Ja[$i] = 'ボケ';
-                        break;
-                    case 'tukkomi':
-                        $role_Ja[$i] = 'ツッコミ';
-                        break;
-                    case 'boke_tukkomi':
-                        $role_Ja[$i] = 'こだわらない';
-                        break;
-                }
-            }
+            $role = str_replace('boke', 'ボケ', $role_En);
+            $role = str_replace('tukkomi', 'ツッコミ', $role);
+            $role_Ja = str_replace('boke_tukkomi', 'こだわらない', $role);
         }
         //$request->createrを和訳
         $creater_En = $request->creater;
         $creater_Ja = null;
         if ($creater_En != null) {
-            for ($i = 0; $i < count($creater_En); $i++) {
-                switch ($creater_En[$i]) {
-                    case 'me':
-                        $creater_Ja[$i] = '自分が作る';
-                        break;
-                    case 'together':
-                        $creater_Ja[$i] = '一緒に作りたい';
-                        break;
-                    case 'you':
-                        $creater_Ja[$i] = '相方に作ってほしい';
-                        break;
-                }
-            }
+            $creater = str_replace('me', '自分が作る', $creater_En);
+            $creater = str_replace('together', '一緒に作りたい', $creater);
+            $creater_Ja = str_replace('you', '相方に作ってほしい', $creater);
         }
         //$request->targetを和訳
         $target_En = $request->target;
         $target_Ja = null;
         if ($target_En != null) {
-            for ($i = 0; $i < count($target_En); $i++) {
-                switch ($target_En[$i]) {
-                    case 'golden':
-                        $target_Ja[$i] = 'ゴールデンで冠番組を持つ';
-                        break;
-                    case 'midnight':
-                        $target_Ja[$i] = '深夜で面白い番組がしたい';
-                        break;
-                    case 'theater':
-                        $target_Ja[$i] = 'テレビより舞台で活躍したい';
-                        break;
-                }
-            }
+            $target = str_replace('golden', 'ゴールデンで冠番組を持つ', $target_En);
+            $target = str_replace('midnight', '深夜で面白い番組がしたい', $target);
+            $target_Ja = str_replace('theater', 'テレビより舞台で活躍したい', $target);
         }
         
         $merge_data = [

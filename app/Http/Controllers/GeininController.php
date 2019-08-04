@@ -35,8 +35,9 @@ class GeininController extends Controller
     {
         //Geininテーブルにデータ保存
         $auth_geinin = new Geinin;
-        $auth_geinin->new_register = $request->all();
+        $auth_geinin->new_register = $request->all(); //モデルに処理分離
         $auth_geinin->save();
+
         Auth::guard('geinin')->login($auth_geinin);
 
         //MatchingGeininクラスを使って処理を分離した
