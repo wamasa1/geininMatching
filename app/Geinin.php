@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-// use App\Message;
+use Illuminate\Support\Facades\Hash;
 
 class Geinin extends Authenticatable
 {
@@ -29,6 +29,7 @@ class Geinin extends Authenticatable
     {
         return $this->hasMany('App\Favorite', 'favoriteTo_id');
     }
+
     //検索項目ごとに使う
     public function scopeMatching($query, $search_target, $search_item_ja)
     {
@@ -41,4 +42,14 @@ class Geinin extends Authenticatable
 
         return $return_data;
     }
+
+    //新規登録時のデータ保存
+    public function setNewRegisterAttribute (Array $value)
+    {
+        unset($value['__token']);
+        $value['password'] = Hash::make($value['password']);
+        $value = array_add($value, 'favorite_count', 0);
+        $this->fill($value);
+    }
+
 }

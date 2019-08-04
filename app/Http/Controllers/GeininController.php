@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\GeininRequest;
 use App\Geinin;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class GeininController extends Controller
@@ -36,11 +35,8 @@ class GeininController extends Controller
     {
         //Geininテーブルにデータ保存
         $auth_geinin = new Geinin;
-        $form = $request->all();
-        $form = array_add($form, 'favorite_count', 0);
-        unset($form['__token']);
-        $form['password'] = Hash::make($form['password']);
-        $auth_geinin->fill($form)->save();
+        $auth_geinin->new_register = $request->all();
+        $auth_geinin->save();
         Auth::guard('geinin')->login($auth_geinin);
 
         //MatchingGeininクラスを使って処理を分離した
