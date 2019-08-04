@@ -25,7 +25,7 @@ Route::get('/login', 'AuthController@getAuth')->name('login');
 Route::post('/login', 'AuthController@postAuth');
 Route::get('/logout', 'AuthController@logout');
 //検索画面
-Route::get('/search', 'SearchController@search');
+Route::get('/search', 'SearchController@search')->middleware('japaneseTranslate');
 Route::patch('/search', 'FavoriteController@register')->middleware('auth:geinin');
 Route::delete('/search', 'FavoriteController@delete')->middleware('auth:geinin');
 //イベント
