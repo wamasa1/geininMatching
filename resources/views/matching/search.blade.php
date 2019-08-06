@@ -4,13 +4,14 @@
 
 @section('header')
 <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
-  @if ($auth)
-    @include('shared.logout_button')
-  @else
-    @include('shared.login_button')
-  @endif
+    @auth('geinin')
+        @include('shared.logout_button')
+    @endauth
+    @guest('geinin')
+        @include('shared.login_button')
+    @endguest
 
-  <h1 id="title-font" class="text-secondary">検索画面</h1>
+    <h1 id="title-font" class="text-secondary">検索画面</h1>
 @endsection
 
 @section('body')

@@ -3,14 +3,15 @@
 @section('title', '相方マッチングサイト')
 
 @section('header')
-  <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
-  @if ($auth)
-    @include('shared.logout_button')
-  @else
-    @include('shared.login_button')
-  @endif
+    <!-- 認証時はログアウトボタン それ以外の時はログインボタン -->
+    @auth('geinin')
+        @include('shared.logout_button')
+    @endauth
+    @guest('geinin')
+        @include('shared.login_button')
+    @endguest
 
-  <h1 id="title-font" class="pt-2 mt-2 mb-5">相方マッチングサイト</h1>
+    <h1 id="title-font" class="pt-2 mt-2 mb-5">相方マッチングサイト</h1>
 @endsection
 
 @section('body')

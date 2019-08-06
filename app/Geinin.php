@@ -30,7 +30,7 @@ class Geinin extends Authenticatable
         return $this->hasMany('App\Favorite', 'favoriteTo_id');
     }
 
-    //検索項目ごとに使う
+    //検索項目ごとに使う、マッチングさせるローカルスコープ
     public function scopeMatching($query, $search_target, $search_item_ja)
     {
         $return_data = $query->where(function ($query) use ($search_target, $search_item_ja) {

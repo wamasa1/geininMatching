@@ -15,10 +15,8 @@ class GeininController extends Controller
         $favorite_top_five = 5;
         $geinins = Geinin::orderby('favorite_count', 'desc')->take($favorite_top_five)->get();
 
-        $auth = Auth::guard('geinin')->check();
         return view('matching.index', [
             'geinins' => $geinins,
-            'auth' => $auth
         ]);
     }
 
