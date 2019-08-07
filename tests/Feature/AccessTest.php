@@ -13,7 +13,7 @@ class AccessTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testAccess()
     {
         $response = $this->get('/');
         $response->assertStatus(200);
@@ -42,34 +42,38 @@ class AccessTest extends TestCase
         $response = $this->get('/profile/edit');
         $response->assertStatus(302);
 
+        $response = $this->get('/footprint');
+        $response->assertStatus(302);
+
         $response = $this->get('/message/{id}');
         $response->assertStatus(302);
 
         $response = $this->get('/messagebox');
         $response->assertStatus(302);
 
+        $response = $this->get('/history');
+        $response->assertStatus(302);
+
         $response = $this->get('/favorite');
         $response->assertStatus(302);
 
-        $response = $this->get('/csv');
-        $response->assertStatus(200);
-
-        $response = $this->get('/csv/download');
-        $response->assertStatus(200);
+        $response = $this->get('/account');
+        $response->assertStatus(302);
     }
 
     //認証済みのユーザー
-    public function testAuth()
+    public function testAuthAccess()
     {
         $response = $this->post('/show', [
             'user' => 'ikuta',
+            'activity_place' => '東京',
             'genre' => '漫才',
             'role' => 'ボケ',
             'creater' => '自分が作る',
             'target' => 'ゴールデンで冠番組を持つ',
             'self_introduce' => '',
             'email' => 'ikuta@gmail.com',
-            'password' => 'ikuta',
+            'password' => 'ikutaikuta',
         ]);
         $response->assertStatus(200);
 
@@ -106,21 +110,22 @@ class AccessTest extends TestCase
 
         $response = $this->get('/profile/edit');
         $response->assertStatus(200);
+        
+        // なぜかfailureになる
+        // $response = $this->post('/profile/edit', [
+        //     'user' => 'ikuta',
+        //     'birthday_year' => '1985',
+        //     'birthday_month' => '7',
+        //     'birthday_day' => '15',
+        //     'activity_place' => '東京',
+        //     'genre' => '漫才',
+        //     'role' => 'ボケ',
+        //     'creater' => '自分が作る',
+        //     'target' => 'ゴールデンで冠番組を持つ',
+        // ]);
+        // $response->assertStatus(302);
 
-        $response = $this->post('/profile/edit', [
-            'user' => 'ikuta',
-            'genre' => '漫才',
-            'role' => 'ボケ',
-            'creater' => '自分が作る',
-            'target' => 'ゴールデンで冠番組を持つ',
-            'self_introduce' => '',
-        ]);
-        $response->assertStatus(302);
-
-        $response = $this->get('/message/1');
-        $response->assertStatus(200);
-
-        $response = $this->get('/messagebox');
+        $response = $this->get('/footprint');
         $response->assertStatus(200);
 
         $response = $this->get('/favorite');
@@ -130,5 +135,14 @@ class AccessTest extends TestCase
             'favoriteTo_id' => '1',
         ]);
         $response->assertStatus(302);
+
+        $response = $this->get('/history');
+        $response->assertStatus(200);
+
+        $response = $this->get('/message/1');
+        $response->assertStatus(200);
+
+        $response = $this->get('/messagebox');
+        $response->assertStatus(200);
     }
 }

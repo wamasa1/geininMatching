@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Geinin;
 use App\Footprint;
 
 class ProfileController extends Controller
@@ -55,7 +54,7 @@ class ProfileController extends Controller
     public function reregistar(Request $request)
     {
         $geinin = Auth::guard('geinin')->user();
-
+        //テストユーザーの場合を省いている
         if ($request->user) {
             $geinin->user = $request->user;
         }
