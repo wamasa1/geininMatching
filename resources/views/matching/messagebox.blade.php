@@ -51,7 +51,7 @@
               </td>
               <td>{{ $sender->message }}</td>
               <td>
-                <a class="btn btn-sm btn-danger" href="{{ action('MessageController@message', $sender->sender_id)}}">
+                <a class="btn btn-sm btn-danger" href="{{ action('MessageController@submitScreen', $sender->sender_id)}}">
                   返信する
                 </a>
               </td>
@@ -71,7 +71,7 @@
             <tr>
               <td>{{ $sent_message->created_at->format('m/d H:i') }}</td>
               <td>
-                <a href="{{ url('/profile/' . $sent_message->receiver_id) }}" target="_blank">{{ $sent_message->geininReceiver->user }}</a>
+                <a href="{{ url('/profile/' . $sent_message->receiver_id) }}">{{ $sent_message->geininReceiver->user }}</a>
               </td>
               <td>{{ $sent_message->message }}</td>
             </tr>

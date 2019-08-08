@@ -12,17 +12,17 @@
 */
 
 //ホーム
-Route::get('/', 'GeininController@index');
+Route::get('/', 'GeininController@home');
 //新規登録
-Route::get('/register', 'GeininController@register')->name('register');
+Route::get('/register', 'GeininController@registerScreen');
 //マッチング
-Route::post('/show', 'GeininController@add');
+Route::post('/show', 'GeininController@registerAndShow');
 Route::get('/show', 'GeininController@show')->middleware('auth:geinin');
 Route::patch('/show', 'FavoriteController@showRegister');
 Route::delete('/show', 'FavoriteController@showDelete');
 //認証
-Route::get('/login', 'AuthController@getAuth')->name('login');
-Route::post('/login', 'AuthController@postAuth');
+Route::get('/login', 'AuthController@loginScreen')->name('login_screen');
+Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
 //検索画面
 Route::get('/search', 'SearchController@search')->middleware('japaneseTranslate');
@@ -40,7 +40,7 @@ Route::get('/profile/{geinin}', 'ProfileController@show');
 //あしあと
 Route::get('/footprint', 'FootprintController@index')->middleware('auth:geinin');
 //メッセージ送信
-Route::get('/message/{geinin}', 'MessageController@message')->middleware('auth:geinin')->name('message');
+Route::get('/message/{geinin}', 'MessageController@submitScreen')->middleware('auth:geinin');
 Route::post('/message/{geinin}', 'MessageController@submit');
 //メッセージボックス
 Route::get('/messagebox', 'MessageController@receive')->middleware('auth:geinin');
@@ -53,8 +53,8 @@ Route::patch('/history', 'FavoriteController@historyRegister')->middleware('auth
 Route::delete('/history', 'FavoriteController@historyDelete')->middleware('auth:geinin');
 //登録情報
 Route::get('/account', 'AccountController@index')->middleware('auth:geinin');
-Route::post('/account', 'AccountController@post');
-Route::delete('/account', 'AccountController@delete');
+Route::post('/account', 'AccountController@passwordChange');
+Route::delete('/account', 'AccountController@accountDelete');
 //CSV　download
 // Route::get('/csv', 'CsvController@index');
 // Route::get('/csv/download', 'CsvController@download');

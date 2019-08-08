@@ -34,7 +34,7 @@
             </th>
             <th class="align-middle">{{ $footprint->created_at->format('Y/m/d' )}}</th>
             <th class="align-middle">
-                <a class="btn btn-sm btn-danger" href="{{ action('MessageController@message', $footprint->saw_id)}}">
+                <a class="btn btn-sm btn-danger" href="{{ action('MessageController@submitScreen', $footprint->saw_id)}}">
                 メッセージを送る
                 </a>
             </th>

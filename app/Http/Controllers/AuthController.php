@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function getAuth(Request $request)
+    public function loginScreen()
     {
         return view('geinin.login');
     }
 
-    public function postAuth(Request $request)
-    { //テストユーザーでログイン
+    public function login(Request $request)
+    {   //テストユーザーでログイン
         if ($request->test_user_id == 1) {
             Auth::guard('geinin')->loginUsingId(1);
             return redirect()->intended('/search')->with('login', 'ログインしました');

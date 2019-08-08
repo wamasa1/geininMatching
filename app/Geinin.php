@@ -33,14 +33,14 @@ class Geinin extends Authenticatable
     //検索項目ごとに使う、マッチングさせるローカルスコープ
     public function scopeMatching($query, $search_target, $search_item_ja)
     {
-        $return_data = $query->where(function ($query) use ($search_target, $search_item_ja) {
+        $matching_data = $query->where(function ($query) use ($search_target, $search_item_ja) {
             $query->where($search_target, $search_item_ja[0]);
             for ($i = 1; $i < count($search_item_ja); $i++) {
                 $query->orWhere($search_target, $search_item_ja[$i]);
             }
         });
 
-        return $return_data;
+        return $matching_data;
     }
 
     //新規登録時のデータ保存

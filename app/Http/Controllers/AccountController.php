@@ -16,7 +16,7 @@ class AccountController extends Controller
         return view('matching.account');
     }
 
-    public function post(PasswordChangeRequest $request)
+    public function passwordChange(PasswordChangeRequest $request)
     {
         $geinin = Auth::guard('geinin')->user();
         //テストユーザー
@@ -36,7 +36,7 @@ class AccountController extends Controller
         }
     }
 
-    public function delete(AccountDeleteRequest $request)
+    public function accountDelete(AccountDeleteRequest $request)
     {
         $geinin = Auth::guard('geinin')->user();
         //テストユーザー

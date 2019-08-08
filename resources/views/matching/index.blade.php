@@ -84,7 +84,7 @@
                 @endif
               </td>
               <td class="align-middle text-nowrap">
-                <a href="{{ url('/profile/' . $geinin->id) }}" target="_blank">{{ $geinin->user }}</a>
+                <a href="{{ url('/profile/' . $geinin->id) }}">{{ $geinin->user }}</a>
               </td>
             </tr>
           @endforeach

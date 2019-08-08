@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class GeininController extends Controller
 {
-    public function index()
+    public function home()
     {
         // お気に入り登録者数上位５名を取得
         $favorite_top_five = 5;
@@ -20,7 +20,7 @@ class GeininController extends Controller
         ]);
     }
 
-    public function register()
+    public function registerScreen()
     {
         if (Auth::guard('geinin')->check()) {
             return redirect('/show')->with('already_register', 'もうすでに登録されています');
@@ -29,9 +29,9 @@ class GeininController extends Controller
         }
     }
 
-    public function add(GeininRequest $request)
+    public function registerAndShow(GeininRequest $request)
     {
-        //Geininテーブルにデータ保存
+        //Geininテーブルにデータを新規登録
         $auth_geinin = new Geinin;
         $auth_geinin->new_register = $request->all(); //モデルに処理分離
         $auth_geinin->save();

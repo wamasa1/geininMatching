@@ -25,7 +25,7 @@ class ProfileController extends Controller
     public function store(ProfileRequest $request)
     {
         $geinin = Auth::guard('geinin')->user();
-        //s3に画像保存
+        //画像ファイル名にidを付けて、s3に保存
         $file = $request->file('image');
         Storage::disk('s3')->putFileAs('/images', $file, $geinin->id . '.jpg', 'public');
         //geininsテーブルにファイル名保存
@@ -75,7 +75,8 @@ class ProfileController extends Controller
         if (Auth::guard('geinin')->check()) {
             $auth_id = Auth::guard('geinin')->id();
         } else {
-            $auth_id = 0; //ゲストさんは0
+            $guest_id = 0; //扱いやすいように、ゲストさんは、0にしとく
+            $auth_id = $guest_id; 
         }
         //footprintsテーブルにデータ追加
         $footprint = new Footprint();
