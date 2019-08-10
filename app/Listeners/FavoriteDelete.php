@@ -31,9 +31,9 @@ class FavoriteDelete
     {
         //お気に入り登録解除
         $auth_id = Auth::guard('geinin')->id();
-        $favorite = Favorite::where('favoriteTo_id', $event->favoriteTo_id)
-            ->where('favoriteFrom_id', $auth_id)
-            ->delete();
+        Favorite::where('favoriteTo_id', $event->favoriteTo_id)
+                ->where('favoriteFrom_id', $auth_id)
+                ->delete();
         //favorite_countを１減らす
         $geinin = Geinin::findOrFail($event->favoriteTo_id);
         $geinin->favorite_count--;

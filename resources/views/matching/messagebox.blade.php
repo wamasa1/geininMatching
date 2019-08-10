@@ -51,7 +51,7 @@
               </td>
               <td>{{ $sender->message }}</td>
               <td>
-                <a class="btn btn-sm btn-danger" href="{{ action('MessageController@submitScreen', $sender->sender_id)}}">
+                <a class="btn btn-sm btn-danger" href="{{ action('MessageController@submitForm', $sender->sender_id)}}">
                   返信する
                 </a>
               </td>

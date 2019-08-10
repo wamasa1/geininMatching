@@ -43,6 +43,6 @@
 </tbody>
 </table>
 <!-- メッセージ送信 -->
-<a class="btn btn-danger mb-2" href="{{ action('MessageController@submitScreen', $geinin->id) }}">
+<a class="btn btn-danger mb-2" href="{{ action('MessageController@submitForm', $geinin->id) }}">
 {{ $geinin->user }}さんにメッセージを送る
 </a>

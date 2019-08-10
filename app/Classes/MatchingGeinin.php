@@ -12,8 +12,11 @@ class MatchingGeinin
     public function __construct($auth_geinin)
     {   
         $this->auth_geinin = $auth_geinin;
+
         //roleのMatching(例えばボケに対しては、ツッコミと「こだわらない」芸人をマッチング)
         $role = $auth_geinin->role;
+        $this->role = $role;
+
         switch ($role) {
             case 'ボケ':
             case 'ツッコミ':
@@ -23,7 +26,6 @@ class MatchingGeinin
                 $role_boolean = false;
                 break;
         }
-        $this->role = $role;
         $this->role_boolean = $role_boolean;
 
         //createrのMatching

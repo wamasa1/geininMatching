@@ -34,7 +34,6 @@ class FavoriteController extends Controller
 
         return view('matching.favorite', ['favorites' => $favorites]);
     }
-
     public function listDelete(Request $request)
     {
         event(new FavoriteDeleteClick($request->favoriteTo_id));
@@ -49,10 +48,8 @@ class FavoriteController extends Controller
         event(new FavoriteRegisterClick($request->favoriteTo_id));
         $geinin = Geinin::findOrFail($request->favoriteTo_id);
 
-        return redirect('/show')
-            ->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
+        return redirect('/show')->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
     }
-
     public function showDelete(Request $request)
     {
         event(new FavoriteDeleteClick($request->favoriteTo_id));
@@ -69,7 +66,6 @@ class FavoriteController extends Controller
 
         return back()->with('favorite_success', $geinin->user . 'さんをお気に入り登録しました');
     }
-
     public function historyDelete(Request $request)
     {
         event(new FavoriteDeleteClick($request->favoriteTo_id));

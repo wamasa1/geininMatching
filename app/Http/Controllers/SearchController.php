@@ -16,57 +16,56 @@ class SearchController extends Controller
         $auth_id = Auth::guard('geinin')->id();
         $geinins = Geinin::where('id', '!=', $auth_id);
         $allCount = $geinins->count();
+
         //活動場所の条件適合
         $activity_place_En = $request->activity_place;
         $activity_place_Ja = $request->activity_place_Ja;
-        if ($activity_place_En != null) {
+        if (isset($activity_place_En)) {
             $geinins = $geinins->matching('activity_place', $activity_place_Ja);
         }
         //ジャンルの条件適合
         $genre_En = $request->genre;
         $genre_Ja = $request->genre_Ja;
-        if ($genre_En != null) {
+        if (isset($genre_En)) {
             $geinins = $geinins->matching('genre', $genre_Ja);
         }
         //役割の条件適合
         $role_En = $request->role;
         $role_Ja = $request->role_Ja;
-        if ($role_En != null) {
+        if (isset($role_En)) {
             $geinins = $geinins->matching('role', $role_Ja);
         }
         //ネタ作りの条件適合
         $creater_En = $request->creater;
         $creater_Ja = $request->creater_Ja;
-        if ($creater_En != null) {
+        if (isset($creater_En)) {
             $geinins = $geinins->matching('creater', $creater_Ja);
         }
         //目標の条件適合
         $target_En = $request->target;
         $target_Ja = $request->target_Ja;
-        if ($target_En != null) {
+        if (isset($target_En)) {
             $geinins = $geinins->matching('target', $target_Ja);
         }
         //画像がある
         if ($request->image_upload) {
             $geinins = $geinins->where('image', '!=', null);
         }
-        //認証関連
-        $auth = Auth::guard('geinin')->check();
-        $auth_geinin = Auth::guard('geinin')->user();
 
+        //認証関連
+        $is_auth = Auth::guard('geinin')->check();
+        $auth_geinin = Auth::guard('geinin')->user();
         //ログインユーザー限定項目
         $no_age_message = null;
         $guest_message = null;
-        if ($auth) {
+        if ($is_auth) {
             //自分の年齢±３才
-            if ($request->three_age) {
-                if ($auth_geinin->birthday != null) {
-                    $birthday_add_three = Carbon::parse($auth_geinin->birthday)->addYear(3);
-                    $birthday_sub_three = Carbon::parse($auth_geinin->birthday)->subYear(3);
-                    $geinins = $geinins->whereBetween('birthday', [$birthday_sub_three, $birthday_add_three]);
-                } else {
-                    $no_age_message = '年齢が未登録のため、「自分の年齢±３才」にフィルタリングされていません';
-                }
+            if ($request->three_age && isset($auth_geinin->birthday)) {
+                $birthday_add_three = Carbon::parse($auth_geinin->birthday)->addYear(3);
+                $birthday_sub_three = Carbon::parse($auth_geinin->birthday)->subYear(3);
+                $geinins = $geinins->whereBetween('birthday', [$birthday_sub_three, $birthday_add_three]);
+            } elseif (empty($auth_geinin->birthday)) {
+                $no_age_message = '年齢が未登録のため、「自分の年齢±３才」にフィルタリングされていません';
             }
             //お気に入り登録済み芸人除く
             if ($request->except_favorite) {
@@ -75,13 +74,14 @@ class SearchController extends Controller
                     $geinins = $geinins->where('id', '!=', $favorite->favoriteTo_id);
                 }
             }
+        //ログインユーザー限定項目を選択したが、認証されていない場合
         } elseif ($request->three_age || $request->except_favorite) {
             $guest_message = 'ログインしていないため、ログイン限定項目は機能していません';
         }
 
         //キーワード検索
         $keyword = $request->keyword;
-        if ($keyword != null) {
+        if (isset($keyword)) {
             $keyword = mb_convert_kana($keyword, 's'); //全角スペースを半角に変換
             $keyword_array = preg_split("/[\s]+/", $keyword); //半角スペースで区切られた文字列を配列化
             for ($i = 0; $i < count($keyword_array); $i++) {
@@ -95,8 +95,10 @@ class SearchController extends Controller
                 });
             }
         }
-        //検索適合件数
+
+        //検索適合件数(ここの時点で$geininsの絞り込みが終わっている)
         $hitCount = $geinins->count();
+
         //並び替え
         switch ($request->order) {
             case 'order_favorite':
@@ -114,11 +116,13 @@ class SearchController extends Controller
         }
         //ペジネーション
         $geinins = $geinins->paginate(4);
+
         //おみくじ検索
         if ($request->omikuji) {
             $geinins = Geinin::where('id', '!=', $auth_id)->inRandomOrder()->paginate(1);
             $hitCount = $geinins->count();
         }
+        
         //未検索時
         if ($request->all() == null) {
             $geinins = Geinin::where('id', '!=', $auth_id)->paginate(4);

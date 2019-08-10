@@ -85,7 +85,7 @@
             </tr>
         </tbody>
     </table>
-    <a class="btn btn-danger my-3" href="{{ action('MessageController@submitScreen', $geinin->id) }}">
+    <a class="btn btn-danger my-3" href="{{ action('MessageController@submitForm', $geinin->id) }}">
         {{ $geinin->user }}さんにメッセージを送る
     </a>
     <!-- お気に入り芸人登録・解除ボタン -->

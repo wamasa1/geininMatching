@@ -40,7 +40,7 @@ Route::get('/profile/{geinin}', 'ProfileController@show');
 //あしあと
 Route::get('/footprint', 'FootprintController@index')->middleware('auth:geinin');
 //メッセージ送信
-Route::get('/message/{geinin}', 'MessageController@submitScreen')->middleware('auth:geinin');
+Route::get('/message/{geinin}', 'MessageController@submitForm')->middleware('auth:geinin');
 Route::post('/message/{geinin}', 'MessageController@submit');
 //メッセージボックス
 Route::get('/messagebox', 'MessageController@receive')->middleware('auth:geinin');

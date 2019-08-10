@@ -11,7 +11,7 @@ use App\Mail\MessageNotification;
 
 class MessageController extends Controller
 {
-    public function submitScreen($geinin)
+    public function submitForm($geinin)
     {
         return view('matching.message', ['geinin' => $geinin]);
     }
@@ -27,7 +27,7 @@ class MessageController extends Controller
         $receiver = Geinin::findOrFail($request->id);
         $sender = Auth::guard('geinin')->user();
 
-        //受信者に受信をお知らせするメール送信(AWSではなぜかエラー)
+        //受信者に受信をお知らせするメール送信(todo:AWSではなぜかエラー)
         try {
             $title = '[相方マッチングサイト]メッセージ受信のお知らせ';
             $text = $sender->user . 'さんからメッセージが届いております。';
