@@ -44,7 +44,7 @@
 @section('GoogleMap')
   <!-- Google Map API関連（jQuery,js等） -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxbeYuC7fA8pnAHbvOlxeAlZScWYYmCxE"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}"></script>
   <script type="text/javascript">
     //NSC東京
     var center1 = {
