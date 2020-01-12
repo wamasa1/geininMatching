@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build: #Workflowsを使わない場合に、buildジョブがデフォルトのエントリーポイント
+    machine:
+      image: circleci/classic:edge #最新版のマシンイメージ
+    steps:
+      - add_ssh_keys #管理画面で登録したprivate_keyを読み込む
+      - run: ssh ${EC2_USER_NAME}@${EC2_HOST_NAME} 'cd /var/www/geininMatching && git fetch origin master && git reset --hard origin/master'
